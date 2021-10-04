@@ -1,6 +1,8 @@
 # Tugz
 Restoration tracking &amp; research app for iOS
 
+<img src="https://preview.redd.it/fq5p2l13uvq71.png?width=1500&format=png&auto=webp&s=0138244512e23cd870faf501d736542f0fdececc" width=200>
+
 For Android check out [Tea Time Logger](https://github.com/DerEasy/Tea-Time-Logger)
 
 [Several](https://www.reddit.com/r/foreskin_restoration/comments/pze7k7/interest_in_a_restoration_tracking_app/) [discussions](https://www.reddit.com/r/foreskin_restoration/search?q=%22ATracker%22&restrict_sr=on&sort=relevance&t=all) [on the](https://www.reddit.com/r/foreskin_restoration/comments/kvbpjs/comprehensive_foreskin_restoration_support/) restoration subreddit the idea of a restoration-specific app has been brought up. Until now, there has not been one made for iOS.
