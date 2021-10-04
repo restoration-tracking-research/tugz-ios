@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C06D0000270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */; };
+		C06D0002270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */; };
+		C06DFFE5270B5A97006CEBA0 /* Tugz_iOS_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */; };
+		C06DFFE7270B5A97006CEBA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFE6270B5A97006CEBA0 /* ContentView.swift */; };
+		C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */; };
+		C06DFFEC270B5A9B006CEBA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */; };
+		C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C06DFFF2270B5A9B006CEBA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C06DFFD9270B5A97006CEBA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C06DFFE0270B5A97006CEBA0;
+			remoteInfo = "Tugz-iOS-app";
+		};
+		C06DFFFC270B5A9B006CEBA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C06DFFD9270B5A97006CEBA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C06DFFE0270B5A97006CEBA0;
+			remoteInfo = "Tugz-iOS-app";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C06DFFE1270B5A97006CEBA0 /* Tugz-iOS-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tugz-iOS-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appApp.swift; sourceTree = "<group>"; };
+		C06DFFE6270B5A97006CEBA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
+		C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appUITests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C06DFFDE270B5A97006CEBA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06DFFEE270B5A9B006CEBA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06DFFF8270B5A9B006CEBA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C06DFFD8270B5A97006CEBA0 = {
+			isa = PBXGroup;
+			children = (
+				C06DFFE3270B5A97006CEBA0 /* Tugz-iOS-app */,
+				C06DFFF4270B5A9B006CEBA0 /* Tugz-iOS-appTests */,
+				C06DFFFE270B5A9B006CEBA0 /* Tugz-iOS-appUITests */,
+				C06DFFE2270B5A97006CEBA0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C06DFFE2270B5A97006CEBA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C06DFFE1270B5A97006CEBA0 /* Tugz-iOS-app.app */,
+				C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */,
+				C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C06DFFE3270B5A97006CEBA0 /* Tugz-iOS-app */ = {
+			isa = PBXGroup;
+			children = (
+				C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */,
+				C06DFFE6270B5A97006CEBA0 /* ContentView.swift */,
+				C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */,
+				C06DFFEA270B5A9B006CEBA0 /* Preview Content */,
+			);
+			path = "Tugz-iOS-app";
+			sourceTree = "<group>";
+		};
+		C06DFFEA270B5A9B006CEBA0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C06DFFF4270B5A9B006CEBA0 /* Tugz-iOS-appTests */ = {
+			isa = PBXGroup;
+			children = (
+				C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */,
+			);
+			path = "Tugz-iOS-appTests";
+			sourceTree = "<group>";
+		};
+		C06DFFFE270B5A9B006CEBA0 /* Tugz-iOS-appUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */,
+				C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */,
+			);
+			path = "Tugz-iOS-appUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-app" */;
+			buildPhases = (
+				C06DFFDD270B5A97006CEBA0 /* Sources */,
+				C06DFFDE270B5A97006CEBA0 /* Frameworks */,
+				C06DFFDF270B5A97006CEBA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tugz-iOS-app";
+			productName = "Tugz-iOS-app";
+			productReference = C06DFFE1270B5A97006CEBA0 /* Tugz-iOS-app.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C06DFFF0270B5A9B006CEBA0 /* Tugz-iOS-appTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C06D0008270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appTests" */;
+			buildPhases = (
+				C06DFFED270B5A9B006CEBA0 /* Sources */,
+				C06DFFEE270B5A9B006CEBA0 /* Frameworks */,
+				C06DFFEF270B5A9B006CEBA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C06DFFF3270B5A9B006CEBA0 /* PBXTargetDependency */,
+			);
+			name = "Tugz-iOS-appTests";
+			productName = "Tugz-iOS-appTests";
+			productReference = C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C06DFFFA270B5A9B006CEBA0 /* Tugz-iOS-appUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C06D000B270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appUITests" */;
+			buildPhases = (
+				C06DFFF7270B5A9B006CEBA0 /* Sources */,
+				C06DFFF8270B5A9B006CEBA0 /* Frameworks */,
+				C06DFFF9270B5A9B006CEBA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C06DFFFD270B5A9B006CEBA0 /* PBXTargetDependency */,
+			);
+			name = "Tugz-iOS-appUITests";
+			productName = "Tugz-iOS-appUITests";
+			productReference = C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C06DFFD9270B5A97006CEBA0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					C06DFFE0270B5A97006CEBA0 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					C06DFFF0270B5A9B006CEBA0 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = C06DFFE0270B5A97006CEBA0;
+					};
+					C06DFFFA270B5A9B006CEBA0 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = C06DFFE0270B5A97006CEBA0;
+					};
+				};
+			};
+			buildConfigurationList = C06DFFDC270B5A97006CEBA0 /* Build configuration list for PBXProject "Tugz-iOS-app" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C06DFFD8270B5A97006CEBA0;
+			productRefGroup = C06DFFE2270B5A97006CEBA0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */,
+				C06DFFF0270B5A9B006CEBA0 /* Tugz-iOS-appTests */,
+				C06DFFFA270B5A9B006CEBA0 /* Tugz-iOS-appUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C06DFFDF270B5A97006CEBA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C06DFFEC270B5A9B006CEBA0 /* Preview Assets.xcassets in Resources */,
+				C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06DFFEF270B5A9B006CEBA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06DFFF9270B5A9B006CEBA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C06DFFDD270B5A97006CEBA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C06DFFE7270B5A97006CEBA0 /* ContentView.swift in Sources */,
+				C06DFFE5270B5A97006CEBA0 /* Tugz_iOS_appApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06DFFED270B5A9B006CEBA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06DFFF7270B5A9B006CEBA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C06D0002270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift in Sources */,
+				C06D0000270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C06DFFF3270B5A9B006CEBA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */;
+			targetProxy = C06DFFF2270B5A9B006CEBA0 /* PBXContainerItemProxy */;
+		};
+		C06DFFFD270B5A9B006CEBA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */;
+			targetProxy = C06DFFFC270B5A9B006CEBA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C06D0003270B5A9B006CEBA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C06D0004270B5A9B006CEBA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C06D0006270B5A9B006CEBA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tugz-iOS-app/Preview Content\"";
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C06D0007270B5A9B006CEBA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tugz-iOS-app/Preview Content\"";
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C06D0009270B5A9B006CEBA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-appTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tugz-iOS-app.app/Tugz-iOS-app";
+			};
+			name = Debug;
+		};
+		C06D000A270B5A9B006CEBA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-appTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tugz-iOS-app.app/Tugz-iOS-app";
+			};
+			name = Release;
+		};
+		C06D000C270B5A9B006CEBA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-appUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Tugz-iOS-app";
+			};
+			name = Debug;
+		};
+		C06D000D270B5A9B006CEBA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-appUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Tugz-iOS-app";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C06D0006270B5A9B006CEBA0 /* Debug */,
+				C06D0007270B5A9B006CEBA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C06D0008270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C06D0009270B5A9B006CEBA0 /* Debug */,
+				C06D000A270B5A9B006CEBA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C06D000B270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C06D000C270B5A9B006CEBA0 /* Debug */,
+				C06D000D270B5A9B006CEBA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C06DFFDC270B5A97006CEBA0 /* Build configuration list for PBXProject "Tugz-iOS-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C06D0003270B5A9B006CEBA0 /* Debug */,
+				C06D0004270B5A9B006CEBA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C06DFFD9270B5A97006CEBA0 /* Project object */;
+}
