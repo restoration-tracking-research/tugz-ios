@@ -9,11 +9,21 @@
 /* Begin PBXBuildFile section */
 		C06D0000270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */; };
 		C06D0002270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */; };
+		C06D000F270B8577006CEBA0 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D000E270B8577006CEBA0 /* TabView.swift */; };
+		C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0010270BA216006CEBA0 /* ProgressCircle.swift */; };
+		C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0012270BA245006CEBA0 /* FilledButton.swift */; };
+		C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0017270BA2DF006CEBA0 /* DeviceSettings.swift */; };
+		C06D001A270BA2EF006CEBA0 /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */; };
+		C06D001C270BA2FF006CEBA0 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D001B270BA2FF006CEBA0 /* History.swift */; };
+		C06D001E270BA322006CEBA0 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D001D270BA322006CEBA0 /* Scheduler.swift */; };
 		C06DFFE5270B5A97006CEBA0 /* Tugz_iOS_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */; };
 		C06DFFE7270B5A97006CEBA0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFE6270B5A97006CEBA0 /* ContentView.swift */; };
 		C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */; };
 		C06DFFEC270B5A9B006CEBA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */; };
 		C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */; };
+		C09191CC270BAD3D00EFBE34 /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */; };
+		C09191CF270C5B4900EFBE34 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191CE270C5B4900EFBE34 /* Date.swift */; };
+		C09191D1270C5B8700EFBE34 /* Tug.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191D0270C5B8700EFBE34 /* Tug.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,13 @@
 
 /* Begin PBXFileReference section */
 		C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C06D000E270B8577006CEBA0 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		C06D0010270BA216006CEBA0 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
+		C06D0012270BA245006CEBA0 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
+		C06D0017270BA2DF006CEBA0 /* DeviceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettings.swift; sourceTree = "<group>"; };
+		C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefs.swift; sourceTree = "<group>"; };
+		C06D001B270BA2FF006CEBA0 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		C06D001D270BA322006CEBA0 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		C06DFFE1270B5A97006CEBA0 /* Tugz-iOS-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tugz-iOS-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appApp.swift; sourceTree = "<group>"; };
 		C06DFFE6270B5A97006CEBA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +61,9 @@
 		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
 		C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appUITests.swift; sourceTree = "<group>"; };
+		C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
+		C09191CE270C5B4900EFBE34 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		C09191D0270C5B8700EFBE34 /* Tug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tug.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +91,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C06D0014270BA2A5006CEBA0 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C06D000E270B8577006CEBA0 /* TabView.swift */,
+				C06DFFE6270B5A97006CEBA0 /* ContentView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		C06D0015270BA2BA006CEBA0 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				C06D0010270BA216006CEBA0 /* ProgressCircle.swift */,
+				C06D0012270BA245006CEBA0 /* FilledButton.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		C06D0016270BA2C8006CEBA0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C06D0017270BA2DF006CEBA0 /* DeviceSettings.swift */,
+				C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */,
+				C06D001B270BA2FF006CEBA0 /* History.swift */,
+				C09191D0270C5B8700EFBE34 /* Tug.swift */,
+				C06D001D270BA322006CEBA0 /* Scheduler.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C06DFFD8270B5A97006CEBA0 = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +145,10 @@
 			isa = PBXGroup;
 			children = (
 				C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */,
-				C06DFFE6270B5A97006CEBA0 /* ContentView.swift */,
+				C06D0016270BA2C8006CEBA0 /* Model */,
+				C06D0015270BA2BA006CEBA0 /* UI Components */,
+				C06D0014270BA2A5006CEBA0 /* Screens */,
+				C09191CD270C5B3D00EFBE34 /* Extensions */,
 				C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */,
 				C06DFFEA270B5A9B006CEBA0 /* Preview Content */,
 			);
@@ -114,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */,
+				C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */,
 			);
 			path = "Tugz-iOS-appTests";
 			sourceTree = "<group>";
@@ -125,6 +179,14 @@
 				C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */,
 			);
 			path = "Tugz-iOS-appUITests";
+			sourceTree = "<group>";
+		};
+		C09191CD270C5B3D00EFBE34 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C09191CE270C5B4900EFBE34 /* Date.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +319,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09191D1270C5B8700EFBE34 /* Tug.swift in Sources */,
+				C06D001E270BA322006CEBA0 /* Scheduler.swift in Sources */,
 				C06DFFE7270B5A97006CEBA0 /* ContentView.swift in Sources */,
+				C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */,
+				C06D001C270BA2FF006CEBA0 /* History.swift in Sources */,
+				C06D000F270B8577006CEBA0 /* TabView.swift in Sources */,
+				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
+				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
+				C06D001A270BA2EF006CEBA0 /* UserPrefs.swift in Sources */,
+				C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */,
 				C06DFFE5270B5A97006CEBA0 /* Tugz_iOS_appApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */,
+				C09191CC270BAD3D00EFBE34 /* SchedulerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +497,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -437,7 +510,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -455,6 +528,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -467,7 +541,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

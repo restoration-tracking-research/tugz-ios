@@ -11,7 +11,11 @@ import SwiftUI
 struct Tugz_iOS_appApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            let prefs = UserPrefs.load()
+            let history = History.load()
+            
+            TabBarHostingView(prefs: prefs, history: history)
         }
     }
 }
