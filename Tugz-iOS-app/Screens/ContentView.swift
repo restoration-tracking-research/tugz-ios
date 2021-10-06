@@ -10,31 +10,44 @@ import SwiftUI
 struct ContentView: View {
     
     let scheduler: Scheduler
-    @State var progressValue: Float = 0.28
+    @State var percentDoneToday: Double
+    @State var formattedTotalTugTimeToday: String
+    @State var formattedTimeUntilNextTug: String
+    @State var formattedTimeOfNextTug: String
     
+    let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
+    
+    init(scheduler: Scheduler) {
+        self.scheduler = scheduler
+        percentDoneToday = scheduler.percentDoneToday
+        formattedTotalTugTimeToday = scheduler.formattedTotalTugTimeToday()
+        formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
+        formattedTimeOfNextTug = scheduler.formattedTimeOfNextTug()
+    }
+
     var body: some View {
         ZStack {
             Color.yellow
                 .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("TUGZ")
+                Text("CI-0")
                     .padding()
                     .font(.largeTitle)
                 Text("Total tug time today:")
-                Text(scheduler.formattedTotalTugTimeToday())
+                Text(formattedTotalTugTimeToday)
                     .font(.largeTitle).bold()
-                ProgressCircle(progress: self.$progressValue)
+                ProgressCircle(progress: $percentDoneToday)
                     .frame(width: 150.0, height: 150.0)
                     .padding(40.0)
                 
                 VStack {
                     HStack {
                         Text("Next session in")
-                        Text(scheduler.formattedTimeUntilNextTug())
+                        Text(formattedTimeUntilNextTug)
                             .bold()
                         Text("at")
-                        Text(scheduler.formattedTimeOfNextTug())
+                        Text(formattedTimeOfNextTug)
                             .bold()
                     }
                     Button("TUG NOW") {
@@ -45,6 +58,12 @@ struct ContentView: View {
                 Spacer()
                 
             }.progressViewStyle(TugzProgressViewStyle())
+        }
+        .onReceive(timer) { _ in
+            self.percentDoneToday = scheduler.percentDoneToday
+            self.formattedTotalTugTimeToday = scheduler.formattedTotalTugTimeToday()
+            self.formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
+            self.formattedTimeOfNextTug = scheduler.formattedTimeOfNextTug()
         }
     }
 }

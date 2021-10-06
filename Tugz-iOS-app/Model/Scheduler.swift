@@ -50,6 +50,10 @@ struct Scheduler {
         }
     }
     
+    var percentDoneToday: Double {
+        totalTugTimeToday / prefs.dailyGoalTugTime.converted(to: .seconds).value
+    }
+    
     func nextTug(after date: Date = Date()) -> Date? {
         guard let first = firstTugTimeToday,
               let last = lastTugTimeToday else {
@@ -101,12 +105,15 @@ struct Scheduler {
     
     func formattedTotalTugTimeToday() -> String {
         if totalTugTimeToday < oneHourInSeconds {
-            if #available(iOS 15.0, *) {
-                return Measurement(value: totalTugTimeToday, unit: UnitDuration.seconds).converted(to: .minutes).formatted()
-            } else {
-                return "\(Measurement(value: totalTugTimeToday, unit: UnitDuration.seconds).converted(to: .minutes).value)"
-            }
+            return "\(totalTugTimeToday.minute) min"
         }
-        return intervalFormatter.string(from: totalTugTimeToday) ?? "0 min"
+        return "\(totalTugTimeToday.hour) h \(totalTugTimeToday.minute) min"
+    }
+    
+    func formattedPercentDoneToday() -> String {
+        if percentDoneToday > 0 {
+            return "\(percentDoneToday * 100) %"
+        }
+        return "-"
     }
 }

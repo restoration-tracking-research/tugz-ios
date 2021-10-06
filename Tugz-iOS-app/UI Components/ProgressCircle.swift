@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProgressCircle: View {
     
-    @Binding var progress: Float
+    @Binding var progress: Double
     
     var body: some View {
         ZStack {
@@ -19,13 +19,13 @@ struct ProgressCircle: View {
                 .foregroundColor(.red)
             
             Circle()
-                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
+                .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
                 .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
                 .foregroundColor(.red)
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear)
             
-            Text(String(format: "%.0f %%", min(self.progress, 1.0)*100.0))
+            Text(String(format: "%.0f%%", min(progress, 1.0) * 100.0))
                 .font(.largeTitle)
                 .bold()
         }

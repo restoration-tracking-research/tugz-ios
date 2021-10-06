@@ -21,6 +21,7 @@ struct UserPrefs: Codable {
         static let tugInterval = Measurement(value: 1, unit: UnitDuration.hours)
         static let firstTugTime = DateComponents(hour: 9, minute: 0)
         static let lastTugTime = DateComponents(hour: 20, minute: 30)
+        static let dailyGoalTugTime = Measurement(value: 40, unit: UnitDuration.minutes)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -30,10 +31,14 @@ struct UserPrefs: Codable {
         case lastTugTime
     }
     
+    /// Each tug
     var tugDuration = Defaults.tugDuration
     var tugInterval = Defaults.tugInterval
     var firstTugTime = Defaults.firstTugTime
     var lastTugTime = Defaults.lastTugTime
+    
+    /// Daily goals
+    var dailyGoalTugTime = Defaults.dailyGoalTugTime
     
     private let jsonEncoder = JSONEncoder()
     
