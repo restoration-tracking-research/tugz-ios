@@ -14,7 +14,7 @@ import Foundation
 let oneDayInSeconds = Measurement(value: 24, unit: UnitDuration.hours).converted(to: .seconds).value
 let oneHourInSeconds = Measurement(value: 1, unit: UnitDuration.hours).converted(to: .seconds).value
 
-struct Scheduler {
+class Scheduler: ObservableObject {
     
     let prefs: UserPrefs
     let history: History
@@ -49,9 +49,21 @@ struct Scheduler {
             t.end.isToday ? t.duration : 0
         }
     }
-    
+
     var percentDoneToday: Double {
         totalTugTimeToday / prefs.dailyGoalTugTime.converted(to: .seconds).value
+    }
+    
+    var todaySessionCount: Int {
+        history.tugs.reduce(0) { partialResult, t in
+            t.end.isToday ? 1 : 0
+        }
+    }
+    
+    init(prefs: UserPrefs, history: History) {
+        
+        self.prefs = prefs
+        self.history = history
     }
     
     func nextTug(after date: Date = Date()) -> Date? {

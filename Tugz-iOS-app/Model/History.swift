@@ -27,7 +27,7 @@ struct History: Codable {
     static func load() -> Self {
         
         guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
-            return History(tugs: [])
+            return History(tugs: [Tug(start: Date(timeIntervalSinceNow: -86400), end: Date(timeIntervalSinceNow: 86300)), Tug(start: Date(timeIntervalSinceNow: -3000), end: Date(timeIntervalSinceNow: -2000))])
         }
         
         do {

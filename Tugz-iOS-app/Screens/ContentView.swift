@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var formattedTotalTugTimeToday: String
     @State var formattedTimeUntilNextTug: String
     @State var formattedTimeOfNextTug: String
+    @State var sessionsToday: Int
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
@@ -23,6 +24,7 @@ struct ContentView: View {
         formattedTotalTugTimeToday = scheduler.formattedTotalTugTimeToday()
         formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
         formattedTimeOfNextTug = scheduler.formattedTimeOfNextTug()
+        sessionsToday = scheduler.todaySessionCount
     }
 
     var body: some View {
@@ -31,21 +33,32 @@ struct ContentView: View {
                 .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("CI-0")
+                Text("CI-7")
                     .padding()
                     .font(.largeTitle)
                 Text("Total tug time today:")
                 Text(formattedTotalTugTimeToday)
                     .font(.largeTitle).bold()
+                    .padding(.bottom, 22)
+                Text("Sessions today:")
+                Text("\(sessionsToday)")
+                    .font(.largeTitle).bold()
                 ProgressCircle(progress: $percentDoneToday)
                     .frame(width: 150.0, height: 150.0)
-                    .padding(40.0)
+                    .padding(22)
                 
                 VStack {
                     HStack {
                         Text("Next session in")
-                        Text(formattedTimeUntilNextTug)
-                            .bold()
+                        if #available(iOS 15.0, *) {
+                            Text(formattedTimeUntilNextTug)
+                                .monospacedDigit()
+                                .bold()
+                        } else {
+                            Text(formattedTimeUntilNextTug)
+                                .font(.system(size: 14, design: .monospaced))
+                                .bold()
+                        }
                         Text("at")
                         Text(formattedTimeOfNextTug)
                             .bold()
@@ -64,6 +77,7 @@ struct ContentView: View {
             self.formattedTotalTugTimeToday = scheduler.formattedTotalTugTimeToday()
             self.formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
             self.formattedTimeOfNextTug = scheduler.formattedTimeOfNextTug()
+            self.sessionsToday = scheduler.todaySessionCount
         }
     }
 }
