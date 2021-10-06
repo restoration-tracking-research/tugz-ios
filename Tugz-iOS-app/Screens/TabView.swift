@@ -9,12 +9,11 @@ import SwiftUI
 
 struct TabBarHostingView: View {
     
-    let prefs: UserPrefs
-    let history: History
+    let scheduler: Scheduler
     
     var body: some View {
         TabView {
-            ContentView(scheduler: Scheduler(prefs: prefs, history: history))
+            ContentView(scheduler: scheduler)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
@@ -29,6 +28,7 @@ struct TabBarHostingView: View {
 struct TabBarHostingView_Previews: PreviewProvider {
     static var previews: some View {
         let h = History(tugs: [Tug(start: Date(), end: Date())])
-        TabBarHostingView(prefs: UserPrefs(), history: h)
+        let scheduler = Scheduler(prefs: UserPrefs(), history: h)
+        TabBarHostingView(scheduler: scheduler)
     }
 }

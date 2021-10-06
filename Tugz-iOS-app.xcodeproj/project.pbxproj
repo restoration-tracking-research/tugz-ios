@@ -24,6 +24,8 @@
 		C09191CC270BAD3D00EFBE34 /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */; };
 		C09191CF270C5B4900EFBE34 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191CE270C5B4900EFBE34 /* Date.swift */; };
 		C09191D1270C5B8700EFBE34 /* Tug.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191D0270C5B8700EFBE34 /* Tug.swift */; };
+		C09191D3270DF69E00EFBE34 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */; };
+		C09191D5270DFDC000EFBE34 /* UserPrefsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
 		C09191CE270C5B4900EFBE34 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C09191D0270C5B8700EFBE34 /* Tug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tug.swift; sourceTree = "<group>"; };
+		C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
+		C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 				C06D001B270BA2FF006CEBA0 /* History.swift */,
 				C09191D0270C5B8700EFBE34 /* Tug.swift */,
 				C06D001D270BA322006CEBA0 /* Scheduler.swift */,
+				C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			children = (
 				C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */,
 				C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */,
+				C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */,
 			);
 			path = "Tugz-iOS-appTests";
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 				C06D001E270BA322006CEBA0 /* Scheduler.swift in Sources */,
 				C06DFFE7270B5A97006CEBA0 /* ContentView.swift in Sources */,
 				C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */,
+				C09191D3270DF69E00EFBE34 /* NotificationScheduler.swift in Sources */,
 				C06D001C270BA2FF006CEBA0 /* History.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabView.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
@@ -338,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */,
+				C09191D5270DFDC000EFBE34 /* UserPrefsTests.swift in Sources */,
 				C09191CC270BAD3D00EFBE34 /* SchedulerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -104,4 +104,34 @@ struct UserPrefs: Codable {
             print(error)
         }
     }
+    
+    func allDailyTugTimes() -> [DateComponents] {
+        
+        let cal = Calendar.current
+        
+        guard let dateOfFirstTug = cal.date(from: firstTugTime),
+              let dateOfLastTug = cal.date(from: lastTugTime) else {
+                  return []
+              }
+        
+        var times = [DateComponents]()
+                
+        var dateOfNextTug = dateOfFirstTug
+        var dailyComponents = firstTugTime
+        while dateOfNextTug.timeIntervalSince(dateOfLastTug) < 0 {
+            
+            let nextTugComponents = cal.dateComponents([.hour, .minute], from: dateOfNextTug)
+            dailyComponents.hour = nextTugComponents.hour
+            dailyComponents.minute = nextTugComponents.minute
+            
+            /// Advance and re-check
+            dateOfNextTug = dateOfNextTug.advanced(by: tugInterval.converted(to: .seconds).value)
+            
+            times.append(dailyComponents)
+        }
+        
+        times.append(lastTugTime)
+        
+        return times
+    }
 }

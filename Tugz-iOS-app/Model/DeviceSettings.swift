@@ -15,20 +15,81 @@ import Foundation
  - Should the app require faceID/touchID on launch?
  */
 
-struct DeviceSettings {
+struct DeviceSettings: Codable {
     
-    enum SoundMode {
+    enum SoundMode: Int {
         case off
         case useDeviceSetting
         case overrideSilentSwitch
         case overrideDeviceVolume
     }
     
+    enum CodingKeys: String, CodingKey {
+        case soundMode
+        case playSoundDuringTugging
+        case launchIntoSafeMode
+        case requiresAuthOnLaunch
+    }
+
     var soundMode: SoundMode = .useDeviceSetting
-    
+
     var playSoundDuringTugging = false
-    
+
     var launchIntoSafeMode = false
-    
+
     var requiresAuthOnLaunch = false
+    
+    private let jsonEncoder = JSONEncoder()
+    
+    init() {
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let soundModeRaw = try values.decode(Int.self, forKey: .soundMode)
+        let playSoundDuringTugging = try values.decode(Bool.self, forKey: .playSoundDuringTugging)
+        let launchIntoSafeMode = try values.decode(Bool.self, forKey: .launchIntoSafeMode)
+        let requiresAuthOnLaunch = try values.decode(Bool.self, forKey: .requiresAuthOnLaunch)
+        
+        // Safely set properties
+        self.soundMode = SoundMode(rawValue: soundModeRaw) ?? .useDeviceSetting
+        self.playSoundDuringTugging = playSoundDuringTugging
+        self.launchIntoSafeMode = launchIntoSafeMode
+        self.requiresAuthOnLaunch = requiresAuthOnLaunch
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        
+        try values.encode(soundMode.rawValue, forKey: .soundMode)
+        try values.encode(playSoundDuringTugging, forKey: .playSoundDuringTugging)
+        try values.encode(launchIntoSafeMode, forKey: .launchIntoSafeMode)
+        try values.encode(requiresAuthOnLaunch, forKey: .requiresAuthOnLaunch)
+    }
+    
+    static func load() -> Self {
+        
+        guard let data = UserDefaults.standard.object(forKey: "DeviceSettings") as? Data else {
+            return DeviceSettings()
+        }
+        
+        do {
+            return try JSONDecoder().decode(DeviceSettings.self, from: data)
+        } catch {
+            print(error)
+            return DeviceSettings()
+        }
+    }
+    
+    func save() {
+        
+        do {
+            let data = try jsonEncoder.encode(self)
+            UserDefaults.standard.set(data, forKey: "DeviceSettings")
+        } catch {
+            print(error)
+        }
+    }
 }
