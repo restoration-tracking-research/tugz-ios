@@ -54,7 +54,7 @@
 		C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefs.swift; sourceTree = "<group>"; };
 		C06D001B270BA2FF006CEBA0 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		C06D001D270BA322006CEBA0 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
-		C06DFFE1270B5A97006CEBA0 /* Tugz-iOS-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tugz-iOS-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06DFFE1270B5A97006CEBA0 /* Tugz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tugz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appApp.swift; sourceTree = "<group>"; };
 		C06DFFE6270B5A97006CEBA0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		C06DFFE2270B5A97006CEBA0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C06DFFE1270B5A97006CEBA0 /* Tugz-iOS-app.app */,
+				C06DFFE1270B5A97006CEBA0 /* Tugz.app */,
 				C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */,
 				C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */,
 			);
@@ -212,7 +212,7 @@
 			);
 			name = "Tugz-iOS-app";
 			productName = "Tugz-iOS-app";
-			productReference = C06DFFE1270B5A97006CEBA0 /* Tugz-iOS-app.app */;
+			productReference = C06DFFE1270B5A97006CEBA0 /* Tugz.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C06DFFF0270B5A9B006CEBA0 /* Tugz-iOS-appTests */ = {
@@ -515,7 +515,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tugz;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -546,7 +546,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Tugz;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
