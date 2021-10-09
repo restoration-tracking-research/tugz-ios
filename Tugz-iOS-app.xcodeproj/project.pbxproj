@@ -21,6 +21,7 @@
 		C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */; };
 		C06DFFEC270B5A9B006CEBA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */; };
 		C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */; };
+		C08F1E5B271220DB00EFEE35 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C08F1E5A271220DB00EFEE35 /* Launch.storyboard */; };
 		C09191CC270BAD3D00EFBE34 /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */; };
 		C09191CF270C5B4900EFBE34 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191CE270C5B4900EFBE34 /* Date.swift */; };
 		C09191D1270C5B8700EFBE34 /* Tug.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191D0270C5B8700EFBE34 /* Tug.swift */; };
@@ -63,6 +64,8 @@
 		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
 		C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appUITests.swift; sourceTree = "<group>"; };
+		C08F1E5927121F3C00EFEE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C08F1E5A271220DB00EFEE35 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
 		C09191CE270C5B4900EFBE34 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C09191D0270C5B8700EFBE34 /* Tug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tug.swift; sourceTree = "<group>"; };
@@ -149,12 +152,14 @@
 		C06DFFE3270B5A97006CEBA0 /* Tugz-iOS-app */ = {
 			isa = PBXGroup;
 			children = (
+				C08F1E5927121F3C00EFEE35 /* Info.plist */,
 				C06DFFE4270B5A97006CEBA0 /* Tugz_iOS_appApp.swift */,
 				C06D0016270BA2C8006CEBA0 /* Model */,
 				C06D0015270BA2BA006CEBA0 /* UI Components */,
 				C06D0014270BA2A5006CEBA0 /* Screens */,
 				C09191CD270C5B3D00EFBE34 /* Extensions */,
 				C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */,
+				C08F1E5A271220DB00EFEE35 /* Launch.storyboard */,
 				C06DFFEA270B5A9B006CEBA0 /* Preview Content */,
 			);
 			path = "Tugz-iOS-app";
@@ -301,6 +306,7 @@
 			files = (
 				C06DFFEC270B5A9B006CEBA0 /* Preview Assets.xcassets in Resources */,
 				C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */,
+				C08F1E5B271220DB00EFEE35 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,9 +508,10 @@
 				DEVELOPMENT_TEAM = N2WM6EN8GQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tugz-iOS-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIMainStoryboardFile = Launch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -533,9 +540,10 @@
 				DEVELOPMENT_TEAM = N2WM6EN8GQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tugz-iOS-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIMainStoryboardFile = Launch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
