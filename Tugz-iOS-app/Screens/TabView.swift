@@ -17,9 +17,17 @@ struct TabBarHostingView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+            Text("History")
+                .tabItem {
+                    Label("History", systemImage: "text.book.closed")
+                }
             Text("Other View")
                 .tabItem {
-                    Label("Other", systemImage: "arrow.left")
+                    Label("Settings", systemImage: "gear")
+                }
+            Text("About")
+                .tabItem {
+                    Label("About", systemImage: "info.circle.fill")
                 }
         }
     }
