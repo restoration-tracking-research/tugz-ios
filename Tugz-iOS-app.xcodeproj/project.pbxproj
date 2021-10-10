@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C06D0000270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */; };
-		C06D0002270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */; };
 		C06D000F270B8577006CEBA0 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D000E270B8577006CEBA0 /* TabView.swift */; };
 		C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0010270BA216006CEBA0 /* ProgressCircle.swift */; };
 		C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0012270BA245006CEBA0 /* FilledButton.swift */; };
@@ -48,7 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C06D000E270B8577006CEBA0 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		C06D0010270BA216006CEBA0 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		C06D0012270BA245006CEBA0 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -64,7 +61,6 @@
 		C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
 		C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appUITests.swift; sourceTree = "<group>"; };
 		C08F1E5927121F3C00EFEE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C08F1E5A271220DB00EFEE35 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C08F1E5C271221CC00EFEE35 /* TugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugView.swift; sourceTree = "<group>"; };
@@ -137,7 +133,6 @@
 			children = (
 				C06DFFE3270B5A97006CEBA0 /* Tugz-iOS-app */,
 				C06DFFF4270B5A9B006CEBA0 /* Tugz-iOS-appTests */,
-				C06DFFFE270B5A9B006CEBA0 /* Tugz-iOS-appUITests */,
 				C06DFFE2270B5A97006CEBA0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -184,15 +179,6 @@
 				C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */,
 			);
 			path = "Tugz-iOS-appTests";
-			sourceTree = "<group>";
-		};
-		C06DFFFE270B5A9B006CEBA0 /* Tugz-iOS-appUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C06DFFFF270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift */,
-				C06D0001270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift */,
-			);
-			path = "Tugz-iOS-appUITests";
 			sourceTree = "<group>";
 		};
 		C09191CD270C5B3D00EFBE34 /* Extensions */ = {
@@ -364,8 +350,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C06D0002270B5A9B006CEBA0 /* Tugz_iOS_appUITestsLaunchTests.swift in Sources */,
-				C06D0000270B5A9B006CEBA0 /* Tugz_iOS_appUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +572,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tugz-iOS-app.app/Tugz-iOS-app";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tugz.app/Tugz";
 			};
 			name = Debug;
 		};
@@ -613,7 +597,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tugz-iOS-app.app/Tugz-iOS-app";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tugz.app/Tugz";
 			};
 			name = Release;
 		};
