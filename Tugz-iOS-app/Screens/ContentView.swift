@@ -84,7 +84,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let h = History(tugs: [Tug(start: Date(), end: Date())])
+        let h = History(tugs: [Tug.testTug()])
         ContentView(scheduler: Scheduler(prefs: UserPrefs(), history: h))
     }
 }

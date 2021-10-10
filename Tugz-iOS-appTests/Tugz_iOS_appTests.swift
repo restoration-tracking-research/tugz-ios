@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Tugz_iOS_app
+@testable import Tugz
 
 class Tugz_iOS_appTests: XCTestCase {
 

@@ -35,7 +35,7 @@ struct TabBarHostingView: View {
 
 struct TabBarHostingView_Previews: PreviewProvider {
     static var previews: some View {
-        let h = History(tugs: [Tug(start: Date(), end: Date())])
+        let h = History(tugs: [Tug.testTug()])
         let scheduler = Scheduler(prefs: UserPrefs(), history: h)
         TabBarHostingView(scheduler: scheduler)
     }

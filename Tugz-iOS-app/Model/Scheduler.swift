@@ -46,7 +46,7 @@ class Scheduler: ObservableObject {
     
     var totalTugTimeToday: TimeInterval {
         history.tugs.reduce(0) { partialResult, t in
-            t.end.isToday ? t.duration : 0
+            t.end?.isToday == true ? t.duration : 0
         }
     }
 
@@ -56,7 +56,7 @@ class Scheduler: ObservableObject {
     
     var todaySessionCount: Int {
         history.tugs.reduce(0) { partialResult, t in
-            t.end.isToday ? 1 : 0
+            t.end?.isToday == true ? 1 : 0
         }
     }
     
@@ -83,7 +83,7 @@ class Scheduler: ObservableObject {
         }
         /// Otherwise take the time the last tug started and add the tug interval
         else if let recent = history.lastTug {
-            return recent.start.addingTimeInterval(prefs.tugInterval.converted(to: .seconds).value)
+            return recent.start?.addingTimeInterval(prefs.tugInterval.converted(to: .seconds).value)
         }
         
         return nil

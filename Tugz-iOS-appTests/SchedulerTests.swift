@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Tugz_iOS_app
+@testable import Tugz
 
 class SchedulerTests: XCTestCase {
 
@@ -27,7 +27,7 @@ class SchedulerTests: XCTestCase {
         let expectedDate = c2.date!
         
         let u = UserPrefs()
-        let h = History(tugs: [Tug(start: Date(), end: Date())])
+        let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: Date(), end: Date())])
         let s = Scheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.nextTug(after: date), expectedDate)
@@ -46,7 +46,7 @@ class SchedulerTests: XCTestCase {
         let expectedDate = c2.date!.advanced(by: oneDayInSeconds)
         
         let u = UserPrefs()
-        let h = History(tugs: [Tug(start: Date(), end: Date())])
+        let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: Date(), end: Date())])
         let s = Scheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.nextTug(after: date), expectedDate)
@@ -65,7 +65,7 @@ class SchedulerTests: XCTestCase {
         let expectedDate = c2.date!
         
         let u = UserPrefs()
-        let h = History(tugs: [Tug(start: date, end: date)])
+        let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: date, end: date)])
         let s = Scheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.nextTug(after: date), expectedDate)
@@ -80,7 +80,7 @@ class SchedulerTests: XCTestCase {
         let date = components.date!
         
         let u = UserPrefs()
-        let h = History(tugs: [Tug(start: date, end: date)])
+        let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: date, end: date)])
         let s = Scheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.formattedTimeUntilNextTug(from: date), "1:00:00")
@@ -95,7 +95,7 @@ class SchedulerTests: XCTestCase {
         let date = components.date!
         
         let u = UserPrefs()
-        let h = History(tugs: [Tug(start: date, end: date)])
+        let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: date, end: date)])
         let s = Scheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.formattedTimeOfNextTug(from: date), "11:00 AM")
