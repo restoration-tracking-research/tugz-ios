@@ -25,7 +25,7 @@ struct ProgressCircle: View {
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear)
             
-            Text(String(format: "%.0f%%", min(progress, 1.0) * 100.0))
+            Text(String(format: "%.0f%%", progress * 100.0))
                 .font(.largeTitle)
                 .bold()
         }

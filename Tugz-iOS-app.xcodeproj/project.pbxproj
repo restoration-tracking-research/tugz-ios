@@ -36,13 +36,6 @@
 			remoteGlobalIDString = C06DFFE0270B5A97006CEBA0;
 			remoteInfo = "Tugz-iOS-app";
 		};
-		C06DFFFC270B5A9B006CEBA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C06DFFD9270B5A97006CEBA0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C06DFFE0270B5A97006CEBA0;
-			remoteInfo = "Tugz-iOS-app";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +53,6 @@
 		C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
-		C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08F1E5927121F3C00EFEE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C08F1E5A271220DB00EFEE35 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C08F1E5C271221CC00EFEE35 /* TugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugView.swift; sourceTree = "<group>"; };
@@ -80,13 +72,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C06DFFEE270B5A9B006CEBA0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C06DFFF8270B5A9B006CEBA0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -142,7 +127,6 @@
 			children = (
 				C06DFFE1270B5A97006CEBA0 /* Tugz.app */,
 				C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */,
-				C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,24 +211,6 @@
 			productReference = C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C06DFFFA270B5A9B006CEBA0 /* Tugz-iOS-appUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C06D000B270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appUITests" */;
-			buildPhases = (
-				C06DFFF7270B5A9B006CEBA0 /* Sources */,
-				C06DFFF8270B5A9B006CEBA0 /* Frameworks */,
-				C06DFFF9270B5A9B006CEBA0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C06DFFFD270B5A9B006CEBA0 /* PBXTargetDependency */,
-			);
-			name = "Tugz-iOS-appUITests";
-			productName = "Tugz-iOS-appUITests";
-			productReference = C06DFFFB270B5A9B006CEBA0 /* Tugz-iOS-appUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -259,10 +225,6 @@
 						CreatedOnToolsVersion = 13.0;
 					};
 					C06DFFF0270B5A9B006CEBA0 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = C06DFFE0270B5A97006CEBA0;
-					};
-					C06DFFFA270B5A9B006CEBA0 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = C06DFFE0270B5A97006CEBA0;
 					};
@@ -283,7 +245,6 @@
 			targets = (
 				C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */,
 				C06DFFF0270B5A9B006CEBA0 /* Tugz-iOS-appTests */,
-				C06DFFFA270B5A9B006CEBA0 /* Tugz-iOS-appUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -300,13 +261,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C06DFFEF270B5A9B006CEBA0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C06DFFF9270B5A9B006CEBA0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -346,13 +300,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C06DFFF7270B5A9B006CEBA0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -360,11 +307,6 @@
 			isa = PBXTargetDependency;
 			target = C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */;
 			targetProxy = C06DFFF2270B5A9B006CEBA0 /* PBXContainerItemProxy */;
-		};
-		C06DFFFD270B5A9B006CEBA0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */;
-			targetProxy = C06DFFFC270B5A9B006CEBA0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -601,52 +543,6 @@
 			};
 			name = Release;
 		};
-		C06D000C270B5A9B006CEBA0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N2WM6EN8GQ;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-appUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Tugz-iOS-app";
-			};
-			name = Debug;
-		};
-		C06D000D270B5A9B006CEBA0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = N2WM6EN8GQ;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-appUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Tugz-iOS-app";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -664,15 +560,6 @@
 			buildConfigurations = (
 				C06D0009270B5A9B006CEBA0 /* Debug */,
 				C06D000A270B5A9B006CEBA0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C06D000B270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C06D000C270B5A9B006CEBA0 /* Debug */,
-				C06D000D270B5A9B006CEBA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

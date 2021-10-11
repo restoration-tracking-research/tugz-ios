@@ -115,4 +115,8 @@ extension Tug {
     static func testTug() -> Tug {
         Tug(scheduledFor: Date(), scheduledDuration: 60)
     }
+    
+    static func testTugInProgress() -> Tug {
+        Tug(scheduledFor: Date(timeIntervalSinceNow: -30), scheduledDuration: 360, start: Date(timeIntervalSinceNow: -10), state: .started)
+    }
 }

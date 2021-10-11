@@ -80,7 +80,7 @@ class SchedulerTests: XCTestCase {
         let date = components.date!
         
         let u = UserPrefs()
-        let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: date, end: date)])
+        let h = History(tugs: [Tug(scheduledFor: date, scheduledDuration: 60, start: date, end: date)])
         let s = Scheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.formattedTimeUntilNextTug(from: date), "1:00:00")

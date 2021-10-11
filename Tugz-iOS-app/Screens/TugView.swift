@@ -20,8 +20,18 @@ struct TugView: View {
     
     var tug: Tug
     
+    var canStartTug: Bool {
+        state == .due || state == .scheduled
+    }
+    
+    var tugButtonTitle: String {
+        canStartTug ? "Ready to Tug" : "Tugging now…"
+    }
+    
     @State var percentDone: Double
     @State var state: Tug.State
+    
+    @State private var showingActionSheet = false
     
     init(tug: Tug) {
         self.tug = tug
@@ -34,49 +44,48 @@ struct TugView: View {
         VStack {
             Text("Tug Session")
                 .font(.system(.largeTitle))
+                .padding(.top, 50)
             HStack {
                 Text("Scheduled for")
                 Text(formatter.string(from: tug.scheduledFor))
             }
-            Button("Ready to Tug") {
+            
+            Button(tugButtonTitle) {
                 self.tug.startTug()
             }
             .buttonStyle(FilledButton())
+            .disabled(!canStartTug)
             
             ProgressCircle(progress: $percentDone)
                 .frame(width: 150.0, height: 150.0)
                 .padding(22)
             
-//            VStack {
-//                HStack {
-//                    Text("Next session in")
-//                    if #available(iOS 15.0, *) {
-//                        Text(formattedTimeUntilNextTug)
-//                            .monospacedDigit()
-//                            .bold()
-//                    } else {
-//                        Text(formattedTimeUntilNextTug)
-//                            .font(.system(size: 14, design: .monospaced))
-//                            .bold()
-//                    }
-//                    Text("at")
-//                    Text(formattedTimeOfNextTug)
-//                        .bold()
-//                }
-//                Button("TUG NOW") {
-//                    /// Transition to tug screen
-//                }
-//                .buttonStyle(FilledButton())
-//            }
+            if let start = tug.start {
+                HStack {
+                    Text("Started at")
+                    Text(formatter.string(from: start))
+                    Text("until")
+                    Text(formatter.string(from: start.advanced(by: tug.scheduledDuration)))
+                }
+            }
             Spacer()
             
-//        }.progressViewStyle(TugzProgressViewStyle())
+            Button("Done!") {
+                self.showingActionSheet.toggle()
+            }
+            .buttonStyle(FilledButton())
+            .actionSheet(isPresented: $showingActionSheet) {
+                ActionSheet(title: Text("All Done?"), message: nil, buttons: [
+                    .default(Text("Finish Tugging")) { self.tug.endTug() },
+                    .cancel(Text("Keep Tugging"))
+                ])
+            }
         }
     }
 }
 
 struct TugView_Previews: PreviewProvider {
     static var previews: some View {
-        TugView(tug: Tug.testTug())
+        TugView(tug: Tug.testTugInProgress())
     }
 }
