@@ -8,6 +8,13 @@
 import Foundation
 import UserNotifications
 
+private let timeFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.timeStyle = .short
+    df.dateStyle = .none
+    return df
+}()
+
 struct NotificationScheduler {
     
     /// We will use device settings to decide how prominent to make the alerts
@@ -35,9 +42,12 @@ struct NotificationScheduler {
             if #available(iOS 15.0, *) {
                 notification.interruptionLevel = .active
             }
-            //                notification.body = "Tug time!"
+            
             notification.title = "Tug time!"
-            notification.subtitle = "Scheduled for \(scheduler.formattedTimeOfNextTug())"
+            if let date = tugTime.date {
+                notification.subtitle = "Scheduled for \(timeFormatter.string(from: date))"
+            }
+            notification.body = "Tap to get started."
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: tugTime, repeats: true)
             

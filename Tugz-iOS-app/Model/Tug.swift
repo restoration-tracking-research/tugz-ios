@@ -7,6 +7,13 @@
 
 import Foundation
 
+private let timeFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.timeStyle = .short
+    df.dateStyle = .none
+    return df
+}()
+
 final class Tug: Codable {
     
     enum State: String {
@@ -30,6 +37,22 @@ final class Tug: Codable {
     var start: Date?
     var end: Date?
     var state: State
+    
+    var formattedStartTime: String {
+        if let start = start {
+            return timeFormatter.string(from: start)
+        } else {
+            return ""
+        }
+    }
+    
+    var formattedScheduledEndTime: String {
+        if let start = start {
+            return timeFormatter.string(from: start.advanced(by: scheduledDuration))
+        } else {
+            return ""
+        }
+    }
     
     var duration: TimeInterval {
         if let start = start, let end = end {
