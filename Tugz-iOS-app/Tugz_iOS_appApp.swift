@@ -19,7 +19,7 @@ struct Tugz_iOS_appApp: App {
             let settings = DeviceSettings.load()
             let scheduler = Scheduler(prefs: prefs, history: history)
             
-            TabBarHostingView(scheduler: scheduler)
+            TabBarHostingView(scheduler: scheduler, prefs: prefs)
                 .onAppear {
                     let noteSch = NotificationScheduler(settings: settings, prefs: prefs, scheduler: scheduler)
                     noteSch.request() { granted in

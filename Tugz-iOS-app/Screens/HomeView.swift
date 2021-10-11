@@ -7,19 +7,23 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     
     let scheduler: Scheduler
-    @State var percentDoneToday: Double
-    @State var formattedTotalTugTimeToday: String
-    @State var formattedTimeUntilNextTug: String
-    @State var formattedTimeOfNextTug: String
-    @State var sessionsToday: Int
+    let prefs: UserPrefs
+    @State var percentDoneToday: Double = 0
+    @State var formattedTotalTugTimeToday: String = ""
+    @State var formattedTimeUntilNextTug: String = ""
+    @State var formattedTimeOfNextTug: String = ""
+    @State var sessionsToday: Int = 0
+    
+    @State var navActive = false
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    init(scheduler: Scheduler) {
+    init(scheduler: Scheduler, prefs: UserPrefs) {
         self.scheduler = scheduler
+        self.prefs = prefs
         percentDoneToday = scheduler.percentDoneToday
         formattedTotalTugTimeToday = scheduler.formattedTotalTugTimeToday()
         formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
@@ -33,7 +37,8 @@ struct ContentView: View {
                 .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("CI-7")
+//                Text("CI-7")
+                Text("Tugz")
                     .padding()
                     .font(.largeTitle)
                 Text("Total tug time today:")
@@ -63,10 +68,13 @@ struct ContentView: View {
                         Text(formattedTimeOfNextTug)
                             .bold()
                     }
-                    Button("TUG NOW") {
-                        /// Transition to tug screen
+                    NavigationLink(destination: TugView(tug: tugNowTug(), isPresented: $navActive), isActive: $navActive) {
+                        Button("TUG NOW") {
+                            /// Transition to tug screen
+                            self.navActive = true
+                        }
+                        .buttonStyle(FilledButton())
                     }
-                    .buttonStyle(FilledButton())
                 }
                 Spacer()
                 
@@ -80,11 +88,18 @@ struct ContentView: View {
             self.sessionsToday = scheduler.todaySessionCount
         }
     }
+    
+    func tugNowTug() -> Tug {
+        
+        let now = Date()
+        let duration = prefs.tugDuration.converted(to: .seconds).value
+        return Tug(scheduledFor: now, scheduledDuration: duration, start: now, state: .started)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let h = History(tugs: [Tug.testTug()])
-        ContentView(scheduler: Scheduler(prefs: UserPrefs(), history: h))
+        HomeView(scheduler: Scheduler(prefs: UserPrefs(), history: h), prefs: UserPrefs())
     }
 }

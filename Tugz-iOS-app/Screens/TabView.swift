@@ -10,13 +10,20 @@ import SwiftUI
 struct TabBarHostingView: View {
     
     let scheduler: Scheduler
+    let prefs: UserPrefs
     
     var body: some View {
+        
         TabView {
-            ContentView(scheduler: scheduler)
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
+            
+            NavigationView {
+                HomeView(scheduler: scheduler, prefs: prefs)
+            }
+            .navigationBarHidden(true)
+            .tabItem {
+                Label("Home", systemImage: "house")
+            }
+            
             Text("History")
                 .tabItem {
                     Label("History", systemImage: "text.book.closed")
@@ -37,6 +44,6 @@ struct TabBarHostingView_Previews: PreviewProvider {
     static var previews: some View {
         let h = History(tugs: [Tug.testTug()])
         let scheduler = Scheduler(prefs: UserPrefs(), history: h)
-        TabBarHostingView(scheduler: scheduler)
+        TabBarHostingView(scheduler: scheduler, prefs: UserPrefs())
     }
 }
