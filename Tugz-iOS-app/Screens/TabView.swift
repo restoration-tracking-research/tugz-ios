@@ -12,9 +12,11 @@ struct TabBarHostingView: View {
     let scheduler: Scheduler
     let prefs: UserPrefs
     
+    @State var selectedTab: Int = 0
+    
     var body: some View {
         
-        TabView {
+        TabView(selection: $selectedTab) {
             
             NavigationView {
                 HomeView(scheduler: scheduler, prefs: prefs)

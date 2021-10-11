@@ -32,7 +32,7 @@ final class Tug: Codable {
         case state
     }
     
-    let scheduledFor: Date
+    let scheduledFor: Date?
     let scheduledDuration: TimeInterval
     var start: Date?
     var end: Date?
@@ -76,7 +76,7 @@ final class Tug: Codable {
         }
     }
     
-    init(scheduledFor: Date, scheduledDuration: TimeInterval, start: Date? = nil, end: Date? = nil, state: State = .scheduled) {
+    init(scheduledFor: Date?, scheduledDuration: TimeInterval, start: Date? = nil, end: Date? = nil, state: State = .scheduled) {
         self.scheduledFor = scheduledFor
         self.scheduledDuration = scheduledDuration
         self.start = start

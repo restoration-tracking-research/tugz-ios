@@ -62,4 +62,25 @@ struct NotificationScheduler {
         }
     }
     
+    static func sendTestNotification() {
+        
+        let now = Calendar.current.dateComponents([.calendar, .day, .month, .year, .hour, .minute], from: Date())
+        
+        let notification = UNMutableNotificationContent()
+        
+        notification.title = "Test alert!"
+        notification.body = "Tap to get started."
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: now, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
 }

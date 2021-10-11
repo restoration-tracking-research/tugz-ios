@@ -30,7 +30,7 @@ class SchedulerTests: XCTestCase {
         let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: Date(), end: Date())])
         let s = Scheduler(prefs: u, history: h)
         
-        XCTAssertEqual(s.nextTug(after: date), expectedDate)
+        XCTAssertEqual(s.timeOfNextTug(after: date), expectedDate)
     }
     
     func testSchedulerNextTugLateIsNextDayFirstTug() {
@@ -49,7 +49,7 @@ class SchedulerTests: XCTestCase {
         let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: Date(), end: Date())])
         let s = Scheduler(prefs: u, history: h)
         
-        XCTAssertEqual(s.nextTug(after: date), expectedDate)
+        XCTAssertEqual(s.timeOfNextTug(after: date), expectedDate)
     }
     
     func testSchedulerAddsTimeFromLastTug() {
@@ -68,7 +68,7 @@ class SchedulerTests: XCTestCase {
         let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: date, end: date)])
         let s = Scheduler(prefs: u, history: h)
         
-        XCTAssertEqual(s.nextTug(after: date), expectedDate)
+        XCTAssertEqual(s.timeOfNextTug(after: date), expectedDate)
     }
     
     func testFormattedTimeUntilNextTug() {

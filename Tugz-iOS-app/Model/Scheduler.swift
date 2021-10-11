@@ -66,7 +66,7 @@ class Scheduler: ObservableObject {
         self.history = history
     }
     
-    func nextTug(after date: Date = Date()) -> Date? {
+    func timeOfNextTug(after date: Date = Date()) -> Date? {
         guard let first = firstTugTimeToday,
               let last = lastTugTimeToday else {
                   return nil
@@ -90,7 +90,7 @@ class Scheduler: ObservableObject {
     }
     
     func timeUntilNextTug(from date: Date = Date()) -> TimeInterval? {
-        nextTug()?.timeIntervalSince(date)
+        timeOfNextTug()?.timeIntervalSince(date)
     }
     
     private let intervalFormatter = DateComponentsFormatter()
@@ -103,13 +103,17 @@ class Scheduler: ObservableObject {
     
     func formattedTimeUntilNextTug(from date: Date = Date()) -> String {
         if let timeUntilNextTug = timeUntilNextTug(from: date), let string = intervalFormatter.string(from: timeUntilNextTug) {
-            return string
+            if timeUntilNextTug < 60 {
+                return string
+            } else {
+                return "\(Int(timeUntilNextTug / 60)) min"
+            }
         }
         return "(not scheduled)"
     }
     
     func formattedTimeOfNextTug(from date: Date = Date()) -> String {
-        if let timeOfNextTug = nextTug(after: date) {
+        if let timeOfNextTug = timeOfNextTug(after: date) {
             return timeFormatter.string(from: timeOfNextTug)
         }
         return ""

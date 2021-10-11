@@ -17,7 +17,7 @@ struct HomeView: View {
     @State var formattedTimeOfNextTug: String = ""
     @State var sessionsToday: Int = 0
     
-    @State var navActive = false
+    @State var navToTugNowActive = false
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
@@ -29,6 +29,7 @@ struct HomeView: View {
         formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
         formattedTimeOfNextTug = scheduler.formattedTimeOfNextTug()
         sessionsToday = scheduler.todaySessionCount
+        navToTugNowActive = Navigator.shared.needsToStartTugFromNotification
     }
 
     var body: some View {
@@ -39,7 +40,6 @@ struct HomeView: View {
             VStack {
 //                Text("CI-7")
                 Text("Tugz")
-                    .padding()
                     .font(.largeTitle)
                 Text("Total tug time today:")
                 Text(formattedTotalTugTimeToday)
@@ -68,10 +68,10 @@ struct HomeView: View {
                         Text(formattedTimeOfNextTug)
                             .bold()
                     }
-                    NavigationLink(destination: TugView(tug: tugNowTug(), isPresented: $navActive), isActive: $navActive) {
+                    NavigationLink(destination: TugView(tug: tugNowTug(), isPresented: $navToTugNowActive), isActive: $navToTugNowActive) {
                         Button("TUG NOW") {
                             /// Transition to tug screen
-                            self.navActive = true
+                            self.navToTugNowActive = true
                         }
                         .buttonStyle(FilledButton())
                     }
@@ -91,15 +91,32 @@ struct HomeView: View {
     
     func tugNowTug() -> Tug {
         
-        let now = Date()
         let duration = prefs.tugDuration.converted(to: .seconds).value
-        return Tug(scheduledFor: now, scheduledDuration: duration, start: now, state: .started)
+        let tugDelta = prefs.tugInterval.converted(to: .seconds).value / 10
+        let now = Date()
+        
+        if let nextTugTime = scheduler.timeOfNextTug(), nextTugTime.timeIntervalSinceNow.magnitude < tugDelta {
+            
+            return Tug(scheduledFor: nextTugTime, scheduledDuration: duration, start: now, state: .started)
+            
+        } else {
+            
+            return Tug(scheduledFor: nil, scheduledDuration: duration, start: now, state: .started)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+        
+    static let h = History(tugs: [Tug.testTug()])
+    
     static var previews: some View {
-        let h = History(tugs: [Tug.testTug()])
-        HomeView(scheduler: Scheduler(prefs: UserPrefs(), history: h), prefs: UserPrefs())
+        
+        TabView {
+            HomeView(scheduler: Scheduler(prefs: UserPrefs(), history: h), prefs: UserPrefs())
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+        }
     }
 }

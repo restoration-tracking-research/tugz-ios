@@ -48,8 +48,12 @@ struct TugView: View {
                 .font(.system(.largeTitle))
                 .padding(.top, 50)
             HStack {
-                Text("Scheduled for")
-                Text(formatter.string(from: tug.scheduledFor))
+                if let scheduledFor = tug.scheduledFor {
+                    Text("Scheduled for")
+                    Text(formatter.string(from: scheduledFor))
+                } else {
+                    Text("Scheduled manually")
+                }
             }
             
             Button(tugButtonTitle) {
@@ -76,6 +80,7 @@ struct TugView: View {
                 self.showingActionSheet.toggle()
             }
             .buttonStyle(FilledButton())
+            .padding()
             .actionSheet(isPresented: $showingActionSheet) {
                 ActionSheet(title: Text("All Done?"), message: nil, buttons: [
                     .default(Text("Finish Tugging")) {
@@ -85,6 +90,8 @@ struct TugView: View {
                     .cancel(Text("Keep Tugging"))
                 ])
             }
+            
+            Spacer()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
