@@ -15,7 +15,7 @@ import Foundation
  - Should the app require faceID/touchID on launch?
  */
 
-struct DeviceSettings: Codable {
+final class DeviceSettings: NSObject, Codable, ObservableObject {
     
     enum SoundMode: Int {
         case off
@@ -41,11 +41,13 @@ struct DeviceSettings: Codable {
     
     private let jsonEncoder = JSONEncoder()
     
-    init() {
-        
+    override init() {
+        super.init()
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
+        super.init()
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let soundModeRaw = try values.decode(Int.self, forKey: .soundMode)
@@ -69,7 +71,7 @@ struct DeviceSettings: Codable {
         try values.encode(requiresAuthOnLaunch, forKey: .requiresAuthOnLaunch)
     }
     
-    static func load() -> Self {
+    static func load() -> DeviceSettings {
         
         guard let data = UserDefaults.standard.object(forKey: "DeviceSettings") as? Data else {
             return DeviceSettings()

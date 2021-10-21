@@ -50,7 +50,9 @@ struct TugView: View {
             HStack {
                 if let scheduledFor = tug.scheduledFor {
                     Text("Scheduled for")
+                        .padding(.horizontal, -2)
                     Text(formatter.string(from: scheduledFor))
+                        .padding(.horizontal, -2)
                 } else {
                     Text("Scheduled manually")
                 }

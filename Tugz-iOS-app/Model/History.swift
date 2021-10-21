@@ -11,7 +11,7 @@ import Foundation
  The record of past tugs
  */
 
-struct History: Codable {
+final class History: NSObject, Codable, ObservableObject {
     
     enum CodingKeys: String, CodingKey {
         case tugs
@@ -24,7 +24,7 @@ struct History: Codable {
     
     private let jsonEncoder = JSONEncoder()
     
-    static func load() -> Self {
+    static func load() -> History {
         
         guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
             
@@ -41,6 +41,12 @@ struct History: Codable {
         }
     }
     
+    init(tugs: [Tug]) {
+        self.tugs = tugs
+        
+        super.init()
+    }
+    
     func save() {
         
         do {
@@ -49,5 +55,31 @@ struct History: Codable {
         } catch {
             print(error)
         }
+    }
+    
+    /// TODO provide summary stats per day
+    /// rather than just a list of individual tugs
+    func tugsByDay(includingToday: Bool) -> [[Tug]] {
+        
+        let sorted = tugs
+            .filter { $0.start != nil }
+            .sorted { $0.start!.timeIntervalSince1970 > $1.start!.timeIntervalSince1970 }
+        
+        var sortedByDate = [[Tug]]()
+
+        for tug in sorted {
+
+            for (index, existingArr) in sortedByDate.enumerated() {
+
+                if Calendar.current.isDate(tug.start!, inSameDayAs: existingArr.first!.start!) {
+                    sortedByDate[index].append(tug)
+                    continue
+                }
+            }
+            
+            sortedByDate.append([tug])
+        }
+
+        return sortedByDate
     }
 }

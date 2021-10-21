@@ -12,6 +12,15 @@ extension Date {
 }
 
 extension TimeInterval {
+    
+    var formatted: String {
+        if hour > 0 {
+            return String(format:"%d h %02d m", hour, minute)
+        } else {
+            return String(format:"%02d m %02d s", minute, second)
+        }
+    }
+    
     var hourMinuteSecondMS: String {
         String(format:"%d:%02d:%02d.%03d", hour, minute, second, millisecond)
     }

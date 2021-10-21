@@ -14,7 +14,21 @@ private let timeFormatter: DateFormatter = {
     return df
 }()
 
-final class Tug: Codable {
+private let dateFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.timeStyle = .short
+    df.dateStyle = .long
+    return df
+}()
+
+private let dayFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.timeStyle = .none
+    df.dateStyle = .medium
+    return df
+}()
+
+final class Tug: Codable, Identifiable {
     
     enum State: String {
         case scheduled
@@ -44,6 +58,21 @@ final class Tug: Codable {
         } else {
             return ""
         }
+    }
+    
+    var formattedDate: String {
+        if let date = start ?? scheduledFor {
+            return dateFormatter.string(from: date)
+        } else {
+            return ""
+        }
+    }
+    
+    var formattedDay: String {
+        guard let date = start ?? scheduledFor else {
+            return ""
+        }
+        return dayFormatter.string(from: date)
     }
     
     var formattedScheduledEndTime: String {

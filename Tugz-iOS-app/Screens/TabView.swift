@@ -26,18 +26,29 @@ struct TabBarHostingView: View {
                 Label("Home", systemImage: "house")
             }
             
-            Text("History")
-                .tabItem {
-                    Label("History", systemImage: "text.book.closed")
-                }
-            Text("Other View")
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
-            Text("About")
-                .tabItem {
-                    Label("About", systemImage: "info.circle.fill")
-                }
+            NavigationView {
+                HistoryView()
+            }
+            .navigationBarHidden(true)
+            .tabItem {
+                Label("History", systemImage: "text.book.closed")
+            }
+            
+            NavigationView {
+                SettingsView()
+            }
+            .navigationBarHidden(true)
+            .tabItem {
+                Label("Settings", systemImage: "gear")
+            }
+            
+            NavigationView {
+                AboutView()
+            }
+            .navigationBarHidden(true)
+            .tabItem {
+                Label("About", systemImage: "info.circle.fill")
+            }
         }
     }
 }

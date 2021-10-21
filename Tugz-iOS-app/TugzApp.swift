@@ -21,6 +21,10 @@ struct TugzApp: App {
             let scheduler = Scheduler(prefs: prefs, history: history)
             
             TabBarHostingView(scheduler: scheduler, prefs: prefs)
+                .environmentObject(prefs)
+                .environmentObject(history)
+                .environmentObject(settings)
+                .environmentObject(scheduler)
                 .onAppear {
 
                     let noteSch = NotificationScheduler(settings: settings, prefs: prefs, scheduler: scheduler)

@@ -14,7 +14,7 @@ import Foundation
  - How long do I tug for?
  */
 
-struct UserPrefs: Codable {
+final class UserPrefs: NSObject, Codable, ObservableObject {
     
     struct Defaults {
         static let tugDuration = Measurement(value: 3, unit: UnitDuration.minutes)
@@ -42,14 +42,16 @@ struct UserPrefs: Codable {
     
     private let jsonEncoder = JSONEncoder()
     
-    init() {
+    override init() {
+        super.init()
+        
         tugDuration = Defaults.tugDuration
         tugInterval = Defaults.tugInterval
         firstTugTime = Defaults.firstTugTime
         lastTugTime = Defaults.lastTugTime
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         // Try decoding properties
@@ -81,7 +83,7 @@ struct UserPrefs: Codable {
         try values.encode([lastTugTime.hour, lastTugTime.minute], forKey: .lastTugTime)
     }
     
-    static func load() -> Self {
+    static func load() -> UserPrefs {
         
         guard let data = UserDefaults.standard.object(forKey: "UserPrefs") as? Data else {
             return UserPrefs()

@@ -27,6 +27,9 @@
 		C09191D3270DF69E00EFBE34 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */; };
 		C09191D5270DFDC000EFBE34 /* UserPrefsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */; };
 		C0AF64E427148A7400162216 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF64E327148A7400162216 /* Navigator.swift */; };
+		C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F32721F22500B38112 /* HistoryView.swift */; };
+		C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F52721F22F00B38112 /* SettingsView.swift */; };
+		C0BE55F82721F27300B38112 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F72721F27300B38112 /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefsTests.swift; sourceTree = "<group>"; };
 		C0AF64E327148A7400162216 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		C0BE55F32721F22500B38112 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		C0BE55F52721F22F00B38112 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C0BE55F72721F27300B38112 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,9 @@
 				C06D000E270B8577006CEBA0 /* TabView.swift */,
 				C06DFFE6270B5A97006CEBA0 /* HomeView.swift */,
 				C08F1E5C271221CC00EFEE35 /* TugView.swift */,
+				C0BE55F32721F22500B38112 /* HistoryView.swift */,
+				C0BE55F52721F22F00B38112 /* SettingsView.swift */,
+				C0BE55F72721F27300B38112 /* AboutView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -279,12 +288,15 @@
 			files = (
 				C09191D1270C5B8700EFBE34 /* Tug.swift in Sources */,
 				C06D001E270BA322006CEBA0 /* Scheduler.swift in Sources */,
+				C0BE55F82721F27300B38112 /* AboutView.swift in Sources */,
 				C08F1E5D271221CC00EFEE35 /* TugView.swift in Sources */,
 				C06DFFE7270B5A97006CEBA0 /* HomeView.swift in Sources */,
 				C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */,
 				C09191D3270DF69E00EFBE34 /* NotificationScheduler.swift in Sources */,
 				C06D001C270BA2FF006CEBA0 /* History.swift in Sources */,
+				C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */,
 				C0AF64E427148A7400162216 /* Navigator.swift in Sources */,
+				C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabView.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
 				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
