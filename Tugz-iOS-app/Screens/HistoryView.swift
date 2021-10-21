@@ -25,9 +25,21 @@ struct HistorySection: View {
     
     var tugs: [Tug]
     
+    var totalTimeFormatted: String {
+        TimeInterval(tugs.reduce(0) { $0 + $1.duration }).formatted
+    }
+    
+    var header: some View {
+        HStack {
+            Text(tugs.first?.formattedDay ?? "Error")
+            Spacer()
+            Text(totalTimeFormatted)
+        }
+    }
+    
     var body: some View {
         
-        Section(header: Text(tugs.first?.formattedDay ?? "Error")) {
+        Section(header: header) {
             ForEach(tugs) {
                 HistoryRow(tug: $0)
             }
@@ -56,26 +68,26 @@ struct HistoryView: View {
     }
     
     var body: some View {
-        List {
-            
-            Section(header: Text("Today"), footer: todayFooter) {
-                ForEach(history.tugs) {
-                    HistoryRow(tug: $0)
+        ZStack {
+            Color.yellow
+                .opacity(0.1)
+                .edgesIgnoringSafeArea(.all)
+            List {
+                
+                Section(header: Text("Today"), footer: todayFooter) {
+                    ForEach(history.tugs) {
+                        HistoryRow(tug: $0)
+                    }
                 }
-            }
-//            .headerProminence(.increased)
-            
-            ForEach(history.tugsByDay(includingToday: false)) {
-                HistorySection(tugs: $0)
-            }
-            Section(header: Text("Earlier")) {
-                ForEach(history.tugs) {
-                    Text($0.formattedStartTime)
+                .headerProminence(.increased)
+                
+                ForEach(history.tugsByDay(includingToday: false)) {
+                    HistorySection(tugs: $0)
                 }
+                
             }
-            
+            .listStyle(.insetGrouped)
         }
-        .listStyle(.insetGrouped)
     }
 }
 

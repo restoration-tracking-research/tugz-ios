@@ -30,6 +30,7 @@
 		C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F32721F22500B38112 /* HistoryView.swift */; };
 		C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F52721F22F00B38112 /* SettingsView.swift */; };
 		C0BE55F82721F27300B38112 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F72721F27300B38112 /* AboutView.swift */; };
+		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		C0BE55F32721F22500B38112 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		C0BE55F52721F22F00B38112 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C0BE55F72721F27300B38112 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C0DDA538272204A20033AFCD /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				C09191CE270C5B4900EFBE34 /* Date.swift */,
+				C0DDA538272204A20033AFCD /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				C09191D3270DF69E00EFBE34 /* NotificationScheduler.swift in Sources */,
 				C06D001C270BA2FF006CEBA0 /* History.swift in Sources */,
 				C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */,
+				C0DDA539272204A20033AFCD /* Array.swift in Sources */,
 				C0AF64E427148A7400162216 /* Navigator.swift in Sources */,
 				C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabView.swift in Sources */,
@@ -463,7 +467,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +501,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
