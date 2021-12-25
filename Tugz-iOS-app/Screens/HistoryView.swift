@@ -72,23 +72,23 @@ struct HistoryView: View {
             Color.yellow
                 .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
-            List {
-                
-                Section(header: Text("Today"), footer: todayFooter) {
-                    ForEach(history.tugs) {
-                        HistoryRow(tug: $0)
-                    }
+        List {
+            
+            Section(header: Text("Today"), footer: todayFooter) {
+                ForEach(history.tugs) {
+                    HistoryRow(tug: $0)
                 }
+            }
                 .headerProminence(.increased)
-                
+            
                 ForEach(history.tugsByDay(includingToday: false)) {
                     HistorySection(tugs: $0)
-                }
-                
             }
-            .listStyle(.insetGrouped)
+            
         }
+        .listStyle(.insetGrouped)
     }
+}
 }
 
 struct HistoryView_Previews: PreviewProvider {

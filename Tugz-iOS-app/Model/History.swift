@@ -82,4 +82,19 @@ final class History: NSObject, Codable, ObservableObject {
 
         return sortedByDate
     }
+    
+    func tugsTaggedByDay(includingToday: Bool) -> [Date: [Tug]] {
+        
+        let tugArrs = tugsByDay(includingToday: includingToday)
+        
+        var tagged = [Date: [Tug]]()
+        
+        for tugArr in tugArrs {
+            if let start = tugArr.first?.start {
+                tagged[start] = tugArr
+            }
+        }
+        
+        return tagged
+    }
 }

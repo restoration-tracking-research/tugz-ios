@@ -105,8 +105,10 @@ class Scheduler: ObservableObject {
         if let timeUntilNextTug = timeUntilNextTug(from: date), let string = intervalFormatter.string(from: timeUntilNextTug) {
             if timeUntilNextTug < 60 {
                 return string
-            } else {
+            } else if timeUntilNextTug < 120 {
                 return "\(Int(timeUntilNextTug / 60)) min"
+            } else {
+                return "\(Int(timeUntilNextTug / 360)) hr"
             }
         }
         return "(not scheduled)"

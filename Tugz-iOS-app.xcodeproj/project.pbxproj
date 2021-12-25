@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */; };
 		C06D000F270B8577006CEBA0 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D000E270B8577006CEBA0 /* TabView.swift */; };
 		C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0010270BA216006CEBA0 /* ProgressCircle.swift */; };
 		C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0012270BA245006CEBA0 /* FilledButton.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTextProvider.swift; sourceTree = "<group>"; };
 		C06D000E270B8577006CEBA0 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		C06D0010270BA216006CEBA0 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		C06D0012270BA245006CEBA0 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				C09191D0270C5B8700EFBE34 /* Tug.swift */,
 				C06D001D270BA322006CEBA0 /* Scheduler.swift */,
 				C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */,
+				C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */,
 				C0DDA539272204A20033AFCD /* Array.swift in Sources */,
 				C0AF64E427148A7400162216 /* Navigator.swift in Sources */,
+				C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */,
 				C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabView.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,

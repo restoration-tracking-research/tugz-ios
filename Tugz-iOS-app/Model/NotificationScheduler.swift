@@ -36,6 +36,8 @@ struct NotificationScheduler {
         
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
+        let textProvider = NotificationTextProvider()
+        
         for tugTime in prefs.allDailyTugTimes() {
             
             let notification = UNMutableNotificationContent()
@@ -43,11 +45,11 @@ struct NotificationScheduler {
                 notification.interruptionLevel = .active
             }
             
-            notification.title = "Tug time!"
+            notification.title = textProvider.title()
             if let date = tugTime.date {
                 notification.subtitle = "Scheduled for \(timeFormatter.string(from: date))"
             }
-            notification.body = "Tap to get started."
+            notification.body = textProvider.body()
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: tugTime, repeats: true)
             
