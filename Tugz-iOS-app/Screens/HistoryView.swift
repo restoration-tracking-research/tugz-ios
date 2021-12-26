@@ -54,9 +54,16 @@ struct HistoryView: View {
     @EnvironmentObject var settings: DeviceSettings
     @EnvironmentObject var scheduler: Scheduler
     
+    var todayHeader: some View {
+        
+        Text("Today")
+            .font(.system(.largeTitle))
+            .bold()
+    }
+    
     var todayFooter: some View {
         HStack {
-            Text("Next tug")
+            Text("⏱ Next tug")
             if scheduler.timeOfNextTug()?.isToday == false {
                 Text("tomorrow")
                     .bold()
@@ -70,25 +77,31 @@ struct HistoryView: View {
     var body: some View {
         ZStack {
             Color.yellow
-                .opacity(0.1)
+                .opacity(0.2)
                 .edgesIgnoringSafeArea(.all)
-        List {
             
-            Section(header: Text("Today"), footer: todayFooter) {
-                ForEach(history.tugs) {
-                    HistoryRow(tug: $0)
+            VStack {
+                
+                List {
+                    
+                    Section(header: todayHeader, footer: todayFooter) {
+                        ForEach(history.tugs) {
+                            HistoryRow(tug: $0)
+                        }
+                    }
+                    .headerProminence(.increased)
+                    
+                    ForEach(history.tugsByDay(includingToday: false)) {
+                        HistorySection(tugs: $0)
+                    }
+                    
                 }
+                .listStyle(.insetGrouped)
+                
+                Spacer()
             }
-                .headerProminence(.increased)
-            
-                ForEach(history.tugsByDay(includingToday: false)) {
-                    HistorySection(tugs: $0)
-            }
-            
         }
-        .listStyle(.insetGrouped)
     }
-}
 }
 
 struct HistoryView_Previews: PreviewProvider {

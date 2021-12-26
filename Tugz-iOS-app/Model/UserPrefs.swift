@@ -122,9 +122,16 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         var dailyComponents = firstTugTime
         while dateOfNextTug.timeIntervalSince(dateOfLastTug) < 0 {
             
-            let nextTugComponents = cal.dateComponents([.hour, .minute], from: dateOfNextTug)
+            let nextTugComponents = cal.dateComponents([.hour, .minute, .second], from: dateOfNextTug)
+            let nowComponents = cal.dateComponents([.calendar, .year, .month, .day], from: Date())
+            
+            dailyComponents.calendar = nowComponents.calendar
+            dailyComponents.year = nowComponents.year
+            dailyComponents.month = nowComponents.month
+            dailyComponents.day = nowComponents.day
             dailyComponents.hour = nextTugComponents.hour
             dailyComponents.minute = nextTugComponents.minute
+            dailyComponents.second = nextTugComponents.second
             
             /// Advance and re-check
             dateOfNextTug = dateOfNextTug.advanced(by: tugInterval.converted(to: .seconds).value)

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct AboutView: View {
+struct HowToUseView: View {
+    
     var body: some View {
         
         ZStack {
@@ -16,38 +17,144 @@ struct AboutView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 
+                Text("How To Use")
+                    .font(.system(.largeTitle))
+                    .bold()
+                    .padding()
+                
+                Text("1. Set your preferred start/stop times on the Settings tab.")
+                    .padding()
+                
+                Text("2. Set how often you want the app to remind you. The app will automatically schedule notifications between your start and stop times.")
+                    .padding()
+                
+                Text("3. Tapping a tug notification on your phone's lock screen will automatically start a session recording.")
+                    .padding()
+                
+                Text("4. You can also manually start a session at any time.")
+                    .padding()
+                
+                Spacer()
+            }
+        }
+    }
+}
+
+struct PrivacyView: View {
+    
+    var body: some View {
+        
+        ZStack {
+            Color.yellow
+                .opacity(0.1)
+                .edgesIgnoringSafeArea(.all)
+            VStack(alignment: .leading) {
+                
+                Text("Privacy")
+                    .font(.system(.largeTitle))
+                    .bold()
+                    .padding()
+                
+                Text("No data is sent from your device! This app respects your privacy.")
+                    .padding()
+                
+                Text("Please note that because of this, deleting the app will delete your recorded history.")
+                    .font(.footnote)
+                    .padding()
+                
+                Spacer()
+            }
+        }
+    }
+}
+
+struct AboutView: View {
+    
+    var aboutHeader: some View {
+        
+        Text("About")
+            .font(.system(.largeTitle))
+            .bold()
+    }
+    
+    var sections: [(String, URL)] {
+        
+        [("Temp", URL(string: "http://google.com")!)]
+    }
+    
+    var body: some View {
+        
+        ZStack {
+            Color.yellow
+                .opacity(0.1)
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack(alignment: .leading) {
+                
+                List {
                     
-                    Text("About")
-                        .font(.system(.largeTitle))
-                        .bold()
+                    Section(header: aboutHeader) {
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("This app is for restoration session tracking.")
+                            Text("It's currently focused on using manual methods, i.e. many short sessions throughout the day.")
+                            Text("It can send you reminders and track your tugging durations.")
+                            Text("We want to add device-based tracking too, please let us know if you're interested in this!")
+                        }
+                        .font(.footnote)
+                        
+                        NavigationLink {
+                            HowToUseView()
+                        } label: {
+                            Text("How to use")
+                        }
+                        
+                        NavigationLink {
+                            PrivacyView()
+                        } label: {
+                            Text("Privacy")
+                        }
+
+                        Link(destination: URL(string: "https://www.patreon.com/restorationapp")!) {
+                            HStack {
+                                Text("Support our Patreon!")
+                                Spacer()
+                                Text("🌐")
+                            }
+                        }
+                        
+                        Link(destination: URL(string: "https://github.com/restoration-tracking-research/tugz-ios")!) {
+                            HStack {
+                                Text("Help develop this app")
+                                Spacer()
+                                Text("🌐")
+                            }
+                        }
+                        
+                        Link(destination: URL(string: "https://www.reddit.com/r/foreskin_restoration")!) {
+                            HStack {
+                                Text("Restoration group on reddit")
+                                Spacer()
+                                Text("🌐")
+                            }
+                        }
+                        
+                        Link(destination: URL(string: "https://www.reddit.com/r/foreskin_restoration/comments/g4ghc2/welcome_read_to_get_started_restoring")!) {
+                            HStack {
+                                Text("Restoration resources")
+                                Spacer()
+                                Text("🌐")
+                            }
+                        }
+                    }
+                    .headerProminence(.increased)
                     
-                    Spacer()
-                    
-                ScrollView {
-                    
-                    /// This app is for restoration tracking
-                    Text(
-                    """
-                     This app is for restoration progress tracking.
-                     It's currently focused on using manual methods, i.e. many short sessions throughout the day.
-                     It can send you reminders and track your tugging durations.
-                     No data is sent from your device! This app respects your privacy.
-                     We want to add device-based tracking too, please let us know if you're interested in this!
-                     This app is funded by supporters like you on [Patreon](https://www.patreon.com/restorationapp).
-                     [Learn more](https://www.reddit.com/r/foreskin_restoration) on the restoration subreddit.
-                     And/or [help develop this app](https://github.com/restoration-tracking-research/tugz-ios).
-                    """
-                    )
-                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 10))
-                        .lineSpacing(15)
-                    
-                    
-                    Spacer()
                 }
-//                .multilineTextAlignment(.leading)
+//                .listRowBackground(Color.clear)
+                
+                Spacer()
                 
             }
-            .padding()
         }
     }
 }

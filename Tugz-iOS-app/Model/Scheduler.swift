@@ -19,6 +19,14 @@ class Scheduler: ObservableObject {
     let prefs: UserPrefs
     let history: History
     
+    private let intervalFormatter = DateComponentsFormatter()
+    private let timeFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.timeStyle = .short
+        df.dateStyle = .none
+        return df
+    }()
+    
     private var components: DateComponents {
         Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())
     }
@@ -65,6 +73,10 @@ class Scheduler: ObservableObject {
         self.prefs = prefs
         self.history = history
     }
+}
+
+/// Query
+extension Scheduler {
     
     func timeOfNextTug(after date: Date = Date()) -> Date? {
         guard let first = firstTugTimeToday,
@@ -92,14 +104,19 @@ class Scheduler: ObservableObject {
     func timeUntilNextTug(from date: Date = Date()) -> TimeInterval? {
         timeOfNextTug()?.timeIntervalSince(date)
     }
+}
+
+/// Notification actions
+extension Scheduler {
     
-    private let intervalFormatter = DateComponentsFormatter()
-    private let timeFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.timeStyle = .short
-        df.dateStyle = .none
-        return df
-    }()
+    
+    func cancelTodayAndRescheduleTomorrow() {
+        
+    }
+}
+
+/// Formatting
+extension Scheduler {
     
     func formattedTimeUntilNextTug(from date: Date = Date()) -> String {
         if let timeUntilNextTug = timeUntilNextTug(from: date), let string = intervalFormatter.string(from: timeUntilNextTug) {

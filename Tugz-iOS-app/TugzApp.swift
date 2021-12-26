@@ -43,6 +43,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var app: TugzApp?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+        
+        NotificationAction.register()
+        
         return true
     }
     
