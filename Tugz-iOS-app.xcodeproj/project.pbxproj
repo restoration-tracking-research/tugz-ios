@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */; };
 		C03496D72777CB890084C604 /* NotificationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D62777CB890084C604 /* NotificationAction.swift */; };
+		C03496D92778D14E0084C604 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D82778D14D0084C604 /* TimePicker.swift */; };
 		C06D000F270B8577006CEBA0 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D000E270B8577006CEBA0 /* TabView.swift */; };
 		C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0010270BA216006CEBA0 /* ProgressCircle.swift */; };
 		C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0012270BA245006CEBA0 /* FilledButton.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTextProvider.swift; sourceTree = "<group>"; };
 		C03496D62777CB890084C604 /* NotificationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAction.swift; sourceTree = "<group>"; };
+		C03496D82778D14D0084C604 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		C06D000E270B8577006CEBA0 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		C06D0010270BA216006CEBA0 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		C06D0012270BA245006CEBA0 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				C06D0010270BA216006CEBA0 /* ProgressCircle.swift */,
 				C06D0012270BA245006CEBA0 /* FilledButton.swift */,
+				C03496D82778D14D0084C604 /* TimePicker.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */,
 				C09191D3270DF69E00EFBE34 /* NotificationScheduler.swift in Sources */,
 				C06D001C270BA2FF006CEBA0 /* History.swift in Sources */,
+				C03496D92778D14E0084C604 /* TimePicker.swift in Sources */,
 				C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */,
 				C0DDA539272204A20033AFCD /* Array.swift in Sources */,
 				C0AF64E427148A7400162216 /* Navigator.swift in Sources */,

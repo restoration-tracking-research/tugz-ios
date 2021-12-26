@@ -77,11 +77,6 @@ struct AboutView: View {
             .bold()
     }
     
-    var sections: [(String, URL)] {
-        
-        [("Temp", URL(string: "http://google.com")!)]
-    }
-    
     var body: some View {
         
         ZStack {
