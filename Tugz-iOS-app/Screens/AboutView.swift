@@ -17,11 +17,6 @@ struct HowToUseView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 
-                Text("How To Use")
-                    .font(.system(.largeTitle))
-                    .bold()
-                    .padding()
-                
                 Text("1. Set your preferred start/stop times on the Settings tab.")
                     .padding()
                 
@@ -37,6 +32,7 @@ struct HowToUseView: View {
                 Spacer()
             }
         }
+        .navigationBarTitle(Text("How To Use"))
     }
 }
 
@@ -50,11 +46,6 @@ struct PrivacyView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 
-                Text("Privacy")
-                    .font(.system(.largeTitle))
-                    .bold()
-                    .padding()
-                
                 Text("No data is sent from your device! This app respects your privacy.")
                     .padding()
                 
@@ -65,17 +56,11 @@ struct PrivacyView: View {
                 Spacer()
             }
         }
+        .navigationBarTitle(Text("Privacy"))
     }
 }
 
 struct AboutView: View {
-    
-    var aboutHeader: some View {
-        
-        Text("About")
-            .font(.system(.largeTitle))
-            .bold()
-    }
     
     var body: some View {
         
@@ -88,7 +73,7 @@ struct AboutView: View {
                 
                 List {
                     
-                    Section(header: aboutHeader) {
+                    Section {
                         
                         VStack(alignment: .leading, spacing: 10) {
                             Text("This app is for restoration session tracking.")
@@ -151,6 +136,7 @@ struct AboutView: View {
                 
             }
         }
+        .navigationBarTitle(Text("About"))
     }
 }
 

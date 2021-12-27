@@ -9,13 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    var settingsHeader: some View {
-        
-        Text("Settings")
-            .font(.system(.largeTitle))
-            .bold()
-    }
-    
     let prefs: UserPrefs
     
     @State private var firstTugTime = Date()
@@ -38,7 +31,7 @@ struct SettingsView: View {
                 
                 List {
                     
-                    Section(header: settingsHeader) {
+                    Section {
                         
                         /// Set start/stop times
                         DatePicker(
@@ -66,10 +59,10 @@ struct SettingsView: View {
                         }
                     }
                 }
-//                .listStyle(.insetGrouped)
             }
             
         }
+        .navigationBarTitle(Text("Settings"))
         .onAppear {
             
             var components = Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())
