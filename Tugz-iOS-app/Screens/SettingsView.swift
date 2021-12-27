@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    var header: some View {
+    var settingsHeader: some View {
         
         Text("Settings")
-            .font(.largeTitle)
+            .font(.system(.largeTitle))
             .bold()
     }
     
@@ -25,28 +25,6 @@ struct SettingsView: View {
     
     init(prefs: UserPrefs = UserPrefs.load()) {
         self.prefs = prefs
-        
-        var components = Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())
-        
-        components.hour = prefs.firstTugTime.hour
-        components.minute = prefs.firstTugTime.minute
-        
-        if let first = Calendar.current.date(from: components) {
-            firstTugTime = first
-        } else {
-            print("hi")
-        }
-        
-        components.hour = prefs.lastTugTime.hour
-        components.minute = prefs.lastTugTime.minute
-        
-        if let last = Calendar.current.date(from: components) {
-            lastTugTime = last
-        } else {
-            print("hi")
-        }
-        tugDuration = prefs.tugDuration.converted(to: .seconds).value
-        tugInterval = prefs.tugInterval.converted(to: .seconds).value
     }
     
     var body: some View {
@@ -59,7 +37,8 @@ struct SettingsView: View {
             VStack(alignment: .leading) {
                 
                 List {
-                    Section(header: header) {
+                    
+                    Section(header: settingsHeader) {
                         
                         /// Set start/stop times
                         DatePicker(
@@ -87,9 +66,33 @@ struct SettingsView: View {
                         }
                     }
                 }
-                .listStyle(.insetGrouped)
+//                .listStyle(.insetGrouped)
             }
             
+        }
+        .onAppear {
+            
+            var components = Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())
+            
+            components.hour = prefs.firstTugTime.hour
+            components.minute = prefs.firstTugTime.minute
+            
+            if let first = Calendar.current.date(from: components) {
+                firstTugTime = first
+            } else {
+                print("hi")
+            }
+            
+            components.hour = prefs.lastTugTime.hour
+            components.minute = prefs.lastTugTime.minute
+            
+            if let last = Calendar.current.date(from: components) {
+                lastTugTime = last
+            } else {
+                print("hi")
+            }
+            tugDuration = prefs.tugDuration.converted(to: .seconds).value
+            tugInterval = prefs.tugInterval.converted(to: .seconds).value
         }
     }
 }
