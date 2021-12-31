@@ -23,7 +23,6 @@ class Navigator {
 //
     static let shared = Navigator()
     
-    var scheduler: NotificationScheduler!
 //
 //
 //    var isHome: Bool = true {
@@ -41,6 +40,13 @@ class Navigator {
     
     private init() { }
     
+    private func scheduler() -> NotificationScheduler {
+        
+        let prefs: UserPrefs = UserPrefs.load()
+        let s = Scheduler(prefs: prefs, history: History.load())
+        return NotificationScheduler(settings: DeviceSettings.load(), prefs: prefs, scheduler: s)
+    }
+    
     func appLaunchedFromNotification(response: UNNotificationResponse) {
             
         let userInfo = response.notification.request.content.userInfo
@@ -53,13 +59,13 @@ class Navigator {
                 needsToStartTugFromNotification = true
                 
             case .tugLater:
-                scheduler.rescheduleTug(inMinutes: 5, userInfo: userInfo)
+                scheduler().rescheduleTug(inMinutes: 5, userInfo: userInfo)
                 
             case .skipThisTug:
                 needsToStartTugFromNotification = false
                 
             case .turnOffForToday:
-                scheduler.cancelTodayAndRescheduleTomorrow()
+                scheduler().cancelTodayAndRescheduleTomorrow()
             }
         }
     }

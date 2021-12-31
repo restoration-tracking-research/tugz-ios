@@ -23,11 +23,11 @@ struct NotificationAction {
         // Define the custom actions.
         let tugNowAction = UNNotificationAction(identifier: Action.tugNow.rawValue,
                                                 title: "Tug Now",
-                                                options: [])
+                                                options: [.foreground])
         
         let tugLaterAction = UNNotificationAction(identifier: Action.tugLater.rawValue,
                                                 title: "Remind me in 5 min",
-                                                options: [])
+                                                  options: [])
         
         let skipAction = UNNotificationAction(identifier: Action.skipThisTug.rawValue,
                                                 title: "Skip This Tug",
@@ -35,7 +35,7 @@ struct NotificationAction {
         
         let turnOffAction = UNNotificationAction(identifier: Action.turnOffForToday.rawValue,
                                                 title: "Turn Off For Today",
-                                                options: [])
+                                                 options: [.destructive])
         
         let actions = [tugNowAction, tugLaterAction, skipAction, turnOffAction]
         let category = UNNotificationCategory(identifier: tugCategoryIdentifier,
