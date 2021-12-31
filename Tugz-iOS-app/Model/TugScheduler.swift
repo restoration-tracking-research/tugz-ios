@@ -97,8 +97,14 @@ extension TugScheduler {
         else if let recent = history.lastTug {
             return recent.start?.addingTimeInterval(prefs.tugInterval.converted(to: .seconds).value)
         }
-        
-        return nil
+        /// If we have no last tug, figure out when the next one should be according to the daily schedule
+        else {
+            var next = first.toGlobalTime()
+            while next.timeIntervalSinceNow < 0 {
+                next.addTimeInterval(prefs.tugInterval.converted(to: .seconds).value)
+            }
+            return next
+        }
     }
     
     func timeUntilNextTug(from date: Date = Date()) -> TimeInterval? {
@@ -106,29 +112,27 @@ extension TugScheduler {
     }
 }
 
-/// Notification actions
-extension TugScheduler {
-    
-    
-    func cancelTodayAndRescheduleTomorrow() {
-        
-    }
-}
-
 /// Formatting
 extension TugScheduler {
     
     func formattedTimeUntilNextTug(from date: Date = Date()) -> String {
-        if let timeUntilNextTug = timeUntilNextTug(from: date), let string = intervalFormatter.string(from: timeUntilNextTug) {
-            if timeUntilNextTug < 60 {
-                return string
-            } else if timeUntilNextTug < 120 {
-                return "\(Int(timeUntilNextTug / 60)) min"
-            } else {
-                return "\(Int(timeUntilNextTug / 360)) hr"
-            }
+        
+        guard let timeUntilNextTug = timeUntilNextTug(from: date), let string = intervalFormatter.string(from: timeUntilNextTug) else {
+            return "(not scheduled)"
         }
-        return "(not scheduled)"
+            
+        if timeUntilNextTug < 0 {
+            return "Due now"
+        }
+        else if timeUntilNextTug < 60 {
+            return string
+        }
+        else if timeUntilNextTug < 3600 {
+            return "\(Int(timeUntilNextTug / 60)) min"
+        }
+        else {
+            return "\(Int(timeUntilNextTug / 3600)) hr"
+        }
     }
     
     func formattedTimeOfNextTug(from date: Date = Date()) -> String {
