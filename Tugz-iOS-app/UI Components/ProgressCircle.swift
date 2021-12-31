@@ -23,7 +23,7 @@ struct ProgressCircle: View {
                 .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
                 .foregroundColor(.red)
                 .rotationEffect(Angle(degrees: 270.0))
-                .animation(.linear)
+                .animation(.linear, value: progress)
             
             Text(String(format: "%.0f%%", progress * 100.0))
                 .font(.largeTitle)
