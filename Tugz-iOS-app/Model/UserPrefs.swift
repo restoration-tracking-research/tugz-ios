@@ -32,10 +32,10 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     }
     
     /// Each tug
-    var tugDuration = Defaults.tugDuration
-    var tugInterval = Defaults.tugInterval
-    var firstTugTime = Defaults.firstTugTime
-    var lastTugTime = Defaults.lastTugTime
+    var tugDuration = Defaults.tugDuration { didSet { save() } }
+    var tugInterval = Defaults.tugInterval { didSet { save() } }
+    var firstTugTime = Defaults.firstTugTime { didSet { save() } }
+    var lastTugTime = Defaults.lastTugTime { didSet { save() } }
     
     /// Daily goals
     var dailyGoalTugTime = Defaults.dailyGoalTugTime

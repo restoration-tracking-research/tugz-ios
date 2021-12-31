@@ -57,7 +57,7 @@ struct HistoryView: View {
     var todayHeader: some View {
         
         Text("Today")
-            .font(.system(.largeTitle))
+            .font(.system(.title))
             .bold()
     }
     
@@ -75,6 +75,7 @@ struct HistoryView: View {
     }
     
     var body: some View {
+        
         ZStack {
             Color.yellow
                 .opacity(0.2)
@@ -101,6 +102,7 @@ struct HistoryView: View {
                 Spacer()
             }
         }
+        .navigationBarTitle(Text("History"))
     }
 }
 

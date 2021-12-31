@@ -39,23 +39,35 @@ struct SettingsView: View {
                             selection: $firstTugTime,
                             displayedComponents: [.hourAndMinute]
                         )
+                            .onChange(of: firstTugTime) { newValue in
+                                prefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: firstTugTime)
+                            }
                         
                         DatePicker(
                             "Time of last tug",
                             selection: $lastTugTime,
                             displayedComponents: [.hourAndMinute]
                         )
+                            .onChange(of: lastTugTime) { newValue in
+                                prefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: lastTugTime)
+                            }
                         
                         /// Set tug duration
                         VStack(alignment: .leading) {
                             Text("Tug duration")
                             TimeDurationPicker(duration: $tugDuration)
+                                .onChange(of: tugDuration) { newValue in
+                                    prefs.tugDuration = Measurement(value: tugDuration, unit: .seconds)
+                                }
                         }
                         
                         /// Set time between tugs
                         VStack(alignment: .leading) {
                             Text("Tug every")
                             TimeDurationPicker(duration: $tugInterval)
+                                .onChange(of: tugInterval) { newValue in
+                                    prefs.tugInterval = Measurement(value: tugInterval, unit: .seconds)
+                                }
                         }
                     }
                 }
