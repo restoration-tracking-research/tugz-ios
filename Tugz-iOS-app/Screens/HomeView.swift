@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    let scheduler: Scheduler
+    let scheduler: TugScheduler
     let prefs: UserPrefs
     @State var percentDoneToday: Double = 0
     @State var formattedTotalTugTimeToday: String = ""
@@ -21,7 +21,7 @@ struct HomeView: View {
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    init(scheduler: Scheduler, prefs: UserPrefs) {
+    init(scheduler: TugScheduler, prefs: UserPrefs) {
         self.scheduler = scheduler
         self.prefs = prefs
         percentDoneToday = scheduler.percentDoneToday
@@ -113,7 +113,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
         TabView {
-            HomeView(scheduler: Scheduler(prefs: UserPrefs(), history: h), prefs: UserPrefs())
+            HomeView(scheduler: TugScheduler(prefs: UserPrefs(), history: h), prefs: UserPrefs())
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

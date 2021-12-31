@@ -28,7 +28,7 @@ class SchedulerTests: XCTestCase {
         
         let u = UserPrefs()
         let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: Date(), end: Date())])
-        let s = Scheduler(prefs: u, history: h)
+        let s = TugScheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.timeOfNextTug(after: date), expectedDate)
     }
@@ -47,7 +47,7 @@ class SchedulerTests: XCTestCase {
         
         let u = UserPrefs()
         let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: Date(), end: Date())])
-        let s = Scheduler(prefs: u, history: h)
+        let s = TugScheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.timeOfNextTug(after: date), expectedDate)
     }
@@ -66,7 +66,7 @@ class SchedulerTests: XCTestCase {
         
         let u = UserPrefs()
         let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: date, end: date)])
-        let s = Scheduler(prefs: u, history: h)
+        let s = TugScheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.timeOfNextTug(after: date), expectedDate)
     }
@@ -81,7 +81,7 @@ class SchedulerTests: XCTestCase {
         
         let u = UserPrefs()
         let h = History(tugs: [Tug(scheduledFor: date, scheduledDuration: 60, start: date, end: date)])
-        let s = Scheduler(prefs: u, history: h)
+        let s = TugScheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.formattedTimeUntilNextTug(from: date), "1:00:00")
     }
@@ -96,7 +96,7 @@ class SchedulerTests: XCTestCase {
         
         let u = UserPrefs()
         let h = History(tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: date, end: date)])
-        let s = Scheduler(prefs: u, history: h)
+        let s = TugScheduler(prefs: u, history: h)
         
         XCTAssertEqual(s.formattedTimeOfNextTug(from: date), "11:00 AM")
     }

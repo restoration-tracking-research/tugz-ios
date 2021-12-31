@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabBarHostingView: View {
     
-    let scheduler: Scheduler
+    let scheduler: TugScheduler
     let prefs: UserPrefs
     
     @State var selectedTab: Int = 0
@@ -56,7 +56,7 @@ struct TabBarHostingView: View {
 struct TabBarHostingView_Previews: PreviewProvider {
     static var previews: some View {
         let h = History(tugs: [Tug.testTug()])
-        let scheduler = Scheduler(prefs: UserPrefs(), history: h)
+        let scheduler = TugScheduler(prefs: UserPrefs(), history: h)
         TabBarHostingView(scheduler: scheduler, prefs: UserPrefs())
     }
 }

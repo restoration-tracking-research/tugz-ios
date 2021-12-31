@@ -20,7 +20,7 @@ struct NotificationScheduler {
     /// We will use device settings to decide how prominent to make the alerts
     let settings: DeviceSettings
     let prefs: UserPrefs
-    let scheduler: Scheduler
+    let scheduler: TugScheduler
     
     var components: Set<Calendar.Component> { [.calendar, .year, .month, .day, .hour, .minute, .timeZone] }
     

@@ -14,7 +14,7 @@ import Foundation
 let oneDayInSeconds = Measurement(value: 24, unit: UnitDuration.hours).converted(to: .seconds).value
 let oneHourInSeconds = Measurement(value: 1, unit: UnitDuration.hours).converted(to: .seconds).value
 
-class Scheduler: ObservableObject {
+class TugScheduler: ObservableObject {
     
     let prefs: UserPrefs
     let history: History
@@ -76,7 +76,7 @@ class Scheduler: ObservableObject {
 }
 
 /// Query
-extension Scheduler {
+extension TugScheduler {
     
     func timeOfNextTug(after date: Date = Date()) -> Date? {
         guard let first = firstTugTimeToday,
@@ -107,7 +107,7 @@ extension Scheduler {
 }
 
 /// Notification actions
-extension Scheduler {
+extension TugScheduler {
     
     
     func cancelTodayAndRescheduleTomorrow() {
@@ -116,7 +116,7 @@ extension Scheduler {
 }
 
 /// Formatting
-extension Scheduler {
+extension TugScheduler {
     
     func formattedTimeUntilNextTug(from date: Date = Date()) -> String {
         if let timeUntilNextTug = timeUntilNextTug(from: date), let string = intervalFormatter.string(from: timeUntilNextTug) {

@@ -16,7 +16,7 @@
 		C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0017270BA2DF006CEBA0 /* DeviceSettings.swift */; };
 		C06D001A270BA2EF006CEBA0 /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */; };
 		C06D001C270BA2FF006CEBA0 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D001B270BA2FF006CEBA0 /* History.swift */; };
-		C06D001E270BA322006CEBA0 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D001D270BA322006CEBA0 /* Scheduler.swift */; };
+		C06D001E270BA322006CEBA0 /* TugScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D001D270BA322006CEBA0 /* TugScheduler.swift */; };
 		C06DFFE5270B5A97006CEBA0 /* TugzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFE4270B5A97006CEBA0 /* TugzApp.swift */; };
 		C06DFFE7270B5A97006CEBA0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFE6270B5A97006CEBA0 /* HomeView.swift */; };
 		C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */; };
@@ -56,7 +56,7 @@
 		C06D0017270BA2DF006CEBA0 /* DeviceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettings.swift; sourceTree = "<group>"; };
 		C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefs.swift; sourceTree = "<group>"; };
 		C06D001B270BA2FF006CEBA0 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
-		C06D001D270BA322006CEBA0 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		C06D001D270BA322006CEBA0 /* TugScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugScheduler.swift; sourceTree = "<group>"; };
 		C06DFFE1270B5A97006CEBA0 /* Tugz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tugz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFE4270B5A97006CEBA0 /* TugzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugzApp.swift; sourceTree = "<group>"; };
 		C06DFFE6270B5A97006CEBA0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 				C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */,
 				C06D001B270BA2FF006CEBA0 /* History.swift */,
 				C09191D0270C5B8700EFBE34 /* Tug.swift */,
-				C06D001D270BA322006CEBA0 /* Scheduler.swift */,
+				C06D001D270BA322006CEBA0 /* TugScheduler.swift */,
 				C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */,
 				C03496D62777CB890084C604 /* NotificationAction.swift */,
 				C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */,
@@ -299,7 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09191D1270C5B8700EFBE34 /* Tug.swift in Sources */,
-				C06D001E270BA322006CEBA0 /* Scheduler.swift in Sources */,
+				C06D001E270BA322006CEBA0 /* TugScheduler.swift in Sources */,
 				C0BE55F82721F27300B38112 /* AboutView.swift in Sources */,
 				C08F1E5D271221CC00EFEE35 /* TugView.swift in Sources */,
 				C03496D72777CB890084C604 /* NotificationAction.swift in Sources */,

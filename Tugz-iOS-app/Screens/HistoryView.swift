@@ -52,7 +52,7 @@ struct HistoryView: View {
     @EnvironmentObject var prefs: UserPrefs
     @EnvironmentObject var history: History
     @EnvironmentObject var settings: DeviceSettings
-    @EnvironmentObject var scheduler: Scheduler
+    @EnvironmentObject var scheduler: TugScheduler
     
     var todayHeader: some View {
         

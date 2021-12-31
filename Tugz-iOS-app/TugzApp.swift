@@ -25,7 +25,7 @@ struct TugzApp: App {
             let prefs = UserPrefs.load()
             let history = History.load()
             let settings = DeviceSettings.load()
-            let scheduler = Scheduler(prefs: prefs, history: history)
+            let scheduler = TugScheduler(prefs: prefs, history: history)
             
             TabBarHostingView(scheduler: scheduler, prefs: prefs)
                 .environmentObject(prefs)

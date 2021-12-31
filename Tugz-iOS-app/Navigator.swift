@@ -43,7 +43,7 @@ class Navigator {
     private func scheduler() -> NotificationScheduler {
         
         let prefs: UserPrefs = UserPrefs.load()
-        let s = Scheduler(prefs: prefs, history: History.load())
+        let s = TugScheduler(prefs: prefs, history: History.load())
         return NotificationScheduler(settings: DeviceSettings.load(), prefs: prefs, scheduler: s)
     }
     
