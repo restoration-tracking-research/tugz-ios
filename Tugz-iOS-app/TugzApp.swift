@@ -78,6 +78,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         UNUserNotificationCenter.current().delegate = self
         
+        UITableViewHeaderFooterView.appearance().backgroundView = .init()
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
         
