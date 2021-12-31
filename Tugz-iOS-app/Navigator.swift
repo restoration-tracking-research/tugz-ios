@@ -43,7 +43,7 @@ class Navigator {
     
     func appLaunchedFromNotification(response: UNNotificationResponse) {
             
-//        let userInfo = response.notification.request.content.userInfo
+        let userInfo = response.notification.request.content.userInfo
         
         if let action = NotificationAction.Action(rawValue: response.actionIdentifier) {
         
@@ -53,7 +53,7 @@ class Navigator {
                 needsToStartTugFromNotification = true
                 
             case .tugLater:
-                scheduler.rescheduleTug(inMinutes: 5)
+                scheduler.rescheduleTug(inMinutes: 5, userInfo: userInfo)
                 
             case .skipThisTug:
                 needsToStartTugFromNotification = false
