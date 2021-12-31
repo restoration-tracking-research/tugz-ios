@@ -29,8 +29,9 @@ final class History: NSObject, Codable, ObservableObject {
         guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
             
             /// TEMP DEBUG DATA
-            return History(tugs: [Tug(scheduledFor: Date(timeIntervalSinceNow: -86400), scheduledDuration: 60, start: Date(timeIntervalSinceNow: -86400), end: Date(timeIntervalSinceNow: 86300)),
-                                  Tug(scheduledFor: Date(timeIntervalSinceNow: -3000), scheduledDuration: 60, start: Date(timeIntervalSinceNow: -3000), end: Date(timeIntervalSinceNow: -2000))])
+//            return History(tugs: [Tug(scheduledFor: Date(timeIntervalSinceNow: -86400), scheduledDuration: 60, start: Date(timeIntervalSinceNow: -86400), end: Date(timeIntervalSinceNow: 86300)),
+//                                  Tug(scheduledFor: Date(timeIntervalSinceNow: -3000), scheduledDuration: 60, start: Date(timeIntervalSinceNow: -3000), end: Date(timeIntervalSinceNow: -2000))])
+            return History(tugs: [])
         }
         
         do {
