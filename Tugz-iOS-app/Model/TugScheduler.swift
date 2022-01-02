@@ -14,7 +14,7 @@ import Foundation
 let oneDayInSeconds = Measurement(value: 24, unit: UnitDuration.hours).converted(to: .seconds).value
 let oneHourInSeconds = Measurement(value: 1, unit: UnitDuration.hours).converted(to: .seconds).value
 
-class TugScheduler: ObservableObject {
+final class TugScheduler: ObservableObject {
     
     let prefs: UserPrefs
     let history: History
@@ -54,7 +54,7 @@ class TugScheduler: ObservableObject {
     
     var totalTugTimeToday: TimeInterval {
         history.tugs.reduce(0) { partialResult, t in
-            t.end?.isToday == true ? t.duration : 0
+            partialResult + (t.end?.isToday == true ? t.duration : 0)
         }
     }
 
@@ -63,9 +63,7 @@ class TugScheduler: ObservableObject {
     }
     
     var todaySessionCount: Int {
-        history.tugs.reduce(0) { partialResult, t in
-            t.end?.isToday == true ? 1 : 0
-        }
+        history.tugs.filter { $0.end?.isToday == true }.count
     }
     
     init(prefs: UserPrefs, history: History) {
@@ -143,6 +141,9 @@ extension TugScheduler {
     }
     
     func formattedTotalTugTimeToday() -> String {
+        if totalTugTimeToday < 60 {
+            return "\(Int(totalTugTimeToday)) sec"
+        }
         if totalTugTimeToday < oneHourInSeconds {
             return "\(totalTugTimeToday.minute) min"
         }

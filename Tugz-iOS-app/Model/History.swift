@@ -35,7 +35,8 @@ final class History: NSObject, Codable, ObservableObject {
         }
         
         do {
-            return try JSONDecoder().decode(History.self, from: data)
+            let history = try JSONDecoder().decode(History.self, from: data)
+            return history
         } catch {
             print(error)
             return History(tugs: [])

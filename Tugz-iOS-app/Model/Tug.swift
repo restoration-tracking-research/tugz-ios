@@ -117,7 +117,7 @@ final class Tug: Codable, Identifiable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         // Try decoding properties
-        scheduledFor = try values.decode(Date.self, forKey: .scheduledFor)
+        scheduledFor = try values.decodeIfPresent(Date.self, forKey: .scheduledFor)
         scheduledDuration = try values.decode(TimeInterval.self, forKey: .scheduledDuration)
         start = try values.decodeIfPresent(Date.self, forKey: .start)
         end = try values.decodeIfPresent(Date.self, forKey: .end)
