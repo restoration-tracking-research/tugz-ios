@@ -5,7 +5,7 @@
 //  Created by Charlie Williams on 11/10/2021.
 //
 
-import UIKit
+import SwiftUI
 
 class Navigator {
     
@@ -36,6 +36,8 @@ class Navigator {
 //    @Published var activeTab: Tab = .home
 //    @Published var activeView: View = .home
     
+    @EnvironmentObject var history: History
+    
     var needsToStartTugFromNotification = false
     
     private init() { }
@@ -43,7 +45,7 @@ class Navigator {
     private func scheduler() -> NotificationScheduler {
         
         let prefs: UserPrefs = UserPrefs.load()
-        let s = TugScheduler(prefs: prefs, history: History.load())
+        let s = TugScheduler(prefs: prefs, history: history)
         return NotificationScheduler(settings: DeviceSettings.load(), prefs: prefs, scheduler: s)
     }
     

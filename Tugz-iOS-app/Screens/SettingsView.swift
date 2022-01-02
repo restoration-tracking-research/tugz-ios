@@ -9,15 +9,15 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    let prefs: UserPrefs
+    @EnvironmentObject var prefs: UserPrefs
     
     @State private var firstTugTime = Date()
     @State private var lastTugTime = Date()
     @State private var tugDuration: TimeInterval = 0
     @State private var tugInterval: TimeInterval = 0
     
-    init(prefs: UserPrefs = UserPrefs.load()) {
-        self.prefs = prefs
+    init() {
+        
     }
     
     var body: some View {

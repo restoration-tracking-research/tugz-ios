@@ -18,7 +18,9 @@ struct TugView: View {
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    var tug: Tug
+    @EnvironmentObject var history: History
+    
+    @State var tug: Tug
     @State var isPresented: Binding<Bool>
     
     var canStartTug: Bool {
@@ -27,6 +29,14 @@ struct TugView: View {
     
     var tugButtonTitle: String {
         canStartTug ? "Ready to Tug" : "Tugging now…"
+    }
+    
+    var navSubtitleText: String {
+        if let scheduledFor = tug.scheduledFor {
+            return "Scheduled for \(formatter.string(from: scheduledFor))"
+        } else {
+            return "Scheduled manually"
+        }
     }
     
     @State var percentDone: Double
@@ -41,22 +51,25 @@ struct TugView: View {
         state = tug.state
     }
     
+    var backButton: some View {
+        Button(action: {
+            self.showingActionSheet.toggle()
+        }, label: {
+            Image(systemName: "xmark.circle.fill")
+        })
+    }
+    
     var body: some View {
         
         VStack {
-            Text("Tug Session")
-                .font(.system(.largeTitle))
-                .padding(.top, 50)
-            HStack {
-                if let scheduledFor = tug.scheduledFor {
-                    Text("Scheduled for")
-                        .padding(.horizontal, -2)
-                    Text(formatter.string(from: scheduledFor))
-                        .padding(.horizontal, -2)
-                } else {
-                    Text("Scheduled manually")
-                }
+//            Text("Tug Session")
+//                .font(.system(.largeTitle))
+//                .padding(.top, 50)
+            VStack(alignment: .leading) {
+                Text(navSubtitleText)
+                    .font(.subheadline)
             }
+            .padding()
             
             Button(tugButtonTitle) {
                 self.tug.startTug()
@@ -69,11 +82,15 @@ struct TugView: View {
                 .padding(22)
             
             if let start = tug.start {
-                HStack {
-                    Text("Started at")
-                    Text(formatter.string(from: start))
-                    Text("until")
-                    Text(formatter.string(from: start.advanced(by: tug.scheduledDuration)))
+                VStack {
+                    HStack {
+                        Text("Started at")
+                        Text(formatter.string(from: start))
+                    }
+                    HStack {
+                        Text("Tugging until")
+                        Text(formatter.string(from: start.advanced(by: tug.scheduledDuration)))
+                    }
                 }
             }
             Spacer()
@@ -86,8 +103,16 @@ struct TugView: View {
             .actionSheet(isPresented: $showingActionSheet) {
                 ActionSheet(title: Text("All Done?"), message: nil, buttons: [
                     .default(Text("Finish Tugging")) {
+                        
                         self.tug.endTug()
+                        history.tugs.append(self.tug)
+                        history.save()
+                        
                         self.isPresented.wrappedValue = false
+                        
+                        self.tug = Tug(scheduledFor: nil, scheduledDuration: self.tug.scheduledDuration)
+                        
+                        self.timer.upstream.connect().cancel()
                     },
                     .cancel(Text("Keep Tugging"))
                 ])
@@ -95,16 +120,20 @@ struct TugView: View {
             
             Spacer()
         }
+        .onReceive(timer) { _ in
+            self.percentDone = tug.percentDone
+        }
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton)
-    }
-    
-    var backButton: some View {
-        Button(action: {
-            self.showingActionSheet.toggle()
-        }, label: {
-            Image(systemName: "xmark.circle.fill")
-        })
+//        .navigationBarItems(leading: backButton)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Session in Progress")
+                    .font(.largeTitle.bold())
+                    .accessibilityAddTraits(.isHeader)
+                    .padding()
+            }
+        }
     }
 }
 

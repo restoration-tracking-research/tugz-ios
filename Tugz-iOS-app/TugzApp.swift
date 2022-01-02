@@ -14,19 +14,22 @@ struct TugzApp: App {
     @Environment(\.scenePhase) var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    let prefs: UserPrefs
+    let history: History
+    let settings: DeviceSettings
+    let scheduler: TugScheduler
+    
     init() {
-        
+        prefs = UserPrefs.load()
+        history = History.load()
+        settings = DeviceSettings.load()
+        scheduler = TugScheduler(prefs: prefs, history: history)
     }
 
     var body: some Scene {
         
         WindowGroup {
-            
-            let prefs = UserPrefs.load()
-            let history = History.load()
-            let settings = DeviceSettings.load()
-            let scheduler = TugScheduler(prefs: prefs, history: history)
-            
+
             TabBarHostingView(scheduler: scheduler, prefs: prefs)
                 .environmentObject(prefs)
                 .environmentObject(history)
