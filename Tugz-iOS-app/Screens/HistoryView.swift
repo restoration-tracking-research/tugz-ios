@@ -49,10 +49,7 @@ struct HistorySection: View {
 
 struct HistoryView: View {
     
-    @EnvironmentObject var prefs: UserPrefs
-    @EnvironmentObject var history: History
-    @EnvironmentObject var settings: DeviceSettings
-    @EnvironmentObject var scheduler: TugScheduler
+    let config: Config
     
     var todayHeader: some View {
         
@@ -64,12 +61,12 @@ struct HistoryView: View {
     var todayFooter: some View {
         HStack {
             Text("⏱ Next tug")
-            if scheduler.timeOfNextTug()?.isToday == false {
+            if config.scheduler.timeOfNextTug()?.isToday == false {
                 Text("tomorrow")
                     .bold()
             }
             Text("at")
-            Text(scheduler.formattedTimeOfNextTug())
+            Text(config.scheduler.formattedTimeOfNextTug())
                 .bold()
         }
     }
@@ -86,13 +83,19 @@ struct HistoryView: View {
                 List {
                     
                     Section(header: todayHeader, footer: todayFooter) {
-                        ForEach(history.tugs) {
-                            HistoryRow(tug: $0)
+                        
+                        let today = config.history.tugsToday()
+                        if today.isEmpty {
+                            Text("Nothing yet today… 🤷‍♂️")
+                        } else {
+                            ForEach(today) {
+                                HistoryRow(tug: $0)
+                            }
                         }
                     }
                     .headerProminence(.increased)
                     
-                    ForEach(history.tugsByDay(includingToday: false)) {
+                    ForEach(config.history.tugsByDay(includingToday: false).reversed()) {
                         HistorySection(tugs: $0)
                     }
                     
@@ -108,6 +111,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView()
+        HistoryView(config: Config(forTest: true))
     }
 }

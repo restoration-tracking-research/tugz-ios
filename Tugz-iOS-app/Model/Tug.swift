@@ -96,12 +96,16 @@ final class Tug: Codable, Identifiable {
             return 0
         case .started:
             if let start = start {
-                return min(Date().timeIntervalSince(start) / scheduledDuration, 1)
+                return Date().timeIntervalSince(start) / scheduledDuration
             } else {
                 return 0
             }
         case .finished:
-            return 1
+            if let start = start, let end = end {
+                return end.timeIntervalSince(start) / scheduledDuration
+            } else {
+                return 1
+            }
         }
     }
     

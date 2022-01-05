@@ -7,46 +7,18 @@
 
 import SwiftUI
 
-class Navigator {
+final class Navigator {
     
-//    enum Tab: Int {
-//        case home
-//        case history
-//        case preferences
-//        case about
-//    }
-//
-//    enum View {
-//        case home
-//        case tug
-//    }
-//
-    static let shared = Navigator()
-    
-//
-//
-//    var isHome: Bool = true {
-//        didSet {
-//            if isHome {
-//                activeView = .home
-//            }
-//        }
-//    }
-//
-//    @Published var activeTab: Tab = .home
-//    @Published var activeView: View = .home
-    
-    @EnvironmentObject var history: History
+    let config: Config
     
     var needsToStartTugFromNotification = false
     
-    private init() { }
+    init(config: Config) {
+        self.config = config
+    }
     
     private func scheduler() -> NotificationScheduler {
-        
-        let prefs: UserPrefs = UserPrefs.load()
-        let s = TugScheduler(prefs: prefs, history: history)
-        return NotificationScheduler(settings: DeviceSettings.load(), prefs: prefs, scheduler: s)
+        return NotificationScheduler(settings: config.settings, prefs: config.prefs, scheduler: config.scheduler)
     }
     
     func appLaunchedFromNotification(response: UNNotificationResponse) {

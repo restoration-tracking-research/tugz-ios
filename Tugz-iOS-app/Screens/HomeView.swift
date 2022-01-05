@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
-    let scheduler: TugScheduler
-    let prefs: UserPrefs
+    let config: Config
+    
     @State var percentDoneToday: Double = 0
     @State var formattedTotalTugTimeToday: String = ""
     @State var formattedTimeUntilNextTug: String = ""
@@ -21,15 +21,18 @@ struct HomeView: View {
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    init(scheduler: TugScheduler, prefs: UserPrefs) {
-        self.scheduler = scheduler
-        self.prefs = prefs
-        percentDoneToday = scheduler.percentDoneToday
-        formattedTotalTugTimeToday = scheduler.formattedTotalTugTimeToday()
-        formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
-        formattedTimeOfNextTug = scheduler.formattedTimeOfNextTug()
-        sessionsToday = scheduler.todaySessionCount
-        navToTugNowActive = Navigator.shared.needsToStartTugFromNotification
+    var scheduler: TugScheduler { config.scheduler }
+    
+    var prefs: UserPrefs { config.prefs }
+    
+    init(config: Config) {
+        self.config = config
+        percentDoneToday = config.scheduler.percentDoneToday
+        formattedTotalTugTimeToday = config.scheduler.formattedTotalTugTimeToday()
+        formattedTimeUntilNextTug = config.scheduler.formattedTimeUntilNextTug()
+        formattedTimeOfNextTug = config.scheduler.formattedTimeOfNextTug()
+        sessionsToday = config.scheduler.todaySessionCount
+        navToTugNowActive = config.navigator.needsToStartTugFromNotification
     }
 
     var body: some View {
@@ -68,7 +71,8 @@ struct HomeView: View {
                         Text(formattedTimeOfNextTug)
                             .bold()
                     }
-                    NavigationLink(destination: TugView(tug: tugNowTug(), isPresented: $navToTugNowActive), isActive: $navToTugNowActive) {
+                    NavigationLink(destination: TugView(config: config, tug: nil, isPresented: $navToTugNowActive),
+                                   isActive: $navToTugNowActive) {
                         Button("TUG NOW") {
                             /// Transition to tug screen
                             self.navToTugNowActive = true
@@ -113,7 +117,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         
         TabView {
-            HomeView(scheduler: TugScheduler(prefs: UserPrefs(), history: h), prefs: UserPrefs())
+            HomeView(config: Config(forTest: true))
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

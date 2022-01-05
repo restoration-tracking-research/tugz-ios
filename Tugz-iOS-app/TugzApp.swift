@@ -14,30 +14,22 @@ struct TugzApp: App {
     @Environment(\.scenePhase) var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    let prefs: UserPrefs
-    let history: History
-    let settings: DeviceSettings
-    let scheduler: TugScheduler
+    let config: Config
     
     init() {
-        prefs = UserPrefs.load()
-        history = History.load()
-        settings = DeviceSettings.load()
-        scheduler = TugScheduler(prefs: prefs, history: history)
+        config = Config()
     }
 
     var body: some Scene {
         
         WindowGroup {
 
-            TabBarHostingView(scheduler: scheduler, prefs: prefs)
-                .environmentObject(prefs)
-                .environmentObject(history)
-                .environmentObject(settings)
-                .environmentObject(scheduler)
+            TabBarHostingView(config: config)
                 .onAppear {
 
-                    let noteSch = NotificationScheduler(settings: settings, prefs: prefs, scheduler: scheduler)
+                    let noteSch = NotificationScheduler(settings: config.settings,
+                                                        prefs: config.prefs,
+                                                        scheduler: config.scheduler)
                     noteSch.request() { granted in
                         if granted {
                             noteSch.scheduleAlerts()
@@ -48,13 +40,13 @@ struct TugzApp: App {
                     switch newPhase {
                         
                     case .background:
-                        Navigator.shared.appBackgrounded()
+                        config.navigator.appBackgrounded()
                         
                         /// Send debug test notification
                         NotificationScheduler.sendTestNotification()
                         
                     case .inactive:
-                        Navigator.shared.appBackgrounded()
+                        config.navigator.appBackgrounded()
                         
                         /// Send debug test notification
                         NotificationScheduler.sendTestNotification()
@@ -105,7 +97,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // The method will be called on the delegate when the user responded to the notification by opening the application, dismissing the notification or choosing a UNNotificationAction. The delegate must be set before the application returns from application:didFinishLaunchingWithOptions:.
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        Navigator.shared.appLaunchedFromNotification(response: response)
+        app?.config.navigator.appLaunchedFromNotification(response: response)
         completionHandler()
     }
     

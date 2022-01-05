@@ -20,7 +20,13 @@ final class History: NSObject, Codable, ObservableObject {
     var lastTug: Tug? {
         tugs.last
     }
-    var tugs: [Tug]
+    var tugs: [Tug] {
+        didSet {
+            self.tugs = tugs
+                .filter { $0.start != nil }
+                .sorted { $0.start!.timeIntervalSince1970 > $1.start!.timeIntervalSince1970 }
+        }
+    }
     
     private let jsonEncoder = JSONEncoder()
     
@@ -61,25 +67,36 @@ final class History: NSObject, Codable, ObservableObject {
     
     /// TODO provide summary stats per day
     /// rather than just a list of individual tugs
+    func tugsToday() -> [Tug] {
+        tugs.filter { $0.start?.isToday == true }
+    }
+    
     func tugsByDay(includingToday: Bool) -> [[Tug]] {
-        
-        let sorted = tugs
-            .filter { $0.start != nil }
-            .sorted { $0.start!.timeIntervalSince1970 > $1.start!.timeIntervalSince1970 }
         
         var sortedByDate = [[Tug]]()
 
-        for tug in sorted {
+        /// For each tug
+        for tug in tugs {
+            
+            /// If we're not doing today, and it's today, go to the next tug
+            if !includingToday && tug.start?.isToday == true {
+                continue
+            }
 
+            /// Look in the existing set to see if there's already a group for "today"
+            var found = false
             for (index, existingArr) in sortedByDate.enumerated() {
 
                 if Calendar.current.isDate(tug.start!, inSameDayAs: existingArr.first!.start!) {
                     sortedByDate[index].append(tug)
+                    found = true
                     continue
                 }
             }
             
-            sortedByDate.append([tug])
+            if !found {
+                sortedByDate.append([tug])
+            }
         }
 
         return sortedByDate

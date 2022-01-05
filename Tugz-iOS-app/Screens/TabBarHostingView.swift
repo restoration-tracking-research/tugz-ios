@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TabBarHostingView: View {
     
-    let scheduler: TugScheduler
-    let prefs: UserPrefs
+    let config: Config
     
     @State var selectedTab: Int = 0
     
@@ -19,7 +18,7 @@ struct TabBarHostingView: View {
         TabView(selection: $selectedTab) {
             
             NavigationView {
-                HomeView(scheduler: scheduler, prefs: prefs)
+                HomeView(config: config)
             }
             .navigationBarHidden(true)
             .tabItem {
@@ -27,7 +26,7 @@ struct TabBarHostingView: View {
             }
             
             NavigationView {
-                HistoryView()
+                HistoryView(config: config)
             }
             .navigationBarHidden(true)
             .tabItem {
@@ -35,7 +34,7 @@ struct TabBarHostingView: View {
             }
             
             NavigationView {
-                SettingsView()
+                SettingsView(config: config)
             }
             .navigationBarHidden(true)
             .tabItem {
@@ -55,8 +54,6 @@ struct TabBarHostingView: View {
 
 struct TabBarHostingView_Previews: PreviewProvider {
     static var previews: some View {
-        let h = History(tugs: [Tug.testTug()])
-        let scheduler = TugScheduler(prefs: UserPrefs(), history: h)
-        TabBarHostingView(scheduler: scheduler, prefs: UserPrefs())
+        TabBarHostingView(config: Config(forTest: true))
     }
 }

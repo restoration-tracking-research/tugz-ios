@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TugView: View {
     
+    let config: Config
+    
     private let formatter: DateFormatter = {
         let f = DateFormatter()
         f.timeStyle = .short
@@ -18,9 +20,7 @@ struct TugView: View {
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    @EnvironmentObject var history: History
-    
-    @State var tug: Tug
+    @State var tug: Tug?
     @State var isPresented: Binding<Bool>
     
     var canStartTug: Bool {
@@ -28,11 +28,22 @@ struct TugView: View {
     }
     
     var tugButtonTitle: String {
-        canStartTug ? "Ready to Tug" : "Tugging now…"
+        
+        guard let tug = tug else {
+            return ""
+        }
+        
+        if canStartTug {
+            return "Ready to Tug"
+        } else if tug.duration < 60 {
+            return "Tugging for \(tug.duration.second) sec"
+        } else {
+            return "Tugging for \(tug.duration.minute):\(tug.duration.second)"
+        }
     }
     
     var navSubtitleText: String {
-        if let scheduledFor = tug.scheduledFor {
+        if let scheduledFor = tug?.scheduledFor {
             return "Scheduled for \(formatter.string(from: scheduledFor))"
         } else {
             return "Scheduled manually"
@@ -40,15 +51,16 @@ struct TugView: View {
     }
     
     @State var percentDone: Double
-    @State var state: Tug.State
+    @State var state: Tug.State?
     
     @State private var showingActionSheet = false
     
-    init(tug: Tug, isPresented: Binding<Bool>) {
+    init(config: Config, tug: Tug?, isPresented: Binding<Bool>) {
+        self.config = config
         self.tug = tug
         self.isPresented = isPresented
-        percentDone = tug.percentDone
-        state = tug.state
+        percentDone = tug?.percentDone ?? 0
+        state = tug?.state
     }
     
     var backButton: some View {
@@ -62,9 +74,6 @@ struct TugView: View {
     var body: some View {
         
         VStack {
-//            Text("Tug Session")
-//                .font(.system(.largeTitle))
-//                .padding(.top, 50)
             VStack(alignment: .leading) {
                 Text(navSubtitleText)
                     .font(.subheadline)
@@ -72,7 +81,7 @@ struct TugView: View {
             .padding()
             
             Button(tugButtonTitle) {
-                self.tug.startTug()
+                tug!.startTug()
             }
             .buttonStyle(FilledButton())
             .disabled(!canStartTug)
@@ -81,7 +90,7 @@ struct TugView: View {
                 .frame(width: 150.0, height: 150.0)
                 .padding(22)
             
-            if let start = tug.start {
+            if let tug = tug, let start = tug.start {
                 VStack {
                     HStack {
                         Text("Started at")
@@ -104,13 +113,13 @@ struct TugView: View {
                 ActionSheet(title: Text("All Done?"), message: nil, buttons: [
                     .default(Text("Finish Tugging")) {
                         
-                        self.tug.endTug()
-                        history.tugs.append(self.tug)
-                        history.save()
+                        self.tug!.endTug()
+                        config.history.tugs.append(self.tug!)
+                        config.history.save()
                         
                         self.isPresented.wrappedValue = false
                         
-                        self.tug = Tug(scheduledFor: nil, scheduledDuration: self.tug.scheduledDuration)
+                        self.tug = nil
                         
                         self.timer.upstream.connect().cancel()
                     },
@@ -121,7 +130,7 @@ struct TugView: View {
             Spacer()
         }
         .onReceive(timer) { _ in
-            self.percentDone = tug.percentDone
+            self.percentDone = tug?.percentDone ?? 0
         }
         .navigationBarBackButtonHidden(true)
 //        .navigationBarItems(leading: backButton)
@@ -134,11 +143,18 @@ struct TugView: View {
                     .padding()
             }
         }
+        .onAppear {
+            if tug == nil {
+                tug = Tug(scheduledFor: nil, scheduledDuration: config.prefs.tugDuration.converted(to: .seconds).value)
+            }
+        }
     }
 }
 
 struct TugView_Previews: PreviewProvider {
     static var previews: some View {
-        TugView(tug: Tug.testTugInProgress(), isPresented: .constant(true))
+        NavigationView {
+            TugView(config: Config(forTest: true), tug: Tug.testTugInProgress(), isPresented: .constant(true))
+        }
     }
 }

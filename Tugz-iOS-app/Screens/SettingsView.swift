@@ -9,16 +9,12 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject var prefs: UserPrefs
+    let config: Config
     
     @State private var firstTugTime = Date()
     @State private var lastTugTime = Date()
     @State private var tugDuration: TimeInterval = 0
     @State private var tugInterval: TimeInterval = 0
-    
-    init() {
-        
-    }
     
     var body: some View {
         
@@ -40,7 +36,7 @@ struct SettingsView: View {
                             displayedComponents: [.hourAndMinute]
                         )
                             .onChange(of: firstTugTime) { newValue in
-                                prefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: firstTugTime)
+                                config.prefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: firstTugTime)
                             }
                         
                         DatePicker(
@@ -49,7 +45,7 @@ struct SettingsView: View {
                             displayedComponents: [.hourAndMinute]
                         )
                             .onChange(of: lastTugTime) { newValue in
-                                prefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: lastTugTime)
+                                config.prefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: lastTugTime)
                             }
                         
                         /// Set tug duration
@@ -57,7 +53,7 @@ struct SettingsView: View {
                             Text("Tug duration")
                             TimeDurationPicker(duration: $tugDuration)
                                 .onChange(of: tugDuration) { newValue in
-                                    prefs.tugDuration = Measurement(value: tugDuration, unit: .seconds)
+                                    config.prefs.tugDuration = Measurement(value: tugDuration, unit: .seconds)
                                 }
                         }
                         
@@ -66,7 +62,7 @@ struct SettingsView: View {
                             Text("Tug every")
                             TimeDurationPicker(duration: $tugInterval)
                                 .onChange(of: tugInterval) { newValue in
-                                    prefs.tugInterval = Measurement(value: tugInterval, unit: .seconds)
+                                    config.prefs.tugInterval = Measurement(value: tugInterval, unit: .seconds)
                                 }
                         }
                     }
@@ -79,8 +75,8 @@ struct SettingsView: View {
             
             var components = Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())
             
-            components.hour = prefs.firstTugTime.hour
-            components.minute = prefs.firstTugTime.minute
+            components.hour = config.prefs.firstTugTime.hour
+            components.minute = config.prefs.firstTugTime.minute
             
             if let first = Calendar.current.date(from: components) {
                 firstTugTime = first
@@ -88,22 +84,22 @@ struct SettingsView: View {
                 print("hi")
             }
             
-            components.hour = prefs.lastTugTime.hour
-            components.minute = prefs.lastTugTime.minute
+            components.hour = config.prefs.lastTugTime.hour
+            components.minute = config.prefs.lastTugTime.minute
             
             if let last = Calendar.current.date(from: components) {
                 lastTugTime = last
             } else {
                 print("hi")
             }
-            tugDuration = prefs.tugDuration.converted(to: .seconds).value
-            tugInterval = prefs.tugInterval.converted(to: .seconds).value
+            tugDuration = config.prefs.tugDuration.converted(to: .seconds).value
+            tugInterval = config.prefs.tugInterval.converted(to: .seconds).value
         }
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(config: Config(forTest: true))
     }
 }
