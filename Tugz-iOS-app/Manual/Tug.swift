@@ -44,6 +44,7 @@ final class Tug: Codable, Identifiable {
         case start
         case end
         case state
+        case method
     }
     
     let scheduledFor: Date?
@@ -51,6 +52,7 @@ final class Tug: Codable, Identifiable {
     var start: Date?
     var end: Date?
     var state: State
+    var method: Method?
     
     var formattedStartTime: String {
         if let start = start {
@@ -130,6 +132,7 @@ final class Tug: Codable, Identifiable {
             throw DecodingError.valueNotFound(State.self, DecodingError.Context(codingPath: [CodingKeys.state], debugDescription: "State not found", underlyingError: nil))
         }
         self.state = state
+        self.method = try values.decodeIfPresent(Method.self, forKey: .method)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -140,6 +143,7 @@ final class Tug: Codable, Identifiable {
         try values.encode(start, forKey: .start)
         try values.encode(end, forKey: .end)
         try values.encode(state.rawValue, forKey: .state)
+        try values.encode(method, forKey: .method)
     }
     
     func startTug() {

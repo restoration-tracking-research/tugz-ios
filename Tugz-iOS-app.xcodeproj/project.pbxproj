@@ -35,6 +35,12 @@
 		C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F52721F22F00B38112 /* SettingsView.swift */; };
 		C0BE55F82721F27300B38112 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F72721F27300B38112 /* AboutView.swift */; };
 		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
+		C0DDCAF9280D834D0066B423 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAF8280D834D0066B423 /* Device.swift */; };
+		C0DDCAFB280D83560066B423 /* DeviceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAFA280D83560066B423 /* DeviceSession.swift */; };
+		C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAFE280D837D0066B423 /* ManualMethod.swift */; };
+		C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB01280D8B5E0066B423 /* PhotoGallery.swift */; };
+		C0DDCB05280D8B6B0066B423 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB04280D8B6B0066B423 /* Photo.swift */; };
+		C0DDCB07280D96370066B423 /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB06280D96370066B423 /* DeviceListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +85,13 @@
 		C0BE55F52721F22F00B38112 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C0BE55F72721F27300B38112 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C0DDA538272204A20033AFCD /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		C0DDCAF8280D834D0066B423 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		C0DDCAFA280D83560066B423 /* DeviceSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSession.swift; sourceTree = "<group>"; };
+		C0DDCAFE280D837D0066B423 /* ManualMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualMethod.swift; sourceTree = "<group>"; };
+		C0DDCB00280D89200066B423 /* Tugz-iOS-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tugz-iOS-app.entitlements"; sourceTree = "<group>"; };
+		C0DDCB01280D8B5E0066B423 /* PhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGallery.swift; sourceTree = "<group>"; };
+		C0DDCB04280D8B6B0066B423 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		C0DDCB06280D96370066B423 /* DeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +121,7 @@
 				C0BE55F32721F22500B38112 /* HistoryView.swift */,
 				C0BE55F52721F22F00B38112 /* SettingsView.swift */,
 				C0BE55F72721F27300B38112 /* AboutView.swift */,
+				C0DDCB06280D96370066B423 /* DeviceListView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -129,11 +143,6 @@
 				C03496E027854D6B0084C604 /* Config.swift */,
 				C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */,
 				C06D001B270BA2FF006CEBA0 /* History.swift */,
-				C09191D0270C5B8700EFBE34 /* Tug.swift */,
-				C06D001D270BA322006CEBA0 /* TugScheduler.swift */,
-				C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */,
-				C03496D62777CB890084C604 /* NotificationAction.swift */,
-				C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,10 +168,15 @@
 		C06DFFE3270B5A97006CEBA0 /* Tugz-iOS-app */ = {
 			isa = PBXGroup;
 			children = (
+				C0DDCB00280D89200066B423 /* Tugz-iOS-app.entitlements */,
 				C08F1E5927121F3C00EFEE35 /* Info.plist */,
 				C06DFFE4270B5A97006CEBA0 /* TugzApp.swift */,
 				C0AF64E327148A7400162216 /* Navigator.swift */,
+				C0DDCB03280D8B620066B423 /* Photos */,
 				C06D0016270BA2C8006CEBA0 /* Model */,
+				C0DDCAFD280D836D0066B423 /* Manual */,
+				C0DDCAFC280D835D0066B423 /* RestorationDevice */,
+				C0DDCAF7280D83330066B423 /* Notifications */,
 				C06D0015270BA2BA006CEBA0 /* UI Components */,
 				C06D0014270BA2A5006CEBA0 /* Screens */,
 				C09191CD270C5B3D00EFBE34 /* Extensions */,
@@ -198,6 +212,44 @@
 				C0DDA538272204A20033AFCD /* Array.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C0DDCAF7280D83330066B423 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				C09191D2270DF69E00EFBE34 /* NotificationScheduler.swift */,
+				C03496D62777CB890084C604 /* NotificationAction.swift */,
+				C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		C0DDCAFC280D835D0066B423 /* RestorationDevice */ = {
+			isa = PBXGroup;
+			children = (
+				C0DDCAF8280D834D0066B423 /* Device.swift */,
+				C0DDCAFA280D83560066B423 /* DeviceSession.swift */,
+			);
+			path = RestorationDevice;
+			sourceTree = "<group>";
+		};
+		C0DDCAFD280D836D0066B423 /* Manual */ = {
+			isa = PBXGroup;
+			children = (
+				C09191D0270C5B8700EFBE34 /* Tug.swift */,
+				C0DDCAFE280D837D0066B423 /* ManualMethod.swift */,
+				C06D001D270BA322006CEBA0 /* TugScheduler.swift */,
+			);
+			path = Manual;
+			sourceTree = "<group>";
+		};
+		C0DDCB03280D8B620066B423 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				C0DDCB01280D8B5E0066B423 /* PhotoGallery.swift */,
+				C0DDCB04280D8B6B0066B423 /* Photo.swift */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,7 +355,9 @@
 			files = (
 				C09191D1270C5B8700EFBE34 /* Tug.swift in Sources */,
 				C06D001E270BA322006CEBA0 /* TugScheduler.swift in Sources */,
+				C0DDCB07280D96370066B423 /* DeviceListView.swift in Sources */,
 				C0BE55F82721F27300B38112 /* AboutView.swift in Sources */,
+				C0DDCB05280D8B6B0066B423 /* Photo.swift in Sources */,
 				C08F1E5D271221CC00EFEE35 /* TugView.swift in Sources */,
 				C03496D72777CB890084C604 /* NotificationAction.swift in Sources */,
 				C06DFFE7270B5A97006CEBA0 /* HomeView.swift in Sources */,
@@ -311,17 +365,21 @@
 				C09191D3270DF69E00EFBE34 /* NotificationScheduler.swift in Sources */,
 				C06D001C270BA2FF006CEBA0 /* History.swift in Sources */,
 				C03496D92778D14E0084C604 /* TimePicker.swift in Sources */,
+				C0DDCAFB280D83560066B423 /* DeviceSession.swift in Sources */,
 				C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */,
 				C0DDA539272204A20033AFCD /* Array.swift in Sources */,
 				C0AF64E427148A7400162216 /* Navigator.swift in Sources */,
 				C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */,
 				C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */,
+				C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */,
 				C03496E127854D6B0084C604 /* Config.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
 				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
+				C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */,
 				C06D001A270BA2EF006CEBA0 /* UserPrefs.swift in Sources */,
 				C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */,
+				C0DDCAF9280D834D0066B423 /* Device.swift in Sources */,
 				C06DFFE5270B5A97006CEBA0 /* TugzApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +527,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Tugz-iOS-app/Tugz-iOS-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tugz-iOS-app/Preview Content\"";
@@ -502,6 +561,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Tugz-iOS-app/Tugz-iOS-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tugz-iOS-app/Preview Content\"";

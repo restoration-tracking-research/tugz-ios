@@ -49,6 +49,7 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         tugInterval = Defaults.tugInterval
         firstTugTime = Defaults.firstTugTime
         lastTugTime = Defaults.lastTugTime
+        
     }
     
     required init(from decoder: Decoder) throws {
