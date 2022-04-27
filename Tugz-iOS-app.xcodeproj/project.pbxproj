@@ -34,6 +34,9 @@
 		C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F32721F22500B38112 /* HistoryView.swift */; };
 		C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F52721F22F00B38112 /* SettingsView.swift */; };
 		C0BE55F82721F27300B38112 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F72721F27300B38112 /* AboutView.swift */; };
+		C0CA249D2819E45400AE9A65 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA249C2819E45400AE9A65 /* OnboardingView.swift */; };
+		C0CA249F2819E4A200AE9A65 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA249E2819E4A200AE9A65 /* OnboardingPageViewController.swift */; };
+		C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */; };
 		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
 		C0DDCAF9280D834D0066B423 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAF8280D834D0066B423 /* Device.swift */; };
 		C0DDCAFB280D83560066B423 /* DeviceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAFA280D83560066B423 /* DeviceSession.swift */; };
@@ -84,6 +87,9 @@
 		C0BE55F32721F22500B38112 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		C0BE55F52721F22F00B38112 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C0BE55F72721F27300B38112 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C0CA249C2819E45400AE9A65 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		C0CA249E2819E4A200AE9A65 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubview.swift; sourceTree = "<group>"; };
 		C0DDA538272204A20033AFCD /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		C0DDCAF8280D834D0066B423 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C0DDCAFA280D83560066B423 /* DeviceSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSession.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 		C06D0014270BA2A5006CEBA0 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C0CA249B2819E3DF00AE9A65 /* Intro */,
 				C06D000E270B8577006CEBA0 /* TabBarHostingView.swift */,
 				C06DFFE6270B5A97006CEBA0 /* HomeView.swift */,
 				C08F1E5C271221CC00EFEE35 /* TugView.swift */,
@@ -212,6 +219,16 @@
 				C0DDA538272204A20033AFCD /* Array.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C0CA249B2819E3DF00AE9A65 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				C0CA249C2819E45400AE9A65 /* OnboardingView.swift */,
+				C0CA249E2819E4A200AE9A65 /* OnboardingPageViewController.swift */,
+				C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */,
+			);
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		C0DDCAF7280D83330066B423 /* Notifications */ = {
@@ -368,12 +385,14 @@
 				C0DDCAFB280D83560066B423 /* DeviceSession.swift in Sources */,
 				C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */,
 				C0DDA539272204A20033AFCD /* Array.swift in Sources */,
+				C0CA249D2819E45400AE9A65 /* OnboardingView.swift in Sources */,
 				C0AF64E427148A7400162216 /* Navigator.swift in Sources */,
 				C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */,
 				C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */,
 				C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */,
 				C03496E127854D6B0084C604 /* Config.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */,
+				C0CA249F2819E4A200AE9A65 /* OnboardingPageViewController.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
 				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
 				C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */,
@@ -381,6 +400,7 @@
 				C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */,
 				C0DDCAF9280D834D0066B423 /* Device.swift in Sources */,
 				C06DFFE5270B5A97006CEBA0 /* TugzApp.swift in Sources */,
+				C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

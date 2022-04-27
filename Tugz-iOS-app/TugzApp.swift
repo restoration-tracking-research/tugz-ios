@@ -23,44 +23,51 @@ struct TugzApp: App {
     var body: some Scene {
         
         WindowGroup {
+            
+            if config.hasSeenOnboarding {
 
-            TabBarHostingView(config: config)
-                .onAppear {
-
-                    let noteSch = NotificationScheduler(settings: config.settings,
-                                                        prefs: config.prefs,
-                                                        scheduler: config.scheduler)
-                    noteSch.request() { granted in
-                        if granted {
-                            noteSch.scheduleAlerts()
+                TabBarHostingView(config: config)
+                    .onAppear {
+                        
+                        let noteSch = NotificationScheduler(settings: config.settings,
+                                                            prefs: config.prefs,
+                                                            scheduler: config.scheduler)
+                        noteSch.request() { granted in
+                            if granted {
+                                noteSch.scheduleAlerts()
+                            }
                         }
                     }
-                }
-                .onChange(of: scenePhase) { newPhase in
-                    switch newPhase {
-                        
-                    case .background:
-                        config.navigator.appBackgrounded()
-                        
-                        /// Send debug test notification
-                        NotificationScheduler.sendTestNotification()
-                        
-                    case .inactive:
-                        config.navigator.appBackgrounded()
-                        
-                        /// Send debug test notification
-                        NotificationScheduler.sendTestNotification()
-                        
-                    case .active:
-                        break
-                        
-                    @unknown default:
-                        fatalError("New thing here")
+                    .onChange(of: scenePhase) { newPhase in
+                        switch newPhase {
+                            
+                        case .background:
+                            config.navigator.appBackgrounded()
+                            
+                            /// Send debug test notification
+                            NotificationScheduler.sendTestNotification()
+                            
+                        case .inactive:
+                            config.navigator.appBackgrounded()
+                            
+                            /// Send debug test notification
+                            NotificationScheduler.sendTestNotification()
+                            
+                        case .active:
+                            break
+                            
+                        @unknown default:
+                            fatalError("New thing here")
+                        }
                     }
-                }
-                .onOpenURL { url in
-                    print(url)
-                }
+                    .onOpenURL { url in
+                        print(url)
+                    }
+                
+            } else {
+                
+                OnboardingView()
+            }
         }
     }
 }

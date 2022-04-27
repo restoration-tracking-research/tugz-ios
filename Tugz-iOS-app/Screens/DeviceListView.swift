@@ -14,7 +14,13 @@ import SwiftUI
 
 struct DeviceListView: View {
     
-    @Binding var selectedDevice: [Device]
+    @Binding var selectedDevice: Device
+    
+//    @Binding var onlyShowOwned: Bool
+    
+    func devices(for category: DeviceCategory) -> [Device] {
+        category.devices() //.filter { onlyShowOwned ? $0.userOwns : true }
+    }
     
     var body: some View {
         
@@ -24,9 +30,12 @@ struct DeviceListView: View {
                     
                     Section(header: Text(category.displayName)) {
                         
-                        ForEach(category.devices()) { device in
+                        ForEach(devices(for: category)) { device in
                             
                             Text(device.displayName)
+                                .onTapGesture {
+                                    selectedDevice = device
+                                }
                         }
                     }
                 }
@@ -36,7 +45,10 @@ struct DeviceListView: View {
 }
 
 struct DeviceListView_Previews: PreviewProvider {
+    
+//    @Binding var onlyShowOwned: Bool = Binding(.constant(true))
+    
     static var previews: some View {
-        DeviceListView(selectedDevice: Binding(projectedValue: .constant([.Foreskinned_Workhorse])))
+        DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse))) //, onlyShowOwned: $onlyShowOwned)
     }
 }

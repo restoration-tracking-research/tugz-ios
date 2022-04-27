@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Config {
     let prefs: UserPrefs
@@ -13,6 +14,14 @@ class Config {
     let scheduler: TugScheduler
     let settings: DeviceSettings
     var navigator: Navigator!
+    var hasSeenOnboarding: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+        }
+        set {
+            UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
+        }
+    }
     
     init() {
         

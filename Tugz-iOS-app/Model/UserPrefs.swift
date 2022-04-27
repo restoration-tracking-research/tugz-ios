@@ -87,7 +87,7 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     static func load() -> UserPrefs {
         
         guard let data = UserDefaults.standard.object(forKey: "UserPrefs") as? Data else {
-            return UserPrefs()
+                return UserPrefs()
         }
         
         do {
