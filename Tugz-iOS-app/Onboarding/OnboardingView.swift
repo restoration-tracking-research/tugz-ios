@@ -24,13 +24,13 @@ struct OnboardingView: View {
             .insteadOfCyclingToFirstPage {
                 /// No-op
             }
-            .didPressNextButton {
-                if onboarding.currentPage == .readyToStart,
-                   userPrefs.usesDevices == false {
-                    onboarding.view.goToNextPage(animated: false)
-                }
-                onboarding.view.goToNextPage()
-            }
+//            .didPressNextButton {
+//                if onboarding.currentPage == .readyToStart,
+//                   userPrefs.usesDevices == false {
+//                    onboarding.view.goToNextPage(animated: false)
+//                }
+//                onboarding.view.goToNextPage()
+//            }
             .didChangeCurrentPage { currentPage in
                 onboarding.updatePage(currentPage)
             }

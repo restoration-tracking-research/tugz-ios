@@ -70,7 +70,7 @@ struct OnboardingSubview: View {
         VStack {
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 64))
-                .foregroundColor(.orange)
+                .foregroundColor(.white)
             
             Text("Welcome to Tugz")
                 .font(.system(.largeTitle))
@@ -104,8 +104,8 @@ struct OnboardingSubview: View {
                 //            .tint(.orange)
                 .buttonStyle(.borderedProminent)
                 .padding()
-
             }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 88, trailing: 0))
         }
     }
     
@@ -146,13 +146,7 @@ struct OnboardingSubview: View {
                     Text("There are thriving online communities, with lots of resources and further reading. Look them up and keep learning!")
                 }
             }
-            .padding()
-            
-            Button("I'd like to get started") {
-                onboarding.view.goToNextPage()
-            }
-            .buttonStyle(.borderedProminent)
-            .padding()
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 180, trailing: 20))
         }
     }
     
@@ -161,7 +155,7 @@ struct OnboardingSubview: View {
         VStack {
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 64))
-                .foregroundColor(.orange)
+                .foregroundColor(.white)
             
             Text("Ready to start?")
                 .font(.system(.largeTitle))
@@ -189,7 +183,8 @@ struct OnboardingSubview: View {
                 Text("(If you get more devices in the future, you can add them in later)")
             }
             .padding()
-        }.padding()
+        }
+        .padding(EdgeInsets(top: 0, leading: 20, bottom: 120, trailing: 20))
     }
     
     var deviceSelect: some View {
@@ -199,11 +194,11 @@ struct OnboardingSubview: View {
                 .font(.system(size: 64))
                 .foregroundColor(.orange)
             
-            //            List {
-            //                DeviceCategory.allCases.map {
-            //                    Text($0.displayName)
-            //                }
-            //            }
+            List {
+                DeviceCategory.allCases.map {
+                    Text($0.displayName)
+                }
+            }
         }
     }
     
@@ -222,7 +217,7 @@ struct OnboardingSubview: View {
         VStack {
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 64))
-                .foregroundColor(.orange)
+                .foregroundColor(.white)
             
         }
     }
@@ -234,9 +229,9 @@ struct OnboardingSubview_Previews: PreviewProvider {
     static let userPrefs = UserPrefs.loadFromStore()
     
     static var previews: some View {
-//        OnboardingSubview(page: .first)
-//            .environmentObject(onboarding)
-//            .environmentObject(userPrefs)
+        OnboardingSubview(page: .first)
+            .environmentObject(onboarding)
+            .environmentObject(userPrefs)
 //        OnboardingSubview(page: .aboutRestoration)
 //            .environmentObject(onboarding)
 //            .environmentObject(userPrefs)

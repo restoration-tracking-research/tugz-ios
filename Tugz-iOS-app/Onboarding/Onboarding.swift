@@ -34,11 +34,11 @@ class Onboarding: ObservableObject {
     
     var colors: [Color] = [
         .white,
+        .orange,
         .white,
+        .orange,
         .white,
-        .white,
-        .white,
-        .white
+        .orange
     ]
     
     func buildViews() -> [(OnboardingSubview, Color)] {
