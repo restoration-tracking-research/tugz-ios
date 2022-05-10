@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C006E6D5282A5BDF006ED199 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006E6D4282A5BDF006ED199 /* Onboarding.swift */; };
+		C006E6D7282A5D0C006ED199 /* Tooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006E6D6282A5D0C006ED199 /* Tooltip.swift */; };
 		C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */; };
 		C03496D72777CB890084C604 /* NotificationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D62777CB890084C604 /* NotificationAction.swift */; };
 		C03496D92778D14E0084C604 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D82778D14D0084C604 /* TimePicker.swift */; };
@@ -34,8 +36,13 @@
 		C0BE55F42721F22500B38112 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F32721F22500B38112 /* HistoryView.swift */; };
 		C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F52721F22F00B38112 /* SettingsView.swift */; };
 		C0BE55F82721F27300B38112 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE55F72721F27300B38112 /* AboutView.swift */; };
+		C0C6CA89282A2ECA00AE5EA3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA88282A2ECA00AE5EA3 /* FirebaseAnalyticsSwift */; };
+		C0C6CA8B282A2ECA00AE5EA3 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA8A282A2ECA00AE5EA3 /* FirebaseCrashlytics */; };
+		C0C6CA8D282A2ECA00AE5EA3 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA8C282A2ECA00AE5EA3 /* FirebaseInstallations */; };
+		C0C6CA8F282A2ECA00AE5EA3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA8E282A2ECA00AE5EA3 /* FirebaseMessaging */; };
+		C0C6CA91282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA90282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift */; };
+		C0C6CA94282A300D00AE5EA3 /* ConcentricOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA93282A300D00AE5EA3 /* ConcentricOnboarding */; };
 		C0CA249D2819E45400AE9A65 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA249C2819E45400AE9A65 /* OnboardingView.swift */; };
-		C0CA249F2819E4A200AE9A65 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA249E2819E4A200AE9A65 /* OnboardingPageViewController.swift */; };
 		C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */; };
 		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
 		C0DDCAF9280D834D0066B423 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAF8280D834D0066B423 /* Device.swift */; };
@@ -57,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C006E6D4282A5BDF006ED199 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		C006E6D6282A5D0C006ED199 /* Tooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tooltip.swift; sourceTree = "<group>"; };
 		C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTextProvider.swift; sourceTree = "<group>"; };
 		C03496D62777CB890084C604 /* NotificationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAction.swift; sourceTree = "<group>"; };
 		C03496D82778D14D0084C604 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
@@ -88,7 +97,6 @@
 		C0BE55F52721F22F00B38112 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C0BE55F72721F27300B38112 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C0CA249C2819E45400AE9A65 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		C0CA249E2819E4A200AE9A65 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubview.swift; sourceTree = "<group>"; };
 		C0DDA538272204A20033AFCD /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		C0DDCAF8280D834D0066B423 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -105,6 +113,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C6CA8F282A2ECA00AE5EA3 /* FirebaseMessaging in Frameworks */,
+				C0C6CA8D282A2ECA00AE5EA3 /* FirebaseInstallations in Frameworks */,
+				C0C6CA91282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift in Frameworks */,
+				C0C6CA94282A300D00AE5EA3 /* ConcentricOnboarding in Frameworks */,
+				C0C6CA89282A2ECA00AE5EA3 /* FirebaseAnalyticsSwift in Frameworks */,
+				C0C6CA8B282A2ECA00AE5EA3 /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,10 +132,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0012CDF2828EBFC0035D93B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C0CA249C2819E45400AE9A65 /* OnboardingView.swift */,
+				C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */,
+				C006E6D4282A5BDF006ED199 /* Onboarding.swift */,
+				C006E6D6282A5D0C006ED199 /* Tooltip.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		C06D0014270BA2A5006CEBA0 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				C0CA249B2819E3DF00AE9A65 /* Intro */,
 				C06D000E270B8577006CEBA0 /* TabBarHostingView.swift */,
 				C06DFFE6270B5A97006CEBA0 /* HomeView.swift */,
 				C08F1E5C271221CC00EFEE35 /* TugView.swift */,
@@ -177,8 +201,10 @@
 			children = (
 				C0DDCB00280D89200066B423 /* Tugz-iOS-app.entitlements */,
 				C08F1E5927121F3C00EFEE35 /* Info.plist */,
+				C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */,
 				C06DFFE4270B5A97006CEBA0 /* TugzApp.swift */,
 				C0AF64E327148A7400162216 /* Navigator.swift */,
+				C0012CDF2828EBFC0035D93B /* Onboarding */,
 				C0DDCB03280D8B620066B423 /* Photos */,
 				C06D0016270BA2C8006CEBA0 /* Model */,
 				C0DDCAFD280D836D0066B423 /* Manual */,
@@ -187,7 +213,6 @@
 				C06D0015270BA2BA006CEBA0 /* UI Components */,
 				C06D0014270BA2A5006CEBA0 /* Screens */,
 				C09191CD270C5B3D00EFBE34 /* Extensions */,
-				C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */,
 				C08F1E5A271220DB00EFEE35 /* Launch.storyboard */,
 				C06DFFEA270B5A9B006CEBA0 /* Preview Content */,
 			);
@@ -219,16 +244,6 @@
 				C0DDA538272204A20033AFCD /* Array.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		C0CA249B2819E3DF00AE9A65 /* Intro */ = {
-			isa = PBXGroup;
-			children = (
-				C0CA249C2819E45400AE9A65 /* OnboardingView.swift */,
-				C0CA249E2819E4A200AE9A65 /* OnboardingPageViewController.swift */,
-				C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */,
-			);
-			path = Intro;
 			sourceTree = "<group>";
 		};
 		C0DDCAF7280D83330066B423 /* Notifications */ = {
@@ -285,6 +300,14 @@
 			dependencies = (
 			);
 			name = "Tugz-iOS-app";
+			packageProductDependencies = (
+				C0C6CA88282A2ECA00AE5EA3 /* FirebaseAnalyticsSwift */,
+				C0C6CA8A282A2ECA00AE5EA3 /* FirebaseCrashlytics */,
+				C0C6CA8C282A2ECA00AE5EA3 /* FirebaseInstallations */,
+				C0C6CA8E282A2ECA00AE5EA3 /* FirebaseMessaging */,
+				C0C6CA90282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift */,
+				C0C6CA93282A300D00AE5EA3 /* ConcentricOnboarding */,
+			);
 			productName = "Tugz-iOS-app";
 			productReference = C06DFFE1270B5A97006CEBA0 /* Tugz.app */;
 			productType = "com.apple.product-type.application";
@@ -335,6 +358,10 @@
 				Base,
 			);
 			mainGroup = C06DFFD8270B5A97006CEBA0;
+			packageReferences = (
+				C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C0C6CA92282A300D00AE5EA3 /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */,
+			);
 			productRefGroup = C06DFFE2270B5A97006CEBA0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -389,10 +416,10 @@
 				C0AF64E427148A7400162216 /* Navigator.swift in Sources */,
 				C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */,
 				C0BE55F62721F22F00B38112 /* SettingsView.swift in Sources */,
+				C006E6D7282A5D0C006ED199 /* Tooltip.swift in Sources */,
 				C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */,
 				C03496E127854D6B0084C604 /* Config.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */,
-				C0CA249F2819E4A200AE9A65 /* OnboardingPageViewController.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
 				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
 				C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */,
@@ -401,6 +428,7 @@
 				C0DDCAF9280D834D0066B423 /* Device.swift in Sources */,
 				C06DFFE5270B5A97006CEBA0 /* TugzApp.swift in Sources */,
 				C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */,
+				C006E6D5282A5BDF006ED199 /* Onboarding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +716,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		C0C6CA92282A300D00AE5EA3 /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ConcentricOnboarding";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C0C6CA88282A2ECA00AE5EA3 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		C0C6CA8A282A2ECA00AE5EA3 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		C0C6CA8C282A2ECA00AE5EA3 /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
+		};
+		C0C6CA8E282A2ECA00AE5EA3 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		C0C6CA90282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
+		C0C6CA93282A300D00AE5EA3 /* ConcentricOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C6CA92282A300D00AE5EA3 /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */;
+			productName = ConcentricOnboarding;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C06DFFD9270B5A97006CEBA0 /* Project object */;
 }

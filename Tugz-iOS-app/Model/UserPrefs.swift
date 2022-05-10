@@ -25,13 +25,18 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     }
     
     enum CodingKeys: String, CodingKey {
+        case usesManual
+        case usesDevices
         case tugDuration
         case tugInterval
         case firstTugTime
         case lastTugTime
     }
     
-    /// Each tug
+    var usesManual = true
+    var usesDevices = false
+    
+    /// Each manual tug
     var tugDuration = Defaults.tugDuration { didSet { save() } }
     var tugInterval = Defaults.tugInterval { didSet { save() } }
     var firstTugTime = Defaults.firstTugTime { didSet { save() } }
@@ -56,12 +61,16 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         // Try decoding properties
+        let usesManual = try values.decode(Bool.self, forKey: .usesManual)
+        let usesDevices = try values.decode(Bool.self, forKey: .usesDevices)
         let tugDuration = try values.decode(TimeInterval.self, forKey: .tugDuration)
         let tugInterval = try values.decode(TimeInterval.self, forKey: .tugInterval)
         let firstTugTime = try values.decode([Int].self, forKey: .firstTugTime)
         let lastTugTime = try values.decode([Int].self, forKey: .lastTugTime)
         
         // Safely set properties
+        self.usesManual = usesManual
+        self.usesDevices = usesDevices
         self.tugInterval = Measurement(value: tugDuration, unit: UnitDuration.seconds)
         self.tugInterval = Measurement(value: tugInterval, unit: UnitDuration.seconds)
         
@@ -78,13 +87,15 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     public func encode(to encoder: Encoder) throws {
         var values = encoder.container(keyedBy: CodingKeys.self)
         
+        try values.encode(usesManual, forKey: .usesManual)
+        try values.encode(usesDevices, forKey: .usesDevices)
         try values.encode(tugDuration.converted(to: .seconds).value, forKey: .tugDuration)
         try values.encode(tugInterval.converted(to: .seconds).value, forKey: .tugInterval)
         try values.encode([firstTugTime.hour, firstTugTime.minute], forKey: .firstTugTime)
         try values.encode([lastTugTime.hour, lastTugTime.minute], forKey: .lastTugTime)
     }
     
-    static func load() -> UserPrefs {
+    static func loadFromStore() -> UserPrefs {
         
         guard let data = UserDefaults.standard.object(forKey: "UserPrefs") as? Data else {
                 return UserPrefs()

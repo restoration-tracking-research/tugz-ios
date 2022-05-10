@@ -25,7 +25,7 @@ class Config {
     
     init() {
         
-        prefs = .load()
+        prefs = .loadFromStore()
         history = .load()
         scheduler = TugScheduler(prefs: prefs, history: history)
         settings = DeviceSettings.load()

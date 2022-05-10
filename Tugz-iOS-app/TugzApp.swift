@@ -67,6 +67,7 @@ struct TugzApp: App {
             } else {
                 
                 OnboardingView()
+                    .environmentObject(config.prefs)
             }
         }
     }
