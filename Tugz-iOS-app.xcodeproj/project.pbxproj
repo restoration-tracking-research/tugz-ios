@@ -42,7 +42,6 @@
 		C0C6CA8D282A2ECA00AE5EA3 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA8C282A2ECA00AE5EA3 /* FirebaseInstallations */; };
 		C0C6CA8F282A2ECA00AE5EA3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA8E282A2ECA00AE5EA3 /* FirebaseMessaging */; };
 		C0C6CA91282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA90282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift */; };
-		C0C6CA94282A300D00AE5EA3 /* ConcentricOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA93282A300D00AE5EA3 /* ConcentricOnboarding */; };
 		C0CA249D2819E45400AE9A65 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA249C2819E45400AE9A65 /* OnboardingView.swift */; };
 		C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */; };
 		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
@@ -118,7 +117,6 @@
 				C0C6CA8F282A2ECA00AE5EA3 /* FirebaseMessaging in Frameworks */,
 				C0C6CA8D282A2ECA00AE5EA3 /* FirebaseInstallations in Frameworks */,
 				C0C6CA91282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift in Frameworks */,
-				C0C6CA94282A300D00AE5EA3 /* ConcentricOnboarding in Frameworks */,
 				C0C6CA89282A2ECA00AE5EA3 /* FirebaseAnalyticsSwift in Frameworks */,
 				C0C6CA8B282A2ECA00AE5EA3 /* FirebaseCrashlytics in Frameworks */,
 			);
@@ -309,7 +307,6 @@
 				C0C6CA8C282A2ECA00AE5EA3 /* FirebaseInstallations */,
 				C0C6CA8E282A2ECA00AE5EA3 /* FirebaseMessaging */,
 				C0C6CA90282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift */,
-				C0C6CA93282A300D00AE5EA3 /* ConcentricOnboarding */,
 			);
 			productName = "Tugz-iOS-app";
 			productReference = C06DFFE1270B5A97006CEBA0 /* Tugz.app */;
@@ -363,7 +360,6 @@
 			mainGroup = C06DFFD8270B5A97006CEBA0;
 			packageReferences = (
 				C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				C0C6CA92282A300D00AE5EA3 /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */,
 			);
 			productRefGroup = C06DFFE2270B5A97006CEBA0 /* Products */;
 			projectDirPath = "";
@@ -730,14 +726,6 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		C0C6CA92282A300D00AE5EA3 /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exyte/ConcentricOnboarding";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -765,11 +753,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0C6CA87282A2ECA00AE5EA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
-		};
-		C0C6CA93282A300D00AE5EA3 /* ConcentricOnboarding */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C0C6CA92282A300D00AE5EA3 /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */;
-			productName = ConcentricOnboarding;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

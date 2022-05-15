@@ -66,8 +66,14 @@ struct TugzApp: App {
                 
             } else {
                 
-                OnboardingView()
-                    .environmentObject(config.prefs)
+                OnboardingViewPure(onboarding: Onboarding(), doneFunction: {
+                    print("done")
+                    config.hasSeenOnboarding = true
+                })
+                .environmentObject(config.prefs)
+                
+//                OnboardingView()
+//                    .environmentObject(config.prefs)
             }
         }
     }

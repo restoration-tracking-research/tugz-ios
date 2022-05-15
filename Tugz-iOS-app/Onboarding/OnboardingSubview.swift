@@ -43,8 +43,8 @@ import ConcentricOnboarding
 struct OnboardingSubview: View {
     
     let page: Onboarding.Page
+    let onboarding: Onboarding
     
-    @EnvironmentObject var onboarding: Onboarding
     @EnvironmentObject var userPrefs: UserPrefs
     
     @State var selectedDevices = Set<Device>() {
@@ -129,7 +129,7 @@ struct OnboardingSubview: View {
                 .padding()
                 
                 Button {
-                    onboarding.view.goToNextPage(animated: false)
+                    onboarding.view.goToNextPage()
                     onboarding.view.goToNextPage()
                 } label: {
                     Text("🤗 I’m ready to start restoring")
@@ -141,7 +141,7 @@ struct OnboardingSubview: View {
                 
                 
                 Button {
-                    onboarding.view.goToNextPage(animated: false)
+                    onboarding.view.goToNextPage()
                     onboarding.view.goToNextPage()
                 } label: {
                     Text("👊 I’m restoring already")
@@ -158,52 +158,69 @@ struct OnboardingSubview: View {
     
     var aboutRestoration: some View {
         
-        VStack {
-            Image(systemName: "t.circle.fill")
-                .font(.system(size: 64))
-                .foregroundColor(.white)
+        ZStack {
             
-            Text("5 things to know about foreskin restoration")
-                .font(.system(.largeTitle))
-                .bold()
-                .foregroundColor(.white)
-                .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 20))
+            Rectangle()
+                .background(Color.accentColor)
+                .edgesIgnoringSafeArea(.all)
             
-            Divider()
-                .frame(height: 44)
-            
-            VStack(alignment: .leading, spacing: 20) {
-                HStack {
-                    Image(systemName: "crown")
-                        .frame(width: iconSize, height: iconSize)
-                    Text("It’s been practiced for thousands of years")
-                }
+            VStack {
+                Image(systemName: "t.circle.fill")
+                    .font(.system(size: 64))
+                    .foregroundColor(.white)
                 
-                HStack {
-                    Image(systemName: "bandage")
-                        .frame(width: iconSize, height: iconSize)
-                    Text("It uses similar tissue expansion techniques that doctors use in a medical setting")
-                }
+                Text("5 things to know about foreskin restoration")
+                    .font(.system(.largeTitle))
+                    .bold()
+                    .foregroundColor(.white)
+                    .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 20))
                 
-                HStack {
-                    Image(systemName: "calendar.badge.clock")
-                        .frame(width: iconSize, height: iconSize)
-                    Text("It works, but it’s a slow process. Patience and persistence pay off!")
-                }
+                Divider()
+                    .frame(height: 44)
                 
-                HStack {
-                    Image(systemName: "hands.sparkles.fill")
-                        .frame(width: iconSize, height: iconSize)
-                    Text("You don’t need any special equipment to get started")
+                VStack(alignment: .leading, spacing: 20) {
+                    HStack {
+                        Image(systemName: "crown")
+                            .frame(width: iconSize, height: iconSize)
+                            .foregroundColor(.white)
+                        Text("It’s been practiced for thousands of years")
+                            .foregroundColor(.white)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "bandage")
+                            .frame(width: iconSize, height: iconSize)
+                            .foregroundColor(.white)
+                        Text("It uses similar tissue expansion techniques that doctors use in a medical setting")
+                            .foregroundColor(.white)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "calendar.badge.clock")
+                            .frame(width: iconSize, height: iconSize)
+                            .foregroundColor(.white)
+                        Text("It works, but it’s a slow process. Patience and persistence pay off!")
+                            .foregroundColor(.white)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "hands.sparkles.fill")
+                            .frame(width: iconSize, height: iconSize)
+                            .foregroundColor(.white)
+                        Text("You don’t need any special equipment to get started")
+                            .foregroundColor(.white)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "person.3.sequence.fill")
+                            .frame(width: iconSize, height: iconSize)
+                            .foregroundColor(.white)
+                        Text("There are thriving online communities, with lots of resources and further reading. Look them up and keep learning!")
+                            .foregroundColor(.white)
+                    }
                 }
-                
-                HStack {
-                    Image(systemName: "person.3.sequence.fill")
-                        .frame(width: iconSize, height: iconSize)
-                    Text("There are thriving online communities, with lots of resources and further reading. Look them up and keep learning!")
-                }
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 150, trailing: 20))
             }
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 150, trailing: 20))
         }
     }
     
@@ -212,10 +229,11 @@ struct OnboardingSubview: View {
         VStack {
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 64))
-                .foregroundColor(.white)
+                .foregroundColor(.accentColor)
             
             Text("Ready to start?")
                 .font(.system(.largeTitle))
+                .bold()
                 .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
             
             Text("Just a couple of questions to get started:")
@@ -257,20 +275,20 @@ struct OnboardingSubview: View {
                 .fill(.white)
                 .edgesIgnoringSafeArea(.all)
             
-            VStack {
+            VStack(spacing: 20) {
                 Image(systemName: "t.circle.fill")
                     .font(.system(size: 64))
                     .foregroundColor(.orange)
+                    .padding()
                 
                 Form {
+                    Text("Select the devices you own")
+                        .font(.system(.largeTitle))
+                        .bold()
+                        .listRowSeparator(.hidden)
                     
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Select the devices you own")
-                            .font(.system(.headline))
-                        
-                        Text("If you get more devices in the future, you can add them later.")
-                            .font(.system(.footnote))
-                    }
+                    Text("If you get more devices in the future, you can add them later.")
+                        .font(.system(.body))
                     
                     ForEach(DeviceCategory.allCases) { category in
                         
@@ -298,7 +316,7 @@ struct OnboardingSubview: View {
                         }
                     }
                 }
-                Spacer()
+                Spacer(minLength: 85)
             }
             Rectangle()
                 .fill(
@@ -438,26 +456,38 @@ struct OnboardingSubview: View {
     
     var allSet: some View {
         
-        VStack(spacing: 75) {
-            Image(systemName: "t.circle.fill")
-                .font(.system(size: 64))
-                .foregroundColor(.white)
+        ZStack {
             
-            VStack(alignment: .leading, spacing: 44) {
+            Rectangle()
+                .background(.black)
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 75) {
+                Image(systemName: "t.circle.fill")
+                    .font(.system(size: 64))
+                    .foregroundColor(.accentColor)
                 
-                Text("Ok, you’re all set!")
-                    .font(.system(.largeTitle))
+                VStack(alignment: .leading, spacing: 44) {
+                    
+                    Text("Ok, you’re all set!")
+                        .font(.system(.largeTitle))
+                        .bold()
+                        .foregroundColor(.white)
+                    
+                    Text(displayFirstTugString)
+                        .foregroundColor(.white)
+                    
+                    Text("Any time you want to tug you can also start a manual or device session right here in the app.")
+                        .foregroundColor(.white)
+                    
+                    Text("Keep on tugging! 👌")
+                        .font(.system(.title2))
+                        .foregroundColor(.white)
+                }
                 
-                Text(displayFirstTugString)
-                
-                Text("Any time you want to tug you can also start a manual or device session right here in the app.")
-                
-                Text("Keep on tugging! 👌")
-                    .font(.system(.title2))
+                Spacer()
             }
-            
         }
-        .background(.orange)
     }
 }
 
@@ -467,23 +497,17 @@ struct OnboardingSubview_Previews: PreviewProvider {
     static let userPrefs = UserPrefs.loadFromStore()
     
     static var previews: some View {
-        OnboardingSubview(page: .first)
-            .environmentObject(onboarding)
+        OnboardingSubview(page: .first, onboarding: onboarding)
             .environmentObject(userPrefs)
-        OnboardingSubview(page: .aboutRestoration)
-            .environmentObject(onboarding)
+        OnboardingSubview(page: .aboutRestoration, onboarding: onboarding)
             .environmentObject(userPrefs)
-        OnboardingSubview(page: .readyToStart)
-            .environmentObject(onboarding)
+        OnboardingSubview(page: .readyToStart, onboarding: onboarding)
             .environmentObject(userPrefs)
-        OnboardingSubview(page: .deviceSelect)
-            .environmentObject(onboarding)
+        OnboardingSubview(page: .deviceSelect, onboarding: onboarding)
             .environmentObject(userPrefs)
-        OnboardingSubview(page: .idealSchedule)
-            .environmentObject(onboarding)
+        OnboardingSubview(page: .idealSchedule, onboarding: onboarding)
             .environmentObject(userPrefs)
-        OnboardingSubview(page: .allSet)
-            .environmentObject(onboarding)
+        OnboardingSubview(page: .allSet, onboarding: onboarding)
             .environmentObject(userPrefs)
     }
 }

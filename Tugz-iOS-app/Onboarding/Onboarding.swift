@@ -17,9 +17,15 @@ class Onboarding: ObservableObject {
         case deviceSelect
         case idealSchedule
         case allSet
+        
+        var showsNextButton: Bool {
+            return true
+            [Page.aboutRestoration, .readyToStart, .deviceSelect, .idealSchedule, .allSet].contains(self)
+        }
     }
     
-    var view: ConcentricOnboardingView<OnboardingSubview>!
+//    var view: ConcentricOnboardingView<OnboardingSubview>!
+    var view: OnboardingViewPure!
     
     private(set) var currentPage = Page.first
     
@@ -32,23 +38,19 @@ class Onboarding: ObservableObject {
         .allSet
     ]
     
-    var colors: [Color] = [
-        .white,
-        .orange,
-        .white,
-        .orange,
-        .white,
-        .orange
-    ]
-    
-    func buildViews() -> [(OnboardingSubview, Color)] {
+//    var colors: [Color] = [
+//        .white,
+//        .orange,
+//        .white,
+//        .orange,
+//        .white,
+//        .orange
+//    ]
+//
+    func buildViews() -> [OnboardingSubview] {
         
-        pages.indices.map { idx in
-            
-            let page = pages[idx]
-            let color = colors[idx]
-            
-            return (OnboardingSubview(page: page), color)
+        pages.map { page in
+            OnboardingSubview(page: page, onboarding: self)
         }
     }
     

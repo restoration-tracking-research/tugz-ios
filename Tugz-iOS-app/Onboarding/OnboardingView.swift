@@ -6,42 +6,128 @@
 //
 
 import SwiftUI
-import ConcentricOnboarding
 
-struct OnboardingView: View {
+struct OnboardingViewPure: View {
     
-    let onboarding = Onboarding()
+    let onboarding: Onboarding
+
+    var doneFunction: () -> ()
     
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var userPrefs: UserPrefs
+    @State var slideGesture: CGSize = CGSize.zero
+    @State var curSlideIndex = 0
+    var distance: CGFloat = UIScreen.main.bounds.size.width
+    
+    init(onboarding: Onboarding, doneFunction: @escaping (() -> ())) {
+        
+        self.onboarding = onboarding
+        self.doneFunction = doneFunction
+        onboarding.view = self
+    }
+    
+    func goToNextPage() {
+        if curSlideIndex == onboarding.pages.count - 1 {
+            doneFunction()
+            return
+        }
+        
+        if curSlideIndex < onboarding.pages.count - 1 {
+            withAnimation {
+                curSlideIndex += 1
+            }
+        }
+    }
     
     var body: some View {
-        
-        onboarding.view = ConcentricOnboardingView<OnboardingSubview>(pageContents: onboarding.buildViews())
-            .insteadOfCyclingToLastPage {}
-            .insteadOfCyclingToFirstPage {
-                /// No-op
-                presentationMode.wrappedValue.dismiss()
+        ZStack {
+            Color(.systemBackground).edgesIgnoringSafeArea(.all)
+            
+            ZStack(alignment: .center) {
+                ForEach(onboarding.pages, id: \.self) { page in
+                    OnboardingSubview(page: page, onboarding: onboarding)
+                        .offset(x: CGFloat(page.rawValue) * distance)
+                        .offset(x: slideGesture.width - CGFloat(curSlideIndex) * distance)
+                    
+//                        .withAnimation(.spring(), {
+//                        })
+                        .animation(.spring())
+                        .gesture(DragGesture().onChanged{ value in
+                            slideGesture = value.translation
+                        }
+                        .onEnded { value in
+                            if slideGesture.width < -50 {
+                                if curSlideIndex < onboarding.pages.count - 1 {
+                                    withAnimation {
+                                        curSlideIndex += 1
+                                    }
+                                }
+                            }
+                            if slideGesture.width > 50 {
+                                if curSlideIndex > 0 {
+                                    withAnimation {
+                                        curSlideIndex -= 1
+                                    }
+                                }
+                            }
+                            slideGesture = .zero
+                        })
+                }
             }
-//            .didPressNextButton {
-//                if onboarding.currentPage == .readyToStart,
-//                   userPrefs.usesDevices == false {
-//                    onboarding.view.goToNextPage(animated: false)
-//                }
-//                onboarding.view.goToNextPage()
-//            }
-            .didChangeCurrentPage { currentPage in
-                onboarding.updatePage(currentPage)
+            
+            
+            VStack {
+                Spacer()
+                HStack {
+                    progressView()
+                    Spacer()
+                    
+                    if onboarding.currentPage.showsNextButton {
+                        Button(action: goToNextPage) {
+                            arrowView()
+                        }
+                    }
+                }
             }
-        
-        return onboarding.view
-            .environmentObject(onboarding)
-            .environmentObject(userPrefs)
+            .padding(20)
+        }
     }
+    
+    func arrowView() -> some View {
+        Group {
+            if curSlideIndex == onboarding.pages.count - 1 {
+                HStack {
+                    Text("Done")
+                        .font(.system(size: 27, weight: .medium, design: .rounded))
+                        .foregroundColor(Color(.systemBackground))
+                }
+                .frame(width: 120, height: 50)
+                .background(Color(.label))
+                .cornerRadius(25)
+            } else {
+                Image(systemName: "arrow.right.circle.fill")
+                    .resizable()
+                    .foregroundColor(.accentColor)
+                    .scaledToFit()
+                    .frame(width: 50)
+            }
+        }
+    }
+    
+    func progressView() -> some View {
+        HStack {
+            ForEach(0..<onboarding.pages.count, id: \.self) { i in
+                Circle()
+                    .scaledToFit()
+                    .frame(width: 10)
+                    .foregroundColor(curSlideIndex >= i ? .accentColor : Color(.systemGray))
+            }
+        }
+    }
+    
 }
 
-struct IntroPageViewController_Previews: PreviewProvider {
+struct OnboardingViewPure_Previews: PreviewProvider {
+    
     static var previews: some View {
-        OnboardingView()
+        OnboardingViewPure(onboarding: Onboarding(), doneFunction: { print("done") })
     }
 }
