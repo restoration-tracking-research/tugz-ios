@@ -31,6 +31,7 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         case tugInterval
         case firstTugTime
         case lastTugTime
+        case userOwnedDevices
     }
     
     var usesManual = true
@@ -44,6 +45,8 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     
     /// Daily goals
     var dailyGoalTugTime = Defaults.dailyGoalTugTime
+    
+    var userOwnedDevices = [Device]()
     
     private let jsonEncoder = JSONEncoder()
     
@@ -67,12 +70,14 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         let tugInterval = try values.decode(TimeInterval.self, forKey: .tugInterval)
         let firstTugTime = try values.decode([Int].self, forKey: .firstTugTime)
         let lastTugTime = try values.decode([Int].self, forKey: .lastTugTime)
+        let userDevices = try values.decodeIfPresent([Device].self, forKey: .userOwnedDevices)
         
         // Safely set properties
         self.usesManual = usesManual
         self.usesDevices = usesDevices
         self.tugInterval = Measurement(value: tugDuration, unit: UnitDuration.seconds)
         self.tugInterval = Measurement(value: tugInterval, unit: UnitDuration.seconds)
+        self.userOwnedDevices = userDevices ?? []
         
         if firstTugTime.count > 1 {
             self.firstTugTime.hour = firstTugTime[0]
@@ -93,6 +98,7 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         try values.encode(tugInterval.converted(to: .seconds).value, forKey: .tugInterval)
         try values.encode([firstTugTime.hour, firstTugTime.minute], forKey: .firstTugTime)
         try values.encode([lastTugTime.hour, lastTugTime.minute], forKey: .lastTugTime)
+        try values.encode(userOwnedDevices, forKey: .userOwnedDevices)
     }
     
     static func loadFromStore() -> UserPrefs {

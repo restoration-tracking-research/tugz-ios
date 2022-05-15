@@ -47,6 +47,12 @@ struct OnboardingSubview: View {
     @EnvironmentObject var onboarding: Onboarding
     @EnvironmentObject var userPrefs: UserPrefs
     
+    @State var selectedDevices = Set<Device>() {
+        didSet {
+            userPrefs.userOwnedDevices = Array(selectedDevices)
+        }
+    }
+    
     var body: some View {
         
         switch page {
@@ -76,32 +82,43 @@ struct OnboardingSubview: View {
                 .font(.system(.largeTitle))
                 .padding()
             
+            Divider()
+            
             Text("What do you know about foreskin restoration?")
-                .padding()
+                .padding(EdgeInsets(top: 44, leading: 0, bottom: 20, trailing: 0))
             
             
             VStack {
-                Button("Not a lot, please fill me in") {
+                
+                Button {
                     onboarding.view.goToNextPage()
+                } label: {
+                    Text("Not a lot, please fill me in")
+                        .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .tint(.indigo)
                 .buttonStyle(.borderedProminent)
                 .padding()
-                .fixedSize(horizontal: true, vertical: false)
                 
-                Button("I’m ready to start restoring") {
+                Button {
                     onboarding.view.goToNextPage(animated: false)
                     onboarding.view.goToNextPage()
+                } label: {
+                    Text("I’m ready to start restoring")
+                        .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .tint(.green)
                 .buttonStyle(.borderedProminent)
                 .padding()
                 
-                Button("I’m restoring already") {
+                
+                Button {
                     onboarding.view.goToNextPage(animated: false)
                     onboarding.view.goToNextPage()
+                } label: {
+                    Text("I’m restoring already")
+                        .frame(maxWidth: .infinity, minHeight: 44)
                 }
-                //            .tint(.orange)
                 .buttonStyle(.borderedProminent)
                 .padding()
             }
@@ -189,16 +206,62 @@ struct OnboardingSubview: View {
     
     var deviceSelect: some View {
         
-        VStack {
-            Image(systemName: "t.circle.fill")
-                .font(.system(size: 64))
-                .foregroundColor(.orange)
-            
-            List {
-                DeviceCategory.allCases.map {
-                    Text($0.displayName)
+        ZStack {
+            VStack {
+                Image(systemName: "t.circle.fill")
+                    .font(.system(size: 64))
+                    .foregroundColor(.orange)
+                
+                Form {
+                    
+                    VStack {
+                        Text("Select the devices you own")
+                            .font(.system(.headline))
+                        
+                        Text("If you get more devices in the future, you can add them later.")
+                            .font(.system(.footnote))
+                    }
+                    
+                    ForEach(DeviceCategory.allCases) { category in
+                        
+                        Section(header: Text(category.displayName)) {
+                            
+                            ForEach(category.devices(), id: \.self) { device in
+                                
+                                Button(action: {
+                                    withAnimation {
+                                        if selectedDevices.contains(device) {
+                                            selectedDevices.remove(device)
+                                        } else {
+                                            selectedDevices.insert(device)
+                                        }
+                                    }
+                                }) {
+                                    HStack {
+                                        Image(systemName: "checkmark")
+                                            .opacity(selectedDevices.contains(device) ? 1.0 : 0.0)
+                                        Text(device.displayName)
+                                    }
+                                }
+                                .foregroundColor(.primary)
+                            }
+                        }
+                    }
                 }
+                Spacer()
             }
+            Rectangle()
+                .fill(
+                        LinearGradient(gradient:
+                                        Gradient(stops: [
+                                            Gradient.Stop(color: .clear, location: 0),
+                                            Gradient.Stop(color: .clear, location: 0.75),
+                                            Gradient.Stop(color: .black.opacity(0.9), location: 1)
+                                        ]),
+                                       startPoint: .top, endPoint: .bottom)
+                    )
+                .edgesIgnoringSafeArea(.all)
+                .allowsHitTesting(false)
         }
     }
     
@@ -229,20 +292,23 @@ struct OnboardingSubview_Previews: PreviewProvider {
     static let userPrefs = UserPrefs.loadFromStore()
     
     static var previews: some View {
-        OnboardingSubview(page: .first)
-            .environmentObject(onboarding)
-            .environmentObject(userPrefs)
+//        OnboardingSubview(page: .first)
+//            .environmentObject(onboarding)
+//            .environmentObject(userPrefs)
 //        OnboardingSubview(page: .aboutRestoration)
 //            .environmentObject(onboarding)
 //            .environmentObject(userPrefs)
         OnboardingSubview(page: .readyToStart)
             .environmentObject(onboarding)
             .environmentObject(userPrefs)
-//        OnboardingSubview(page: .idealSchedule)
-//            .environmentObject(onboarding)
-//            .environmentObject(userPrefs)
-//        OnboardingSubview(page: .allSet)
-//            .environmentObject(onboarding)
-//            .environmentObject(userPrefs)
+        OnboardingSubview(page: .deviceSelect)
+            .environmentObject(onboarding)
+            .environmentObject(userPrefs)
+        OnboardingSubview(page: .idealSchedule)
+            .environmentObject(onboarding)
+            .environmentObject(userPrefs)
+        OnboardingSubview(page: .allSet)
+            .environmentObject(onboarding)
+            .environmentObject(userPrefs)
     }
 }
