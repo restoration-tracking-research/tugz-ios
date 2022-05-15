@@ -53,6 +53,33 @@ struct OnboardingSubview: View {
         }
     }
     
+    @State var selectedDays = DayOfWeek.weekdays() {
+        didSet {
+            userPrefs.daysToTug = selectedDays
+        }
+    }
+    
+    @State var startTime = Calendar.current.date(from: UserPrefs.Defaults.firstTugTime)! {
+        didSet {
+            userPrefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: startTime)
+        }
+    }
+    
+    @State var endTime = Calendar.current.date(from: UserPrefs.Defaults.lastTugTime)! {
+        didSet {
+            userPrefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: endTime)
+        }
+    }
+    
+    @State var sendManualReminders = true {
+        didSet {
+            userPrefs.sendManualReminders = sendManualReminders
+        }
+    }
+    
+    @State private var tugDuration: TimeInterval = 5 * 60
+    @State private var tugInterval: TimeInterval = 60 * 60
+    
     var body: some View {
         
         switch page {
@@ -76,15 +103,16 @@ struct OnboardingSubview: View {
         VStack {
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 64))
-                .foregroundColor(.white)
+                .foregroundColor(.accentColor)
             
             Text("Welcome to Tugz")
                 .font(.system(.largeTitle))
+                .bold()
                 .padding()
             
             Divider()
             
-            Text("What do you know about foreskin restoration?")
+            Text("👋 So far, what do you already know about foreskin restoration?")
                 .padding(EdgeInsets(top: 44, leading: 0, bottom: 20, trailing: 0))
             
             
@@ -93,7 +121,7 @@ struct OnboardingSubview: View {
                 Button {
                     onboarding.view.goToNextPage()
                 } label: {
-                    Text("Not a lot, please fill me in")
+                    Text("👌 Not a lot, please fill me in")
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .tint(.indigo)
@@ -104,7 +132,7 @@ struct OnboardingSubview: View {
                     onboarding.view.goToNextPage(animated: false)
                     onboarding.view.goToNextPage()
                 } label: {
-                    Text("I’m ready to start restoring")
+                    Text("🤗 I’m ready to start restoring")
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .tint(.green)
@@ -116,7 +144,7 @@ struct OnboardingSubview: View {
                     onboarding.view.goToNextPage(animated: false)
                     onboarding.view.goToNextPage()
                 } label: {
-                    Text("I’m restoring already")
+                    Text("👊 I’m restoring already")
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .buttonStyle(.borderedProminent)
@@ -126,44 +154,56 @@ struct OnboardingSubview: View {
         }
     }
     
+    let iconSize: CGFloat = 20
+    
     var aboutRestoration: some View {
         
         VStack {
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 64))
-                .foregroundColor(.orange)
+                .foregroundColor(.white)
             
             Text("5 things to know about foreskin restoration")
                 .font(.system(.largeTitle))
-                .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
+                .bold()
+                .foregroundColor(.white)
+                .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 20))
             
-            VStack(alignment: .leading, spacing: 36) {
+            Divider()
+                .frame(height: 44)
+            
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Image(systemName: "crown")
+                        .frame(width: iconSize, height: iconSize)
                     Text("It’s been practiced for thousands of years")
                 }
                 
                 HStack {
                     Image(systemName: "bandage")
+                        .frame(width: iconSize, height: iconSize)
                     Text("It uses similar tissue expansion techniques that doctors use in a medical setting")
                 }
                 
                 HStack {
                     Image(systemName: "calendar.badge.clock")
+                        .frame(width: iconSize, height: iconSize)
                     Text("It works, but it’s a slow process. Patience and persistence pay off!")
                 }
                 
                 HStack {
                     Image(systemName: "hands.sparkles.fill")
+                        .frame(width: iconSize, height: iconSize)
                     Text("You don’t need any special equipment to get started")
                 }
                 
                 HStack {
                     Image(systemName: "person.3.sequence.fill")
+                        .frame(width: iconSize, height: iconSize)
                     Text("There are thriving online communities, with lots of resources and further reading. Look them up and keep learning!")
                 }
             }
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 180, trailing: 20))
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 150, trailing: 20))
         }
     }
     
@@ -188,7 +228,9 @@ struct OnboardingSubview: View {
                         .font(.system(.headline))
                 }
                 Text("If so, Tugz can send you regular reminders throughout the day so you can get all your sessions in.")
-                    .padding()
+                    .font(.system(.caption))
+
+                Divider()
                 
                 HStack {
                     Toggle("Do you use any devices?", isOn: $userPrefs.usesDevices)
@@ -196,8 +238,11 @@ struct OnboardingSubview: View {
                         .font(.system(.headline))
                 }
                 Text("If so, we'll let you pick them list of commercially-available devices.")
+                    .font(.system(.caption))
                 Text("When you start a session, we’ll just show you the devices you actually have instead of this whole list every time.")
+                    .font(.system(.caption))
                 Text("(If you get more devices in the future, you can add them in later)")
+                    .font(.system(.caption))
             }
             .padding()
         }
@@ -207,6 +252,11 @@ struct OnboardingSubview: View {
     var deviceSelect: some View {
         
         ZStack {
+            
+            Rectangle()
+                .fill(.white)
+                .edgesIgnoringSafeArea(.all)
+            
             VStack {
                 Image(systemName: "t.circle.fill")
                     .font(.system(size: 64))
@@ -214,7 +264,7 @@ struct OnboardingSubview: View {
                 
                 Form {
                     
-                    VStack {
+                    VStack(alignment: .leading, spacing: 12) {
                         Text("Select the devices you own")
                             .font(.system(.headline))
                         
@@ -267,22 +317,147 @@ struct OnboardingSubview: View {
     
     var idealSchedule: some View {
         
+        
         VStack {
-            Image(systemName: "t.circle.fill")
-                .font(.system(size: 64))
-                .foregroundColor(.orange)
             
+//            ScrollView {
+            Spacer(minLength: 75)
+            
+            Form {
+                
+                Group {
+                    Text("What's your ideal schedule?")
+                        .font(.system(.largeTitle))
+                    
+                    Text("We'll send you notifications to help you meet your goals.")
+                        .font(.system(.footnote))
+                        .listRowSeparator(.hidden)
+                    
+                    Divider()
+                }
+                
+                
+                Group {
+                    Text("Tug Days")
+                        .font(.system(.headline))
+                        .listRowSeparator(.hidden)
+                    
+                    HStack {
+                        
+                        ForEach(DayOfWeek.allCases, id: \.self) { day in
+                            
+                            ZStack {
+                                
+                                Circle()
+                                    .fill( selectedDays.contains(day) ? .blue : .gray)
+                                
+                                Text( day.initial )
+                                    .font(.system(.headline))
+                                    .foregroundColor(.white)
+                                
+                            }
+                            .onTapGesture {
+                                if selectedDays.contains(day) {
+                                    selectedDays = selectedDays.filter { $0 != day }
+                                } else {
+                                    selectedDays.append(day)
+                                }
+                            }
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+                    
+                    Divider()
+                }
+                
+                Group {
+                    DatePicker("First Tug of the day", selection: $startTime, displayedComponents: [.hourAndMinute])
+                    
+                    DatePicker("Last Tug of the day", selection: $endTime, displayedComponents: [.hourAndMinute])
+                        .listRowSeparator(.hidden)
+                    
+                    Divider()
+                }
+                .listRowSeparator(.hidden)
+                
+                Group {
+                    
+                        Picker("Tug duration", selection: $tugDuration) {
+                            ForEach(1..<20, id: \.self) { min in
+                                Text("\(min) min").tag(TimeInterval(min * 60))
+                            }
+                        }
+                        .tag("5")
+                        .onChange(of: tugDuration) { newValue in
+                            userPrefs.tugDuration = Measurement(value: newValue, unit: .seconds)
+                        }
+                    
+                    Picker("Tug every", selection: $tugInterval) {
+                        ForEach([30, 45, 60, 90, 120], id: \.self) { min in
+                            Text("\(min) min").tag(TimeInterval(min * 60))
+                        }
+                    }
+                    .onChange(of: tugInterval) { newValue in
+                        userPrefs.tugInterval = Measurement(value: newValue, unit: .seconds)
+                    }
+                    
+                    Divider()
+                }
+                .listRowSeparator(.hidden)
+                
+                Group {
+                    Toggle("Send manual tug reminders", isOn: $sendManualReminders)
+                        .tint(.blue)
+                        .onTapGesture {
+                            withAnimation {
+                                sendManualReminders.toggle()
+                            }
+                        }
+                        .listRowSeparator(.hidden)
+                    
+                    Text("Turn this off if you only use devices, or if you want to track your tug time but not get reminders to tug.")
+                        .font(.system(.footnote))
+                    
+                    Spacer()
+                }
+            }
+//        }
+        }
+    }
+    
+    var displayFirstTugString: String {
+        
+        if sendManualReminders, let hour = $userPrefs.firstTugTime.hour.wrappedValue, let minute = $userPrefs.firstTugTime.minute.wrappedValue {
+            
+            let minuteString = String(minute).padding(toLength: 2, withPad: "0", startingAt: 0)
+            return "We’ll send your first reminder at \(hour):\(minuteString)."
+        } else {
+            return ""
         }
     }
     
     var allSet: some View {
         
-        VStack {
+        VStack(spacing: 75) {
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 64))
                 .foregroundColor(.white)
             
+            VStack(alignment: .leading, spacing: 44) {
+                
+                Text("Ok, you’re all set!")
+                    .font(.system(.largeTitle))
+                
+                Text(displayFirstTugString)
+                
+                Text("Any time you want to tug you can also start a manual or device session right here in the app.")
+                
+                Text("Keep on tugging! 👌")
+                    .font(.system(.title2))
+            }
+            
         }
+        .background(.orange)
     }
 }
 
@@ -292,12 +467,12 @@ struct OnboardingSubview_Previews: PreviewProvider {
     static let userPrefs = UserPrefs.loadFromStore()
     
     static var previews: some View {
-//        OnboardingSubview(page: .first)
-//            .environmentObject(onboarding)
-//            .environmentObject(userPrefs)
-//        OnboardingSubview(page: .aboutRestoration)
-//            .environmentObject(onboarding)
-//            .environmentObject(userPrefs)
+        OnboardingSubview(page: .first)
+            .environmentObject(onboarding)
+            .environmentObject(userPrefs)
+        OnboardingSubview(page: .aboutRestoration)
+            .environmentObject(onboarding)
+            .environmentObject(userPrefs)
         OnboardingSubview(page: .readyToStart)
             .environmentObject(onboarding)
             .environmentObject(userPrefs)

@@ -18,11 +18,10 @@ struct OnboardingView: View {
     var body: some View {
         
         onboarding.view = ConcentricOnboardingView<OnboardingSubview>(pageContents: onboarding.buildViews())
-            .insteadOfCyclingToLastPage {
-                presentationMode.wrappedValue.dismiss()
-            }
+            .insteadOfCyclingToLastPage {}
             .insteadOfCyclingToFirstPage {
                 /// No-op
+                presentationMode.wrappedValue.dismiss()
             }
 //            .didPressNextButton {
 //                if onboarding.currentPage == .readyToStart,

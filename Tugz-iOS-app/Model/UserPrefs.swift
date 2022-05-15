@@ -43,21 +43,19 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     var firstTugTime = Defaults.firstTugTime { didSet { save() } }
     var lastTugTime = Defaults.lastTugTime { didSet { save() } }
     
-    /// Daily goals
-    var dailyGoalTugTime = Defaults.dailyGoalTugTime
+    var daysToTug = DayOfWeek.weekdays() { didSet { save() } }
     
-    var userOwnedDevices = [Device]()
+    var sendManualReminders = true
+    
+    /// Daily goals
+    var dailyGoalTugTime = Defaults.dailyGoalTugTime { didSet { save() } }
+    
+    var userOwnedDevices = [Device]() { didSet { save() } }
     
     private let jsonEncoder = JSONEncoder()
     
     override init() {
         super.init()
-        
-        tugDuration = Defaults.tugDuration
-        tugInterval = Defaults.tugInterval
-        firstTugTime = Defaults.firstTugTime
-        lastTugTime = Defaults.lastTugTime
-        
     }
     
     required init(from decoder: Decoder) throws {
