@@ -109,7 +109,7 @@ struct OnboardingSubview: View {
                 .font(.system(size: 500, weight: .heavy))
                 .frame(width: 150, height: 150)
                 .foregroundColor(.accentColor)
-                .position(x: 80, y: 120)
+                .position(x: 80, y: 140)
                 .opacity(logoOpacity)
                 .onAppear {
                     withAnimation {
@@ -137,7 +137,7 @@ struct OnboardingSubview: View {
                         Text("👌 Not a lot, please fill me in")
                             .frame(maxWidth: .infinity, minHeight: 44)
                     }
-                    .tint(.indigo)
+                    .tint(.black)
                     .buttonStyle(.borderedProminent)
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
@@ -148,7 +148,7 @@ struct OnboardingSubview: View {
                         Text("🤗 I’m ready to start restoring")
                             .frame(maxWidth: .infinity, minHeight: 44)
                     }
-                    .tint(.green)
+                    .tint(.black)
                     .buttonStyle(.borderedProminent)
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
@@ -159,6 +159,7 @@ struct OnboardingSubview: View {
                         Text("👊 I’m restoring already")
                             .frame(maxWidth: .infinity, minHeight: 44)
                     }
+                    .tint(.black)
                     .buttonStyle(.borderedProminent)
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)

@@ -42,10 +42,10 @@ struct OnboardingViewPure: View {
             Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             ZStack(alignment: .center) {
-//                HStack {
                 
                 ForEach(onboarding.pages.reversed(), id: \.self) { page in
                     OnboardingSubview(page: page, onboarding: onboarding)
+//                        .opacity(onboarding.currentPage.rawValue >= page.rawValue ? 1 : 0)
                         .offset(x: CGFloat(onboarding.currentPage.rawValue) * screenWidth)
                         .offset(x: slideGesture.width - CGFloat(onboarding.currentPage.rawValue) * screenWidth)
                         .animation(.spring(), value: slideGesture)
@@ -55,26 +55,18 @@ struct OnboardingViewPure: View {
                         .onEnded { value in
                             if slideGesture.width < -50 {
                                 goToNextPage()
-//                                if onboarding.currentPage.rawValue < onboarding.pages.count - 1 {
-//                                    withAnimation {
-//                                        onboarding.updatePage(onboarding.currentPage.rawValue + 1)
-//                                    }
-//                                }
                             }
-//                            if slideGesture.width > 50 {
-//                                if onboarding.currentPage.rawValue > 0 {
-//                                    withAnimation {
-//                                        onboarding.updatePage(onboarding.currentPage.rawValue - 1)
-//                                    }
-//                                }
-//                            }
+                            if slideGesture.width > 50 {
+                                if onboarding.currentPage.rawValue > 0 {
+                                    withAnimation {
+                                        onboarding.updatePage(onboarding.currentPage.rawValue - 1)
+                                    }
+                                }
+                            }
                             slideGesture = .zero
                         })
                 }
             }
-//                .frame(width: screenWidth * CGFloat(onboarding.pages.count))
-//                .position(x: 0, y: 0)
-            
             
             VStack {
                 Spacer()

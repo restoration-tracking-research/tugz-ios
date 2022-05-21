@@ -25,7 +25,7 @@ class Onboarding: ObservableObject {
     
     var view: OnboardingViewPure!
     
-    @Published var currentPage = Page.first
+    @Published private(set) var currentPage = Page.first
     
     var pages: [Page] = [
         .first,
