@@ -78,6 +78,8 @@ struct OnboardingSubview: View {
     @State private var tugDuration: TimeInterval = 5 * 60
     @State private var tugInterval: TimeInterval = 60 * 60
     
+    @State private var logoOpacity = 0.0
+    
     var body: some View {
         
         switch page {
@@ -98,57 +100,69 @@ struct OnboardingSubview: View {
     
     var first: some View {
         
-        VStack {
+        ZStack {
             Image(systemName: "t.circle.fill")
-                .font(.system(size: 64))
+                .font(.system(size: 500, weight: .heavy))
+                .frame(width: 150, height: 150)
                 .foregroundColor(.accentColor)
-            
-            Text("Welcome to Tugz")
-                .font(.system(.largeTitle))
-                .bold()
-                .padding()
-            
-            Divider()
-            
-            Text("👋 So far, what do you already know about foreskin restoration?")
-                .padding(EdgeInsets(top: 44, leading: 0, bottom: 20, trailing: 0))
-            
+                .position(x: 80, y: 120)
+                .opacity(logoOpacity)
+                .onAppear {
+                    withAnimation {
+                        logoOpacity = 0.3
+                    }
+                }
             
             VStack {
                 
-                Button {
-                    onboarding.view.goToNextPage()
-                } label: {
-                    Text("👌 Not a lot, please fill me in")
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                }
-                .tint(.indigo)
-                .buttonStyle(.borderedProminent)
-                .padding()
                 
-                Button {
-                    onboarding.view.goToNextPage()
-                    onboarding.view.goToNextPage()
-                } label: {
-                    Text("🤗 I’m ready to start restoring")
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                }
-                .tint(.green)
-                .buttonStyle(.borderedProminent)
-                .padding()
+                Text("Welcome to Tugz")
+                    .font(.system(.largeTitle))
+                    .bold()
+                    .padding()
+                
+                Divider()
+                
+                Text("👋 So far, what do you already know about foreskin restoration?")
+                    .padding(EdgeInsets(top: 44, leading: 0, bottom: 20, trailing: 0))
                 
                 
-                Button {
-                    onboarding.view.goToNextPage()
-                    onboarding.view.goToNextPage()
-                } label: {
-                    Text("👊 I’m restoring already")
-                        .frame(maxWidth: .infinity, minHeight: 44)
+                VStack {
+                    
+                    Button {
+                        onboarding.view.goToNextPage()
+                    } label: {
+                        Text("👌 Not a lot, please fill me in")
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .tint(.indigo)
+                    .buttonStyle(.borderedProminent)
+                    .padding()
+                    
+                    Button {
+                        onboarding.view.goToNextPage()
+                        onboarding.view.goToNextPage()
+                    } label: {
+                        Text("🤗 I’m ready to start restoring")
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .tint(.green)
+                    .buttonStyle(.borderedProminent)
+                    .padding()
+                    
+                    
+                    Button {
+                        onboarding.view.goToNextPage()
+                        onboarding.view.goToNextPage()
+                    } label: {
+                        Text("👊 I’m restoring already")
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding()
                 }
-                .buttonStyle(.borderedProminent)
-                .padding()
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 88, trailing: 0))
             }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 88, trailing: 0))
         }
     }
     

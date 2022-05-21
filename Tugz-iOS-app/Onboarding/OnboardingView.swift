@@ -9,13 +9,13 @@ import SwiftUI
 
 struct OnboardingViewPure: View {
     
-    let onboarding: Onboarding
+    @ObservedObject var onboarding: Onboarding
 
     var doneFunction: () -> ()
     
     @State var slideGesture: CGSize = CGSize.zero
-    @State var curSlideIndex = 0
-    var distance: CGFloat = UIScreen.main.bounds.size.width
+
+    var screenWidth: CGFloat = UIScreen.main.bounds.size.width
     
     init(onboarding: Onboarding, doneFunction: @escaping (() -> ())) {
         
@@ -25,14 +25,14 @@ struct OnboardingViewPure: View {
     }
     
     func goToNextPage() {
-        if curSlideIndex == onboarding.pages.count - 1 {
+        if onboarding.currentPage.rawValue == onboarding.pages.count - 1 {
             doneFunction()
             return
         }
         
-        if curSlideIndex < onboarding.pages.count - 1 {
+        if onboarding.currentPage.rawValue < onboarding.pages.count - 1 {
             withAnimation {
-                curSlideIndex += 1
+                onboarding.updatePage(onboarding.currentPage.rawValue + 1)
             }
         }
     }
@@ -44,27 +44,24 @@ struct OnboardingViewPure: View {
             ZStack(alignment: .center) {
                 ForEach(onboarding.pages, id: \.self) { page in
                     OnboardingSubview(page: page, onboarding: onboarding)
-                        .offset(x: CGFloat(page.rawValue) * distance)
-                        .offset(x: slideGesture.width - CGFloat(curSlideIndex) * distance)
-                    
-//                        .withAnimation(.spring(), {
-//                        })
-                        .animation(.spring())
+                        .offset(x: CGFloat(onboarding.currentPage.rawValue) * screenWidth)
+                        .offset(x: slideGesture.width - CGFloat(onboarding.currentPage.rawValue) * screenWidth)
+                        .animation(.spring(), value: slideGesture)
                         .gesture(DragGesture().onChanged{ value in
                             slideGesture = value.translation
                         }
                         .onEnded { value in
                             if slideGesture.width < -50 {
-                                if curSlideIndex < onboarding.pages.count - 1 {
+                                if onboarding.currentPage.rawValue < onboarding.pages.count - 1 {
                                     withAnimation {
-                                        curSlideIndex += 1
+                                        onboarding.updatePage(onboarding.currentPage.rawValue + 1)
                                     }
                                 }
                             }
                             if slideGesture.width > 50 {
-                                if curSlideIndex > 0 {
+                                if onboarding.currentPage.rawValue > 0 {
                                     withAnimation {
-                                        curSlideIndex -= 1
+                                        onboarding.updatePage(onboarding.currentPage.rawValue - 1)
                                     }
                                 }
                             }
@@ -93,7 +90,7 @@ struct OnboardingViewPure: View {
     
     func arrowView() -> some View {
         Group {
-            if curSlideIndex == onboarding.pages.count - 1 {
+            if onboarding.currentPage.rawValue == onboarding.pages.count - 1 {
                 HStack {
                     Text("Done")
                         .font(.system(size: 27, weight: .medium, design: .rounded))
@@ -118,7 +115,7 @@ struct OnboardingViewPure: View {
                 Circle()
                     .scaledToFit()
                     .frame(width: 10)
-                    .foregroundColor(curSlideIndex >= i ? .accentColor : Color(.systemGray))
+                    .foregroundColor(onboarding.currentPage.rawValue >= i ? .accentColor : Color(.systemGray))
             }
         }
     }
