@@ -12,6 +12,8 @@ struct OnboardingViewPure: View {
     @ObservedObject var onboarding: Onboarding
     
     @State var slideGesture: CGSize = CGSize.zero
+    
+    @Environment(\.presentationMode) var presentationMode
 
     var screenWidth: CGFloat = UIScreen.main.bounds.size.width
     

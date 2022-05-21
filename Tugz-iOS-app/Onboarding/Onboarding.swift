@@ -76,6 +76,7 @@ class Onboarding: ObservableObject {
         
         guard currentPage.rawValue < pages.count - 1 else {
             onDone()
+            view.presentationMode.wrappedValue.dismiss()
             return
         }
         
