@@ -16,8 +16,8 @@ class Config {
     var navigator: Navigator!
     var hasSeenOnboarding: Bool {
         get {
-            false
-//            UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+//            false
+            UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
         }
         set {
             UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")

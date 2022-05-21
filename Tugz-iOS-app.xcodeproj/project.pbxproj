@@ -51,6 +51,7 @@
 		C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB01280D8B5E0066B423 /* PhotoGallery.swift */; };
 		C0DDCB05280D8B6B0066B423 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB04280D8B6B0066B423 /* Photo.swift */; };
 		C0DDCB07280D96370066B423 /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB06280D96370066B423 /* DeviceListView.swift */; };
+		C0F3583E28393D2F00B50A71 /* TugScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F3583D28393D2F00B50A71 /* TugScheduleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		C0DDCB01280D8B5E0066B423 /* PhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGallery.swift; sourceTree = "<group>"; };
 		C0DDCB04280D8B6B0066B423 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C0DDCB06280D96370066B423 /* DeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListView.swift; sourceTree = "<group>"; };
+		C0F3583D28393D2F00B50A71 /* TugScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugScheduleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				C06D0010270BA216006CEBA0 /* ProgressCircle.swift */,
 				C06D0012270BA245006CEBA0 /* FilledButton.swift */,
 				C03496D82778D14D0084C604 /* TimePicker.swift */,
+				C0F3583D28393D2F00B50A71 /* TugScheduleView.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
 				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
+				C0F3583E28393D2F00B50A71 /* TugScheduleView.swift in Sources */,
 				C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */,
 				C06D001A270BA2EF006CEBA0 /* UserPrefs.swift in Sources */,
 				C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */,

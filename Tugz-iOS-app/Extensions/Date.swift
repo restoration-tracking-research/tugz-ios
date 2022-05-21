@@ -7,6 +7,18 @@
 
 import Foundation
 
+extension DateComponents {
+    
+    func toDateInToday() -> Date {
+        
+        var c: DateComponents = Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())
+        
+        c.hour = self.hour
+        c.minute = self.minute
+        return c.date!
+    }
+}
+
 extension Date {
     var isToday: Bool { Calendar.current.isDateInToday(self) }
 }

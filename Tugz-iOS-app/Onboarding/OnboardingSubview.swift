@@ -45,33 +45,6 @@ struct OnboardingSubview: View {
     
     @EnvironmentObject var userPrefs: UserPrefs
     
-    @State var selectedDays = DayOfWeek.weekdays() {
-        didSet {
-            userPrefs.daysToTug = selectedDays
-        }
-    }
-    
-    @State var startTime = Calendar.current.date(from: UserPrefs.Defaults.firstTugTime)! {
-        didSet {
-            userPrefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: startTime)
-        }
-    }
-    
-    @State var endTime = Calendar.current.date(from: UserPrefs.Defaults.lastTugTime)! {
-        didSet {
-            userPrefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: endTime)
-        }
-    }
-    
-    @State var sendManualReminders = true {
-        didSet {
-            userPrefs.sendManualReminders = sendManualReminders
-        }
-    }
-    
-    @State private var tugDuration: TimeInterval = 5 * 60
-    @State private var tugInterval: TimeInterval = 60 * 60
-    
     @State private var logoOpacity = 0.0
     
     var body: some View {
@@ -346,104 +319,9 @@ struct OnboardingSubview: View {
                     .foregroundColor(.orange)
                     .padding()
                 
-                Form {
-                    
-                    Group {
-                        Text("What's your ideal schedule?")
-                            .font(.system(.largeTitle))
-                        
-                        Text("We'll send you notifications to help you meet your goals.")
-                            .font(.system(.footnote))
-                            .listRowSeparator(.hidden)
-                        
-                        Divider()
-                    }
-                    
-                    
-                    Group {
-                        Text("Tug Days")
-                            .font(.system(.headline))
-                            .listRowSeparator(.hidden)
-                        
-                        HStack {
-                            
-                            ForEach(DayOfWeek.allCases, id: \.self) { day in
-                                
-                                ZStack {
-                                    
-                                    Circle()
-                                        .fill( selectedDays.contains(day) ? .blue : .gray)
-                                    
-                                    Text( day.initial )
-                                        .font(.system(.headline))
-                                        .foregroundColor(.white)
-                                    
-                                }
-                                .onTapGesture {
-                                    if selectedDays.contains(day) {
-                                        selectedDays = selectedDays.filter { $0 != day }
-                                    } else {
-                                        selectedDays.append(day)
-                                    }
-                                }
-                            }
-                        }
-                        .listRowSeparator(.hidden)
-                        
-                        Divider()
-                    }
-                    
-                    Group {
-                        DatePicker("First Tug of the day", selection: $startTime, displayedComponents: [.hourAndMinute])
-                        
-                        DatePicker("Last Tug of the day", selection: $endTime, displayedComponents: [.hourAndMinute])
-                            .listRowSeparator(.hidden)
-                        
-                        Divider()
-                    }
-                    .listRowSeparator(.hidden)
-                    
-                    Group {
-                        
-                        Picker("Tug duration", selection: $tugDuration) {
-                            ForEach(1..<20, id: \.self) { min in
-                                Text("\(min) min").tag(TimeInterval(min * 60))
-                            }
-                        }
-                        .tag("5")
-                        .onChange(of: tugDuration) { newValue in
-                            userPrefs.tugDuration = Measurement(value: newValue, unit: .seconds)
-                        }
-                        
-                        Picker("Tug every", selection: $tugInterval) {
-                            ForEach([30, 45, 60, 90, 120], id: \.self) { min in
-                                Text("\(min) min").tag(TimeInterval(min * 60))
-                            }
-                        }
-                        .onChange(of: tugInterval) { newValue in
-                            userPrefs.tugInterval = Measurement(value: newValue, unit: .seconds)
-                        }
-                        
-                        Divider()
-                    }
-                    .listRowSeparator(.hidden)
-                    
-                    Group {
-                        Toggle("Send manual tug reminders", isOn: $sendManualReminders)
-                            .tint(.blue)
-                            .onTapGesture {
-                                withAnimation {
-                                    sendManualReminders.toggle()
-                                }
-                            }
-                            .listRowSeparator(.hidden)
-                        
-                        Text("Turn this off if you only use devices, or if you want to track your tug time but not get reminders to tug.")
-                            .font(.system(.footnote))
-                        
-                        Spacer()
-                    }
-                }
+                TugScheduleView(title: "What's your ideal schedule?",
+                                subtitle: "We'll send you notifications to help you meet your goals.",
+                                userPrefs: userPrefs)
             }
         }
         .navigationBarHidden(true)
@@ -451,7 +329,9 @@ struct OnboardingSubview: View {
     
     var displayFirstTugString: String {
         
-        if sendManualReminders, let hour = $userPrefs.firstTugTime.hour.wrappedValue, let minute = $userPrefs.firstTugTime.minute.wrappedValue {
+        if $userPrefs.sendManualReminders.wrappedValue,
+            let hour = $userPrefs.firstTugTime.hour.wrappedValue,
+            let minute = $userPrefs.firstTugTime.minute.wrappedValue {
             
             let minuteString = String(minute).padding(toLength: 2, withPad: "0", startingAt: 0)
             return "We’ll send your first reminder at \(hour):\(minuteString)."

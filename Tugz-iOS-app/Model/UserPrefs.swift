@@ -38,17 +38,17 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     @Published var usesDevices = false
     
     /// Each manual tug
-    @Published var tugDuration = Defaults.tugDuration { didSet { save() } }
-    @Published var tugInterval = Defaults.tugInterval { didSet { save() } }
-    @Published var firstTugTime = Defaults.firstTugTime { didSet { save() } }
-    @Published var lastTugTime = Defaults.lastTugTime { didSet { save() } }
+    @Published var tugDuration: Measurement = Defaults.tugDuration { didSet { save() } }
+    @Published var tugInterval: Measurement = Defaults.tugInterval { didSet { save() } }
+    @Published var firstTugTime: DateComponents = Defaults.firstTugTime { didSet { save() } }
+    @Published var lastTugTime: DateComponents = Defaults.lastTugTime { didSet { save() } }
     
-    @Published var daysToTug = DayOfWeek.weekdays() { didSet { save() } }
+    @Published var daysToTug: [DayOfWeek] = DayOfWeek.weekdays() { didSet { save() } }
     
     @Published var sendManualReminders = true
     
     /// Daily goals
-    @Published var dailyGoalTugTime = Defaults.dailyGoalTugTime { didSet { save() } }
+    @Published var dailyGoalTugTime: Measurement = Defaults.dailyGoalTugTime { didSet { save() } }
     
     @Published var userOwnedDevices = [Device]() { didSet { save() } }
     

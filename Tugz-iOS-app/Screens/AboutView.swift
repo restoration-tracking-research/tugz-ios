@@ -53,6 +53,9 @@ struct PrivacyView: View {
                     .font(.footnote)
                     .padding()
                 
+                Text("In a near future update, we will add the ability to save your history securely and anonymously to the cloud.")
+                    .padding()
+                
                 Spacer()
             }
         }
@@ -76,10 +79,9 @@ struct AboutView: View {
                     Section {
                         
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("This app is for restoration session tracking.")
-                            Text("It's currently focused on using manual methods, i.e. many short sessions throughout the day.")
-                            Text("It can send you reminders and track your tugging durations.")
-                            Text("We want to add device-based tracking too, please let us know if you're interested in this!")
+                            Text("This app is for restoration session and progress tracking.")
+                            Text("It can send you reminders and track your tugging durations both manually and with a device.")
+                            Text("This app is for the restoring community— Please let us know what you'd like to see added next!")
                         }
                         .font(.footnote)
                         
