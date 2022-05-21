@@ -23,54 +23,7 @@ struct SettingsView: View {
                 .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             
-            TugScheduleView(userPrefs: config.prefs)
-            
-//            VStack(alignment: .leading) {
-//
-//                List {
-//
-//                    Section {
-//
-//                        /// Set start/stop times
-//                        DatePicker(
-//                            "Time of first tug",
-//                            selection: $firstTugTime,
-//                            displayedComponents: [.hourAndMinute]
-//                        )
-//                            .onChange(of: firstTugTime) { newValue in
-//                                config.prefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: firstTugTime)
-//                            }
-//
-//                        DatePicker(
-//                            "Time of last tug",
-//                            selection: $lastTugTime,
-//                            displayedComponents: [.hourAndMinute]
-//                        )
-//                            .onChange(of: lastTugTime) { newValue in
-//                                config.prefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: lastTugTime)
-//                            }
-//
-//                        /// Set tug duration
-//                        VStack(alignment: .leading) {
-//                            Text("Tug duration")
-//                            TimeDurationPicker(duration: $tugDuration)
-//                                .onChange(of: tugDuration) { newValue in
-//                                    config.prefs.tugDuration = Measurement(value: tugDuration, unit: .seconds)
-//                                }
-//                        }
-//
-//                        /// Set time between tugs
-//                        VStack(alignment: .leading) {
-//                            Text("Tug every")
-//                            TimeDurationPicker(duration: $tugInterval)
-//                                .onChange(of: tugInterval) { newValue in
-//                                    config.prefs.tugInterval = Measurement(value: tugInterval, unit: .seconds)
-//                                }
-//                        }
-//                    }
-//                }
-//            }
-            
+            TugScheduleView(userPrefs: config.prefs)            
         }
         .navigationBarTitle(Text("Settings"))
         .onAppear {
