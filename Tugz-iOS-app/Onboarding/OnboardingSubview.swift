@@ -45,12 +45,6 @@ struct OnboardingSubview: View {
     
     @EnvironmentObject var userPrefs: UserPrefs
     
-    @State var selectedDevices = Set<Device>() {
-        didSet {
-            userPrefs.userOwnedDevices = Array(selectedDevices)
-        }
-    }
-    
     @State var selectedDays = DayOfWeek.weekdays() {
         didSet {
             userPrefs.daysToTug = selectedDays
@@ -314,16 +308,16 @@ struct OnboardingSubview: View {
                                 
                                 Button(action: {
                                     withAnimation {
-                                        if selectedDevices.contains(device) {
-                                            selectedDevices.remove(device)
+                                        if userPrefs.userOwnedDevices.contains(device) {
+                                            userPrefs.userOwnedDevices.removeAll { device.id == $0.id }
                                         } else {
-                                            selectedDevices.insert(device)
+                                            userPrefs.userOwnedDevices.append(device)
                                         }
                                     }
                                 }) {
                                     HStack {
                                         Image(systemName: "checkmark")
-                                            .opacity(selectedDevices.contains(device) ? 1.0 : 0.0)
+                                            .opacity(userPrefs.userOwnedDevices.contains(device) ? 1.0 : 0.0)
                                         Text(device.displayName)
                                     }
                                 }
@@ -497,6 +491,7 @@ struct OnboardingSubview_Previews: PreviewProvider {
     
     static let onboarding = Onboarding(prefs: UserPrefs.loadFromStore())
     static let userPrefs = UserPrefs.loadFromStore()
+    static let selectedDevices: [Device] = [.DTR, .Foreskinned_Gravity, .Foreskinned_Air]
     
     static var previews: some View {
         OnboardingSubview(page: .first, onboarding: onboarding)

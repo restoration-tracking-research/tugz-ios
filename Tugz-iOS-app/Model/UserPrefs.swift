@@ -34,23 +34,23 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         case userOwnedDevices
     }
     
-    var usesManual = true
-    var usesDevices = false
+    @Published var usesManual = true
+    @Published var usesDevices = false
     
     /// Each manual tug
-    var tugDuration = Defaults.tugDuration { didSet { save() } }
-    var tugInterval = Defaults.tugInterval { didSet { save() } }
-    var firstTugTime = Defaults.firstTugTime { didSet { save() } }
-    var lastTugTime = Defaults.lastTugTime { didSet { save() } }
+    @Published var tugDuration = Defaults.tugDuration { didSet { save() } }
+    @Published var tugInterval = Defaults.tugInterval { didSet { save() } }
+    @Published var firstTugTime = Defaults.firstTugTime { didSet { save() } }
+    @Published var lastTugTime = Defaults.lastTugTime { didSet { save() } }
     
-    var daysToTug = DayOfWeek.weekdays() { didSet { save() } }
+    @Published var daysToTug = DayOfWeek.weekdays() { didSet { save() } }
     
-    var sendManualReminders = true
+    @Published var sendManualReminders = true
     
     /// Daily goals
-    var dailyGoalTugTime = Defaults.dailyGoalTugTime { didSet { save() } }
+    @Published var dailyGoalTugTime = Defaults.dailyGoalTugTime { didSet { save() } }
     
-    var userOwnedDevices = [Device]() { didSet { save() } }
+    @Published var userOwnedDevices = [Device]() { didSet { save() } }
     
     private let jsonEncoder = JSONEncoder()
     
