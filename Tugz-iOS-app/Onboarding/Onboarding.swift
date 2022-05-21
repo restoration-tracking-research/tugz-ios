@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ConcentricOnboarding
+import AVFAudio
 
 class Onboarding: ObservableObject {
     
@@ -19,15 +19,13 @@ class Onboarding: ObservableObject {
         case allSet
         
         var showsNextButton: Bool {
-            return true
             [Page.aboutRestoration, .readyToStart, .deviceSelect, .idealSchedule, .allSet].contains(self)
         }
     }
     
-//    var view: ConcentricOnboardingView<OnboardingSubview>!
     var view: OnboardingViewPure!
     
-    private(set) var currentPage = Page.first
+    @Published var currentPage = Page.first
     
     var pages: [Page] = [
         .first,
@@ -38,15 +36,6 @@ class Onboarding: ObservableObject {
         .allSet
     ]
     
-//    var colors: [Color] = [
-//        .white,
-//        .orange,
-//        .white,
-//        .orange,
-//        .white,
-//        .orange
-//    ]
-//
     func buildViews() -> [OnboardingSubview] {
         
         pages.map { page in
