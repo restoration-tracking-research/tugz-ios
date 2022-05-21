@@ -17,6 +17,10 @@ struct HomeView: View {
     @State var formattedTimeOfNextTug: String = ""
     @State var sessionsToday: Int = 0
     
+    var sessionsTodayText: String {
+        sessionsToday > 0 ? "\(sessionsToday)" : "Ready to start"
+    }
+    
     @State var navToTugNowActive = false
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
@@ -24,6 +28,8 @@ struct HomeView: View {
     var scheduler: TugScheduler { config.scheduler }
     
     var prefs: UserPrefs { config.prefs }
+    
+    @State private var logoOpacity = 0.0
     
     init(config: Config) {
         self.config = config
@@ -36,20 +42,39 @@ struct HomeView: View {
     }
 
     var body: some View {
+        
         ZStack {
+            
             Color.yellow
                 .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
-            VStack {
+            
+            Image(systemName: "t.circle.fill")
+                .font(.system(size: 500, weight: .heavy))
+                .frame(width: 150, height: 150)
+                .foregroundColor(.accentColor)
+                .position(x: 80, y: 40)
+                .opacity(logoOpacity)
+                .onAppear {
+                    withAnimation {
+                        logoOpacity = 0.3
+                    }
+                }
+            
+            VStack(alignment: .center) {
 //                Text("CI-7")
-                Text("Tugz")
-                    .font(.largeTitle)
+                
                 Text("Total tug time today:")
+                    .font(.largeTitle)
+                
                 Text(formattedTotalTugTimeToday)
                     .font(.largeTitle).bold()
                     .padding(.bottom, 22)
+                
                 Text("Sessions today:")
-                Text("\(sessionsToday)")
+                    .font(.title)
+                
+                Text(sessionsTodayText)
                     .font(.largeTitle).bold()
                 ProgressCircle(progress: $percentDoneToday)
                     .frame(width: 150.0, height: 150.0)
@@ -71,11 +96,20 @@ struct HomeView: View {
                         Text(formattedTimeOfNextTug)
                             .bold()
                     }
+                    
+                    Spacer()
+                    
                     NavigationLink(destination: TugView(config: config, tug: nil, isPresented: $navToTugNowActive),
                                    isActive: $navToTugNowActive) {
-                        Button("TUG NOW") {
+                        
+                        Button {
                             /// Transition to tug screen
                             self.navToTugNowActive = true
+                        } label: {
+                            Text("TUG NOW")
+                                .font(.system(.headline))
+                                .frame(width: 250)
+
                         }
                         .buttonStyle(FilledButton())
                     }
