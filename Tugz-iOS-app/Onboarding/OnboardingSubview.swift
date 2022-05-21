@@ -101,6 +101,10 @@ struct OnboardingSubview: View {
     var first: some View {
         
         ZStack {
+            Rectangle()
+                .fill(.white)
+                .edgesIgnoringSafeArea(.all)
+            
             Image(systemName: "t.circle.fill")
                 .font(.system(size: 500, weight: .heavy))
                 .frame(width: 150, height: 150)
@@ -113,19 +117,17 @@ struct OnboardingSubview: View {
                     }
                 }
             
-            VStack {
+            VStack(alignment: .leading) {
                 
+                Spacer()
                 
                 Text("Welcome to Tugz")
                     .font(.system(.largeTitle))
                     .bold()
-                    .padding()
-                
-                Divider()
+                    .padding(.leading, 30)
                 
                 Text("👋 So far, what do you already know about foreskin restoration?")
-                    .padding(EdgeInsets(top: 44, leading: 0, bottom: 20, trailing: 0))
-                
+                    .padding(EdgeInsets(top: 44, leading: 30, bottom: 20, trailing: 0))
                 
                 VStack {
                     
@@ -137,7 +139,8 @@ struct OnboardingSubview: View {
                     }
                     .tint(.indigo)
                     .buttonStyle(.borderedProminent)
-                    .padding()
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 10)
                     
                     Button {
                         onboarding.updatePage(2)
@@ -147,8 +150,8 @@ struct OnboardingSubview: View {
                     }
                     .tint(.green)
                     .buttonStyle(.borderedProminent)
-                    .padding()
-                    
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 10)
                     
                     Button {
                         onboarding.updatePage(2)
@@ -157,9 +160,11 @@ struct OnboardingSubview: View {
                             .frame(maxWidth: .infinity, minHeight: 44)
                     }
                     .buttonStyle(.borderedProminent)
-                    .padding()
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 10)
                 }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 88, trailing: 0))
+                
+                .padding(.bottom, 50)
             }
         }
     }

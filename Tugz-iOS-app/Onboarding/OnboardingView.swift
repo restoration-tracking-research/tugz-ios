@@ -44,7 +44,7 @@ struct OnboardingViewPure: View {
             ZStack(alignment: .center) {
 //                HStack {
                 
-                ForEach(onboarding.pages, id: \.self) { page in
+                ForEach(onboarding.pages.reversed(), id: \.self) { page in
                     OnboardingSubview(page: page, onboarding: onboarding)
                         .offset(x: CGFloat(onboarding.currentPage.rawValue) * screenWidth)
                         .offset(x: slideGesture.width - CGFloat(onboarding.currentPage.rawValue) * screenWidth)
@@ -54,19 +54,20 @@ struct OnboardingViewPure: View {
                         }
                         .onEnded { value in
                             if slideGesture.width < -50 {
-                                if onboarding.currentPage.rawValue < onboarding.pages.count - 1 {
-                                    withAnimation {
-                                        onboarding.updatePage(onboarding.currentPage.rawValue + 1)
-                                    }
-                                }
+                                goToNextPage()
+//                                if onboarding.currentPage.rawValue < onboarding.pages.count - 1 {
+//                                    withAnimation {
+//                                        onboarding.updatePage(onboarding.currentPage.rawValue + 1)
+//                                    }
+//                                }
                             }
-                            if slideGesture.width > 50 {
-                                if onboarding.currentPage.rawValue > 0 {
-                                    withAnimation {
-                                        onboarding.updatePage(onboarding.currentPage.rawValue - 1)
-                                    }
-                                }
-                            }
+//                            if slideGesture.width > 50 {
+//                                if onboarding.currentPage.rawValue > 0 {
+//                                    withAnimation {
+//                                        onboarding.updatePage(onboarding.currentPage.rawValue - 1)
+//                                    }
+//                                }
+//                            }
                             slideGesture = .zero
                         })
                 }
