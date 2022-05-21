@@ -42,6 +42,8 @@ struct OnboardingViewPure: View {
             Color(.systemBackground).edgesIgnoringSafeArea(.all)
             
             ZStack(alignment: .center) {
+//                HStack {
+                
                 ForEach(onboarding.pages, id: \.self) { page in
                     OnboardingSubview(page: page, onboarding: onboarding)
                         .offset(x: CGFloat(onboarding.currentPage.rawValue) * screenWidth)
@@ -69,6 +71,8 @@ struct OnboardingViewPure: View {
                         })
                 }
             }
+//                .frame(width: screenWidth * CGFloat(onboarding.pages.count))
+//                .position(x: 0, y: 0)
             
             
             VStack {

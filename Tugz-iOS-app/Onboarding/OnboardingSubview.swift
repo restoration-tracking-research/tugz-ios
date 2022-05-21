@@ -130,7 +130,7 @@ struct OnboardingSubview: View {
                 VStack {
                     
                     Button {
-                        onboarding.view.goToNextPage()
+                        onboarding.updatePage(1)
                     } label: {
                         Text("👌 Not a lot, please fill me in")
                             .frame(maxWidth: .infinity, minHeight: 44)
@@ -140,8 +140,7 @@ struct OnboardingSubview: View {
                     .padding()
                     
                     Button {
-                        onboarding.view.goToNextPage()
-                        onboarding.view.goToNextPage()
+                        onboarding.updatePage(2)
                     } label: {
                         Text("🤗 I’m ready to start restoring")
                             .frame(maxWidth: .infinity, minHeight: 44)
@@ -152,8 +151,7 @@ struct OnboardingSubview: View {
                     
                     
                     Button {
-                        onboarding.view.goToNextPage()
-                        onboarding.view.goToNextPage()
+                        onboarding.updatePage(2)
                     } label: {
                         Text("👊 I’m restoring already")
                             .frame(maxWidth: .infinity, minHeight: 44)
