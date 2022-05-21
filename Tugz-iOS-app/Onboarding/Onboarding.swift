@@ -37,6 +37,21 @@ class Onboarding: ObservableObject {
         .allSet
     ]
     
+    var currentPageGradientOpacity: CGFloat {
+        switch currentPage {
+        case .first,
+                .aboutRestoration,
+                .readyToStart:
+            return 0
+        case .deviceSelect:
+            return 1
+        case .idealSchedule:
+            return 1
+        case .allSet:
+            return 0
+        }
+    }
+    
     var onDone: () -> ()
     
     init(page: Page = .first, prefs: UserPrefs, onDone: @escaping ()->() = {}) {

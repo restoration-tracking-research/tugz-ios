@@ -52,6 +52,10 @@ struct OnboardingViewPure: View {
                 }
             }
             
+            LinearGradient(colors: [.white.opacity(0), .white], startPoint: UnitPoint(x: 0, y: 0.6), endPoint: UnitPoint(x: 0, y: 1))
+                .opacity(onboarding.currentPageGradientOpacity)
+                .allowsHitTesting(false)
+            
             VStack {
                 Spacer()
                 HStack {
@@ -106,7 +110,7 @@ struct OnboardingViewPure: View {
 struct OnboardingViewPure_Previews: PreviewProvider {
     
     static var previews: some View {
-        OnboardingViewPure(onboarding: Onboarding(page: .aboutRestoration, prefs: UserPrefs()))
+        OnboardingViewPure(onboarding: Onboarding(page: .idealSchedule, prefs: UserPrefs()))
             .environmentObject(UserPrefs())
     }
 }

@@ -254,6 +254,7 @@ struct OnboardingSubview: View {
                     Toggle("Do you use manual methods?", isOn: $userPrefs.usesManual)
                         .toggleStyle(.automatic)
                         .font(.system(.headline))
+                        .tint(.black)
                 }
                 Text("If so, Tugz can send you regular reminders throughout the day so you can get all your sessions in.")
                     .font(.system(.caption))
@@ -264,6 +265,7 @@ struct OnboardingSubview: View {
                     Toggle("Do you use any devices?", isOn: $userPrefs.usesDevices)
                         .toggleStyle(.automatic)
                         .font(.system(.headline))
+                        .tint(.black)
                 }
                 Text("If so, we'll let you pick them list of commercially-available devices.")
                     .font(.system(.caption))
@@ -285,13 +287,17 @@ struct OnboardingSubview: View {
                 .fill(.white)
                 .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 20) {
-                Image(systemName: "t.circle.fill")
-                    .font(.system(size: 64, weight: .heavy))
-                    .foregroundColor(.orange)
-                    .padding()
-                
-                Form {
+            Form {
+                VStack(alignment: .leading, spacing: 20) {
+                    
+                    HStack {
+                        Spacer()
+                        Image(systemName: "t.circle.fill")
+                            .font(.system(size: 64, weight: .heavy))
+                            .foregroundColor(.orange)
+                        Spacer()
+                    }
+                    
                     Text("Select the devices you own")
                         .font(.system(.largeTitle))
                         .bold()
@@ -326,77 +332,79 @@ struct OnboardingSubview: View {
                         }
                     }
                 }
-                Spacer(minLength: 85)
             }
         }
     }
     
     var idealSchedule: some View {
         
-        
-        VStack {
-            
-            Spacer(minLength: 75)
-            
-            Form {
+        NavigationView {
+            VStack {
+
+                Image(systemName: "t.circle.fill")
+                    .font(.system(size: 64, weight: .heavy))
+                    .foregroundColor(.orange)
+                    .padding()
                 
-                Group {
-                    Text("What's your ideal schedule?")
-                        .font(.system(.largeTitle))
+                Form {
                     
-                    Text("We'll send you notifications to help you meet your goals.")
-                        .font(.system(.footnote))
-                        .listRowSeparator(.hidden)
-                    
-                    Divider()
-                }
-                
-                
-                Group {
-                    Text("Tug Days")
-                        .font(.system(.headline))
-                        .listRowSeparator(.hidden)
-                    
-                    HStack {
+                    Group {
+                        Text("What's your ideal schedule?")
+                            .font(.system(.largeTitle))
                         
-                        ForEach(DayOfWeek.allCases, id: \.self) { day in
+                        Text("We'll send you notifications to help you meet your goals.")
+                            .font(.system(.footnote))
+                            .listRowSeparator(.hidden)
+                        
+                        Divider()
+                    }
+                    
+                    
+                    Group {
+                        Text("Tug Days")
+                            .font(.system(.headline))
+                            .listRowSeparator(.hidden)
+                        
+                        HStack {
                             
-                            ZStack {
+                            ForEach(DayOfWeek.allCases, id: \.self) { day in
                                 
-                                Circle()
-                                    .fill( selectedDays.contains(day) ? .blue : .gray)
-                                
-                                Text( day.initial )
-                                    .font(.system(.headline))
-                                    .foregroundColor(.white)
-                                
-                            }
-                            .onTapGesture {
-                                if selectedDays.contains(day) {
-                                    selectedDays = selectedDays.filter { $0 != day }
-                                } else {
-                                    selectedDays.append(day)
+                                ZStack {
+                                    
+                                    Circle()
+                                        .fill( selectedDays.contains(day) ? .blue : .gray)
+                                    
+                                    Text( day.initial )
+                                        .font(.system(.headline))
+                                        .foregroundColor(.white)
+                                    
+                                }
+                                .onTapGesture {
+                                    if selectedDays.contains(day) {
+                                        selectedDays = selectedDays.filter { $0 != day }
+                                    } else {
+                                        selectedDays.append(day)
+                                    }
                                 }
                             }
                         }
+                        .listRowSeparator(.hidden)
+                        
+                        Divider()
+                    }
+                    
+                    Group {
+                        DatePicker("First Tug of the day", selection: $startTime, displayedComponents: [.hourAndMinute])
+                        
+                        DatePicker("Last Tug of the day", selection: $endTime, displayedComponents: [.hourAndMinute])
+                            .listRowSeparator(.hidden)
+                        
+                        Divider()
                     }
                     .listRowSeparator(.hidden)
                     
-                    Divider()
-                }
-                
-                Group {
-                    DatePicker("First Tug of the day", selection: $startTime, displayedComponents: [.hourAndMinute])
-                    
-                    DatePicker("Last Tug of the day", selection: $endTime, displayedComponents: [.hourAndMinute])
-                        .listRowSeparator(.hidden)
-                    
-                    Divider()
-                }
-                .listRowSeparator(.hidden)
-                
-                Group {
-                    
+                    Group {
+                        
                         Picker("Tug duration", selection: $tugDuration) {
                             ForEach(1..<20, id: \.self) { min in
                                 Text("\(min) min").tag(TimeInterval(min * 60))
@@ -406,37 +414,39 @@ struct OnboardingSubview: View {
                         .onChange(of: tugDuration) { newValue in
                             userPrefs.tugDuration = Measurement(value: newValue, unit: .seconds)
                         }
-                    
-                    Picker("Tug every", selection: $tugInterval) {
-                        ForEach([30, 45, 60, 90, 120], id: \.self) { min in
-                            Text("\(min) min").tag(TimeInterval(min * 60))
-                        }
-                    }
-                    .onChange(of: tugInterval) { newValue in
-                        userPrefs.tugInterval = Measurement(value: newValue, unit: .seconds)
-                    }
-                    
-                    Divider()
-                }
-                .listRowSeparator(.hidden)
-                
-                Group {
-                    Toggle("Send manual tug reminders", isOn: $sendManualReminders)
-                        .tint(.blue)
-                        .onTapGesture {
-                            withAnimation {
-                                sendManualReminders.toggle()
+                        
+                        Picker("Tug every", selection: $tugInterval) {
+                            ForEach([30, 45, 60, 90, 120], id: \.self) { min in
+                                Text("\(min) min").tag(TimeInterval(min * 60))
                             }
                         }
-                        .listRowSeparator(.hidden)
+                        .onChange(of: tugInterval) { newValue in
+                            userPrefs.tugInterval = Measurement(value: newValue, unit: .seconds)
+                        }
+                        
+                        Divider()
+                    }
+                    .listRowSeparator(.hidden)
                     
-                    Text("Turn this off if you only use devices, or if you want to track your tug time but not get reminders to tug.")
-                        .font(.system(.footnote))
-                    
-                    Spacer()
+                    Group {
+                        Toggle("Send manual tug reminders", isOn: $sendManualReminders)
+                            .tint(.blue)
+                            .onTapGesture {
+                                withAnimation {
+                                    sendManualReminders.toggle()
+                                }
+                            }
+                            .listRowSeparator(.hidden)
+                        
+                        Text("Turn this off if you only use devices, or if you want to track your tug time but not get reminders to tug.")
+                            .font(.system(.footnote))
+                        
+                        Spacer()
+                    }
                 }
             }
         }
+        .navigationBarHidden(true)
     }
     
     var displayFirstTugString: String {
@@ -458,9 +468,9 @@ struct OnboardingSubview: View {
                 .background(.black)
                 .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 75) {
+            VStack(spacing: 50) {
                 Image(systemName: "t.circle.fill")
-                    .font(.system(size: 64))
+                    .font(.system(size: 64, weight: .heavy))
                     .foregroundColor(.accentColor)
                 
                 VStack(alignment: .leading, spacing: 44) {
@@ -480,6 +490,7 @@ struct OnboardingSubview: View {
                         .font(.system(.title2))
                         .foregroundColor(.white)
                 }
+                .padding()
                 
                 Spacer()
             }

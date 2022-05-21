@@ -59,6 +59,8 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     }
     
     required init(from decoder: Decoder) throws {
+        super.init()
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         // Try decoding properties
