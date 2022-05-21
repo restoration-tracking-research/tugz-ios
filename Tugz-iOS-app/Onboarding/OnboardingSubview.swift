@@ -38,8 +38,6 @@ import SwiftUI
  6. Any time you want to tug you can also start a manual or device session right here in the app. Keep on tugging!
  */
 
-import ConcentricOnboarding
-
 struct OnboardingSubview: View {
     
     let page: Onboarding.Page
