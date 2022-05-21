@@ -14,6 +14,7 @@ struct OnboardingViewPure: View {
     var doneFunction: () -> ()
     
     @State var slideGesture: CGSize = CGSize.zero
+    @State var currentPage = 0
 
     var screenWidth: CGFloat = UIScreen.main.bounds.size.width
     
@@ -22,6 +23,7 @@ struct OnboardingViewPure: View {
         self.onboarding = onboarding
         self.doneFunction = doneFunction
         onboarding.view = self
+        currentPage = onboarding.currentPage.rawValue
     }
     
     func goToNextPage() {
@@ -45,10 +47,11 @@ struct OnboardingViewPure: View {
                 
                 ForEach(onboarding.pages.reversed(), id: \.self) { page in
                     OnboardingSubview(page: page, onboarding: onboarding)
-//                        .opacity(onboarding.currentPage.rawValue >= page.rawValue ? 1 : 0)
+//                        .opacity(currentPage >= page.rawValue ? 1 : 0)
                         .offset(x: CGFloat(onboarding.currentPage.rawValue) * screenWidth)
                         .offset(x: slideGesture.width - CGFloat(onboarding.currentPage.rawValue) * screenWidth)
-                        .animation(.spring(), value: slideGesture)
+//                        .animation(.spring(), value: slideGesture)
+                        .animation(.spring())
                         .gesture(DragGesture().onChanged{ value in
                             slideGesture = value.translation
                         }
@@ -122,6 +125,7 @@ struct OnboardingViewPure: View {
 struct OnboardingViewPure_Previews: PreviewProvider {
     
     static var previews: some View {
-        OnboardingViewPure(onboarding: Onboarding(), doneFunction: { print("done") })
+        OnboardingViewPure(onboarding: Onboarding(page: .aboutRestoration), doneFunction: { print("done") })
+            .environmentObject(UserPrefs())
     }
 }

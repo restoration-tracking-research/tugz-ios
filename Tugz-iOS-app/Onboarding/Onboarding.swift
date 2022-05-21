@@ -25,7 +25,7 @@ class Onboarding: ObservableObject {
     
     var view: OnboardingViewPure!
     
-    @Published private(set) var currentPage = Page.first
+    @Published private(set) var currentPage: Page
     
     var pages: [Page] = [
         .first,
@@ -35,6 +35,10 @@ class Onboarding: ObservableObject {
         .idealSchedule,
         .allSet
     ]
+    
+    init(page: Page = .first) {
+        self.currentPage = page
+    }
     
     func buildViews() -> [OnboardingSubview] {
         

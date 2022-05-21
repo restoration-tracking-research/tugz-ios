@@ -182,7 +182,7 @@ struct OnboardingSubview: View {
             
             VStack {
                 Image(systemName: "t.circle.fill")
-                    .font(.system(size: 64))
+                    .font(.system(size: 64, weight: .heavy))
                     .foregroundColor(.white)
                 
                 Text("5 things to know about foreskin restoration")
@@ -244,7 +244,7 @@ struct OnboardingSubview: View {
         
         VStack {
             Image(systemName: "t.circle.fill")
-                .font(.system(size: 64))
+                .font(.system(size: 64, weight: .heavy))
                 .foregroundColor(.accentColor)
             
             Text("Ready to start?")
@@ -293,7 +293,7 @@ struct OnboardingSubview: View {
             
             VStack(spacing: 20) {
                 Image(systemName: "t.circle.fill")
-                    .font(.system(size: 64))
+                    .font(.system(size: 64, weight: .heavy))
                     .foregroundColor(.orange)
                     .padding()
                 
