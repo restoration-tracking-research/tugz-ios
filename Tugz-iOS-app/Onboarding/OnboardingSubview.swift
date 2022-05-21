@@ -334,18 +334,6 @@ struct OnboardingSubview: View {
                 }
                 Spacer(minLength: 85)
             }
-            Rectangle()
-                .fill(
-                        LinearGradient(gradient:
-                                        Gradient(stops: [
-                                            Gradient.Stop(color: .clear, location: 0),
-                                            Gradient.Stop(color: .clear, location: 0.75),
-                                            Gradient.Stop(color: .black.opacity(0.9), location: 1)
-                                        ]),
-                                       startPoint: .top, endPoint: .bottom)
-                    )
-                .edgesIgnoringSafeArea(.all)
-                .allowsHitTesting(false)
         }
     }
     
@@ -354,7 +342,6 @@ struct OnboardingSubview: View {
         
         VStack {
             
-//            ScrollView {
             Spacer(minLength: 75)
             
             Form {
@@ -455,7 +442,6 @@ struct OnboardingSubview: View {
                     Spacer()
                 }
             }
-//        }
         }
     }
     
@@ -509,7 +495,7 @@ struct OnboardingSubview: View {
 
 struct OnboardingSubview_Previews: PreviewProvider {
     
-    static let onboarding = Onboarding()
+    static let onboarding = Onboarding(prefs: UserPrefs.loadFromStore())
     static let userPrefs = UserPrefs.loadFromStore()
     
     static var previews: some View {

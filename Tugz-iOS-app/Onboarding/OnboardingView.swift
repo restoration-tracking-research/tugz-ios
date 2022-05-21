@@ -10,33 +10,15 @@ import SwiftUI
 struct OnboardingViewPure: View {
     
     @ObservedObject var onboarding: Onboarding
-
-    var doneFunction: () -> ()
     
     @State var slideGesture: CGSize = CGSize.zero
-    @State var currentPage = 0
 
     var screenWidth: CGFloat = UIScreen.main.bounds.size.width
     
-    init(onboarding: Onboarding, doneFunction: @escaping (() -> ())) {
+    init(onboarding: Onboarding) {
         
         self.onboarding = onboarding
-        self.doneFunction = doneFunction
         onboarding.view = self
-        currentPage = onboarding.currentPage.rawValue
-    }
-    
-    func goToNextPage() {
-        if onboarding.currentPage.rawValue == onboarding.pages.count - 1 {
-            doneFunction()
-            return
-        }
-        
-        if onboarding.currentPage.rawValue < onboarding.pages.count - 1 {
-            withAnimation {
-                onboarding.updatePage(onboarding.currentPage.rawValue + 1)
-            }
-        }
     }
     
     var body: some View {
@@ -45,19 +27,18 @@ struct OnboardingViewPure: View {
             
             ZStack(alignment: .center) {
                 
-                ForEach(onboarding.pages.reversed(), id: \.self) { page in
+                ForEach(onboarding.pages, id: \.self) { page in
                     OnboardingSubview(page: page, onboarding: onboarding)
-//                        .opacity(currentPage >= page.rawValue ? 1 : 0)
-                        .offset(x: CGFloat(onboarding.currentPage.rawValue) * screenWidth)
+                        .offset(x: CGFloat(page.rawValue) * screenWidth)
                         .offset(x: slideGesture.width - CGFloat(onboarding.currentPage.rawValue) * screenWidth)
-//                        .animation(.spring(), value: slideGesture)
+//                        .animation(.spring(), value: offset) // ???
                         .animation(.spring())
                         .gesture(DragGesture().onChanged{ value in
                             slideGesture = value.translation
                         }
                         .onEnded { value in
                             if slideGesture.width < -50 {
-                                goToNextPage()
+                                onboarding.goToNextPage()
                             }
                             if slideGesture.width > 50 {
                                 if onboarding.currentPage.rawValue > 0 {
@@ -78,7 +59,7 @@ struct OnboardingViewPure: View {
                     Spacer()
                     
                     if onboarding.currentPage.showsNextButton {
-                        Button(action: goToNextPage) {
+                        Button(action: onboarding.goToNextPage) {
                             arrowView()
                         }
                     }
@@ -125,7 +106,7 @@ struct OnboardingViewPure: View {
 struct OnboardingViewPure_Previews: PreviewProvider {
     
     static var previews: some View {
-        OnboardingViewPure(onboarding: Onboarding(page: .aboutRestoration), doneFunction: { print("done") })
+        OnboardingViewPure(onboarding: Onboarding(page: .aboutRestoration, prefs: UserPrefs()))
             .environmentObject(UserPrefs())
     }
 }

@@ -24,6 +24,7 @@ class Onboarding: ObservableObject {
     }
     
     var view: OnboardingViewPure!
+    let prefs: UserPrefs
     
     @Published private(set) var currentPage: Page
     
@@ -36,8 +37,13 @@ class Onboarding: ObservableObject {
         .allSet
     ]
     
-    init(page: Page = .first) {
+    var onDone: () -> ()
+    
+    init(page: Page = .first, prefs: UserPrefs, onDone: @escaping ()->() = {}) {
+        
         self.currentPage = page
+        self.prefs = prefs
+        self.onDone = onDone
     }
     
     func buildViews() -> [OnboardingSubview] {
@@ -49,5 +55,34 @@ class Onboarding: ObservableObject {
     
     func updatePage(_ index: Int) {
         currentPage = Page(rawValue: index)!
+    }
+    
+    func goToNextPage() {
+        
+        guard currentPage.rawValue < pages.count - 1 else {
+            onDone()
+            return
+        }
+        
+        let increment: Int
+        
+        switch currentPage {
+        case .first:
+            increment = 0
+        case .aboutRestoration:
+            increment = 1
+        case .readyToStart:
+            increment = prefs.usesDevices ? 1 : 2
+        case .deviceSelect:
+            increment = 1
+        case .idealSchedule:
+            increment = 1
+        case .allSet:
+            increment = 1
+        }
+        
+        withAnimation {
+            updatePage(currentPage.rawValue + increment)
+        }
     }
 }
