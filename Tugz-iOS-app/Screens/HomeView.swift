@@ -9,16 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     
-    let config: Config
+    @ObservedObject var config: Config
     
-    @State var percentDoneToday: Double = 0
-    @State var formattedTotalTugTimeToday: String = ""
     @State var formattedTimeUntilNextTug: String = ""
-    @State var formattedTimeOfNextTug: String = ""
-    @State var sessionsToday: Int = 0
     
     var sessionsTodayText: String {
-        sessionsToday > 0 ? "\(sessionsToday)" : "Ready to start"
+        
+        let count = config.scheduler.todaySessionCount
+        
+        return count > 0 ? "\(count)" : "Ready to start"
     }
     
     @State var navToTugNowActive = false
@@ -32,13 +31,10 @@ struct HomeView: View {
     @State private var logoOpacity = 0.0
     
     init(config: Config) {
+        
         self.config = config
-        percentDoneToday = config.scheduler.percentDoneToday
-        formattedTotalTugTimeToday = config.scheduler.formattedTotalTugTimeToday()
+        
         formattedTimeUntilNextTug = config.scheduler.formattedTimeUntilNextTug()
-        formattedTimeOfNextTug = config.scheduler.formattedTimeOfNextTug()
-        sessionsToday = config.scheduler.todaySessionCount
-        navToTugNowActive = config.navigator.needsToStartTugFromNotification
     }
 
     var body: some View {
@@ -64,11 +60,16 @@ struct HomeView: View {
             VStack(alignment: .center) {
 //                Text("CI-7")
                 
-                Text("Total tug time today:")
-                    .font(.largeTitle)
-                
-                Text(formattedTotalTugTimeToday)
+                Text("Today's progress:")
                     .font(.largeTitle).bold()
+                
+                Text(config.scheduler.formattedTotalTugTimeToday())
+                    .font(.largeTitle)
+                    .padding(.top, -4)
+                    .padding(.bottom, 10)
+                
+                Text(config.scheduler.formattedGoalTimeToday())
+                    .font(.title)
                     .padding(.bottom, 22)
                 
                 Text("Sessions today:")
@@ -76,7 +77,7 @@ struct HomeView: View {
                 
                 Text(sessionsTodayText)
                     .font(.largeTitle).bold()
-                ProgressCircle(progress: $percentDoneToday)
+                ProgressCircle(progress: config.scheduler.percentDoneToday)
                     .frame(width: 150.0, height: 150.0)
                     .padding(22)
                 
@@ -93,7 +94,7 @@ struct HomeView: View {
                                 .bold()
                         }
                         Text("at")
-                        Text(formattedTimeOfNextTug)
+                        Text(config.scheduler.formattedTimeOfNextTug())
                             .bold()
                     }
                     
@@ -114,34 +115,30 @@ struct HomeView: View {
                         .buttonStyle(FilledButton())
                     }
                 }
-                Spacer()
+                Spacer(minLength: 20)
                 
             }.progressViewStyle(TugzProgressViewStyle())
         }
         .onReceive(timer) { _ in
-            self.percentDoneToday = scheduler.percentDoneToday
-            self.formattedTotalTugTimeToday = scheduler.formattedTotalTugTimeToday()
             self.formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
-            self.formattedTimeOfNextTug = scheduler.formattedTimeOfNextTug()
-            self.sessionsToday = scheduler.todaySessionCount
         }
     }
     
-    func tugNowTug() -> Tug {
-        
-        let duration = prefs.tugDuration.converted(to: .seconds).value
-        let tugDelta = prefs.tugInterval.converted(to: .seconds).value / 10
-        let now = Date()
-        
-        if let nextTugTime = scheduler.timeOfNextTug(), nextTugTime.timeIntervalSinceNow.magnitude < tugDelta {
-            
-            return Tug(scheduledFor: nextTugTime, scheduledDuration: duration, start: now, state: .started)
-            
-        } else {
-            
-            return Tug(scheduledFor: nil, scheduledDuration: duration, start: now, state: .started)
-        }
-    }
+//    func tugNowTug() -> Tug {
+//        
+//        let duration = prefs.tugDuration.converted(to: .seconds).value
+//        let tugDelta = prefs.tugInterval.converted(to: .seconds).value / 10
+//        let now = Date()
+//        
+//        if let nextTugTime = scheduler.timeOfNextTug(), nextTugTime.timeIntervalSinceNow.magnitude < tugDelta {
+//            
+//            return Tug(scheduledFor: nextTugTime, scheduledDuration: duration, start: now, state: .started)
+//            
+//        } else {
+//            
+//            return Tug(scheduledFor: nil, scheduledDuration: duration, start: now, state: .started)
+//        }
+//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -150,11 +147,19 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        TabView {
-            HomeView(config: Config(forTest: true))
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
+        Group {
+            TabView {
+                HomeView(config: Config(forTest: true))
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+            }
+            TabView {
+                HomeView(config: Config(forTest: true))
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+            }
         }
     }
 }

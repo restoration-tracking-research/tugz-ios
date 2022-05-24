@@ -322,6 +322,8 @@ struct OnboardingSubview: View {
                 TugScheduleView(title: "What's your ideal schedule?",
                                 subtitle: "We'll send you notifications to help you meet your goals.",
                                 userPrefs: userPrefs)
+                
+                Spacer(minLength: 55)
             }
         }
         .navigationBarHidden(true)

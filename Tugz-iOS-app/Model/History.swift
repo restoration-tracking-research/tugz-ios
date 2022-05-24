@@ -30,7 +30,7 @@ final class History: NSObject, Codable, ObservableObject {
     
     private let jsonEncoder = JSONEncoder()
     
-    static func load() -> History {
+    static func loadFromStore() -> History {
         
         guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
             

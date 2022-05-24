@@ -14,17 +14,21 @@ struct TugzApp: App {
     @Environment(\.scenePhase) var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    let config: Config
+    @State var config = Config()
     
-    init() {
-        config = Config()
+    var onboarding: some View {
+        OnboardingViewPure(onboarding: Onboarding(prefs: config.prefs, onDone: {
+            print("done")
+            config.hasSeenOnboarding = true
+        }))
+        .environmentObject(config.prefs)
     }
 
     var body: some Scene {
         
         WindowGroup {
             
-            if config.hasSeenOnboarding {
+//            if config.hasSeenOnboarding {
 
                 TabBarHostingView(config: config)
                     .onAppear {
@@ -63,18 +67,13 @@ struct TugzApp: App {
                     .onOpenURL { url in
                         print(url)
                     }
+                    .sheet(isPresented: $config.hasSeenOnboarding) {
+                        onboarding
+                    }
                 
-            } else {
-                
-                OnboardingViewPure(onboarding: Onboarding(prefs: config.prefs, onDone: {
-                    print("done")
-                    config.hasSeenOnboarding = true
-                }))
-                .environmentObject(config.prefs)
-                
-//                OnboardingView()
-//                    .environmentObject(config.prefs)
-            }
+//            } else {
+            
+            
         }
     }
 }

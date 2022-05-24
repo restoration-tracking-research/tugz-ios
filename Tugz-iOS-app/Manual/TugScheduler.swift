@@ -141,13 +141,7 @@ extension TugScheduler {
     }
     
     func formattedTotalTugTimeToday() -> String {
-        if totalTugTimeToday < 60 {
-            return "\(Int(totalTugTimeToday)) sec"
-        }
-        if totalTugTimeToday < oneHourInSeconds {
-            return "\(totalTugTimeToday.minute) min"
-        }
-        return "\(totalTugTimeToday.hour) h \(totalTugTimeToday.minute) min"
+        format(totalTugTimeToday)
     }
     
     func formattedPercentDoneToday() -> String {
@@ -155,5 +149,20 @@ extension TugScheduler {
             return "\(percentDoneToday * 100) %"
         }
         return "-"
+    }
+    
+    func formattedGoalTimeToday() -> String {
+        "of \(format(prefs.dailyGoalTugTime.converted(to: .seconds).value)) goal"
+    }
+    
+    private func format(_ timeInterval: TimeInterval) -> String {
+        
+        if timeInterval < 60 {
+            return "\(Int(timeInterval)) sec"
+        }
+        if timeInterval < oneHourInSeconds {
+            return "\(timeInterval.minute) min"
+        }
+        return "\(timeInterval.hour) h \(timeInterval.minute) min"
     }
 }

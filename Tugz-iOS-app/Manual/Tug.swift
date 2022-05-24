@@ -148,7 +148,7 @@ final class Tug: Codable, Identifiable {
     
     func startTug() {
         
-        assert(state == .due)
+        assert(state == .due || state == .scheduled)
         
         start = Date()
         state = .started

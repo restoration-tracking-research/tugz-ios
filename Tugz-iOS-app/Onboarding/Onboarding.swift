@@ -75,8 +75,8 @@ class Onboarding: ObservableObject {
     func goToNextPage() {
         
         guard currentPage.rawValue < pages.count - 1 else {
-            onDone()
             view.presentationMode.wrappedValue.dismiss()
+            onDone()
             return
         }
         

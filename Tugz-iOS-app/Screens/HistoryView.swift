@@ -75,7 +75,7 @@ struct HistoryView: View {
         
         ZStack {
             Color.yellow
-                .opacity(0.2)
+                .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             
             VStack {

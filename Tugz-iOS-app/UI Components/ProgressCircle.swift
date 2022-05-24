@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProgressCircle: View {
     
-    @Binding var progress: Double
+    var progress: Double
     
     var body: some View {
         ZStack {

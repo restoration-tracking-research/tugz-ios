@@ -8,39 +8,45 @@
 import Foundation
 import SwiftUI
 
-class Config {
-    let prefs: UserPrefs
-    let history: History
-    let scheduler: TugScheduler
-    let settings: DeviceSettings
+class Config: ObservableObject {
+    
+    @ObservedObject var prefs: UserPrefs
+    @ObservedObject var history: History
+    @ObservedObject var scheduler: TugScheduler
+    @ObservedObject var settings: DeviceSettings
     var navigator: Navigator!
-    var hasSeenOnboarding: Bool {
-        get {
-//            false
-            UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
-        }
-        set {
-            UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
+    
+    @Published var hasSeenOnboarding: Bool {
+        didSet {
+            UserDefaults.standard.set(hasSeenOnboarding, forKey: "hasSeenOnboarding")
         }
     }
     
     init() {
         
-        prefs = .loadFromStore()
-        history = .load()
-        scheduler = TugScheduler(prefs: prefs, history: history)
+        let prefs = UserPrefs.loadFromStore()
+        let history = History.loadFromStore()
+        let scheduler = TugScheduler(prefs: prefs, history: history)
+        self.prefs = prefs
+        self.history = history
+        self.scheduler = scheduler
+        
         settings = DeviceSettings.load()
+        hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
         navigator = Navigator(config: self)
     }
     
     init(forTest: Bool) {
         
         let h = History(tugs: [Tug.testTug()])
+        let prefs = UserPrefs(forTest: forTest)
         
-        prefs = UserPrefs()
         history = h
-        scheduler = TugScheduler(prefs: UserPrefs(), history: h)
+        scheduler = TugScheduler(prefs: prefs, history: h)
+        self.prefs = prefs
+        
         settings = DeviceSettings()
+        hasSeenOnboarding = true
         navigator = Navigator(config: self)
     }
 }
