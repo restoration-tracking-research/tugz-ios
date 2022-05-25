@@ -16,7 +16,7 @@ struct DeviceListView: View {
     
     @Binding var selectedDevice: Device
     
-//    @Binding var onlyShowOwned: Bool
+    @State var onlyShowOwned: Bool
     
     func devices(for category: DeviceCategory) -> [Device] {
         category.devices() //.filter { onlyShowOwned ? $0.userOwns : true }
@@ -46,9 +46,9 @@ struct DeviceListView: View {
 
 struct DeviceListView_Previews: PreviewProvider {
     
-//    @Binding var onlyShowOwned: Bool = Binding(.constant(true))
-    
     static var previews: some View {
-        DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse))) //, onlyShowOwned: $onlyShowOwned)
+        DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse)), onlyShowOwned: true)
+        
+        DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse)), onlyShowOwned: false)
     }
 }

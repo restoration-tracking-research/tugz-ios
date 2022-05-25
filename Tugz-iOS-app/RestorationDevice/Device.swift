@@ -36,7 +36,8 @@ enum DeviceCategory: String, Codable, CaseIterable, Identifiable {
 
 enum Device: String, Codable, CaseIterable, Identifiable {
     
-    var id: ObjectIdentifier { ObjectIdentifier(rawValue as NSString) }
+//    var id: ObjectIdentifier { ObjectIdentifier(rawValue as NSString) }
+    var id: String { rawValue }
     
     // Trad
     case TLC_Tugger

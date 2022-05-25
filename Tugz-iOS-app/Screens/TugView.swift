@@ -20,18 +20,18 @@ struct TugView: View {
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    @State var tug: Tug?
+    @State var tug: Tug
     @State var isPresented: Binding<Bool>
     
     var canStartTug: Bool {
-        tug?.state == .due || tug?.state == .scheduled
+        tug.state == .due || tug.state == .scheduled
+    }
+    
+    var headerTitle: String {
+        canStartTug ? "Ready to Tug?" : "Session in Progress"
     }
     
     var tugButtonTitle: String {
-        
-        guard let tug = tug else {
-            return ""
-        }
         
         if canStartTug {
             return "Tap to Start"
@@ -43,7 +43,7 @@ struct TugView: View {
     }
     
     var navSubtitleText: String {
-        if let scheduledFor = tug?.scheduledFor {
+        if let scheduledFor = tug.scheduledFor {
             return "Scheduled for \(formatter.string(from: scheduledFor))"
         } else {
             return "Scheduled manually"
@@ -56,7 +56,7 @@ struct TugView: View {
     
     init(config: Config, tug: Tug?, isPresented: Binding<Bool>) {
         self.config = config
-        self.tug = tug
+        self.tug = tug ?? Tug(scheduledFor: nil, scheduledDuration: config.prefs.tugDuration.converted(to: .seconds).value)
         self.isPresented = isPresented
         percentDone = tug?.percentDone ?? 0
     }
@@ -88,15 +88,29 @@ struct TugView: View {
                 
                 Spacer(minLength: 55)
                 
-                Text("Session in Progress")
+                Text(headerTitle)
                     .font(.largeTitle.bold())
                     .accessibilityAddTraits(.isHeader)
                 
                 Text(navSubtitleText)
                     .font(.subheadline)
+                    .padding(.bottom, 44)
+                
+                if canStartTug {
+                    
+                    /// Manual vs Device
+                    TugTypeSelectView(config: config, tug: tug, isManual: true)
+                    
+                } else {
+                
+                    ProgressCircle(progress: percentDone)
+                        .frame(width: 150.0, height: 150.0)
+                        .padding(22)
+                    
+                }
                 
                 Button {
-                    tug!.startTug()
+                    tug.startTug()
                 } label: {
                     Text(tugButtonTitle)
                         .frame(width: 250)
@@ -105,11 +119,7 @@ struct TugView: View {
                 .disabled(!canStartTug)
                 .padding(.vertical, 44)
                 
-                ProgressCircle(progress: percentDone)
-                    .frame(width: 150.0, height: 150.0)
-                    .padding(22)
-                
-                if let tug = tug, let start = tug.start {
+                if let start = tug.start {
                     VStack {
                         HStack {
                             Text("Started at")
@@ -134,14 +144,11 @@ struct TugView: View {
                         ActionSheet(title: Text("All Done?"), message: nil, buttons: [
                             .default(Text("Finish Tugging")) {
                                 
-                                self.tug!.endTug()
-                                config.history.tugs.append(self.tug!)
+                                tug.endTug()
+                                config.history.tugs.append(tug)
                                 config.history.save()
                                 
                                 self.isPresented.wrappedValue = false
-                                
-                                self.tug = nil
-                                
                                 self.timer.upstream.connect().cancel()
                             },
                             .cancel(Text("Keep Tugging"))
@@ -152,28 +159,23 @@ struct TugView: View {
                 Spacer()
             }
             .onReceive(timer) { _ in
-                self.percentDone = tug?.percentDone ?? 0
+                self.percentDone = tug.percentDone
             }
             .navigationBarBackButtonHidden(true)
-            .onAppear {
-                if tug == nil {
-                    tug = Tug(scheduledFor: nil, scheduledDuration: config.prefs.tugDuration.converted(to: .seconds).value)
-                }
-            }
         }
     }
 }
 
 struct TugView_Previews: PreviewProvider {
     static var previews: some View {
-//        NavigationView {
-            TugView(config: Config(forTest: true), tug: Tug.testTugInProgress(), isPresented: .constant(true))
+
+            TugView(config: Config(forTest: true), tug: Tug.testTug(), isPresented: .constant(true))
                 .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
                 .previewDisplayName("iPhone 12")
             
             TugView(config: Config(forTest: true), tug: Tug.testTugInProgress(), isPresented: .constant(true))
                 .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
                 .previewDisplayName("iPhone 12 Pro Max")
-//        }
+
     }
 }

@@ -61,6 +61,13 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     
     init(forTest: Bool) {
         super.init()
+        
+        userOwnedDevices = [
+            .DTR,
+            .Foreskinned_Air,
+            .Foreskinned_Gravity,
+            .HyperRestore_Direct_Air
+            ]
     }
     
     required init(from decoder: Decoder) throws {
@@ -83,7 +90,12 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         self.usesDevices = usesDevices
         self.tugInterval = Measurement(value: tugDuration, unit: UnitDuration.seconds)
         self.tugInterval = Measurement(value: tugInterval, unit: UnitDuration.seconds)
-        self.userOwnedDevices = userDevices ?? []
+        
+        if let userDevices = userDevices, !userDevices.isEmpty {
+            self.userOwnedDevices = userDevices
+        } else {
+            self.userOwnedDevices = Device.allCases
+        }
 
         if let dailyGoalTugTime = dailyGoalTugTime {
             self.dailyGoalTugTime = Measurement(value: dailyGoalTugTime, unit: UnitDuration.seconds)

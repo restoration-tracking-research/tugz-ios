@@ -12,15 +12,30 @@ enum Method: Codable {
     case device(device: Device)
 }
 
-enum ManualMethod: String, Codable, CaseIterable {
+enum ManualMethod: String, Codable, CaseIterable, Identifiable {
+    
+    var id: String { rawValue }
     
     case one
     case two
     case three
     case four
     case five
-    case andre
     case other
-    case unknown
+    
+    func displayName() -> String {
+        
+        switch self {
+        case .one,
+                .two,
+            .four,
+            .five:
+            return "Manual Method \(rawValue.capitalized)"
+        case .three:
+            return "Manual Method Three (Andre's Method)"
+        case .other:
+            return "Other"
+        }
+    }
 }
 
