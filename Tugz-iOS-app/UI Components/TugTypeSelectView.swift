@@ -56,6 +56,10 @@ struct TugTypeSelectView: View {
         isManual ? "Manual Method (tap to change)" : "Using a Device (tap to change)"
     }
     
+    var tugEndInfoString: String {
+        isManual ? "The app will record your manual session tug time." : "Your session will continue in the background until you come back and end it."
+    }
+    
     var body: some View {
         
         VStack {
@@ -92,6 +96,11 @@ struct TugTypeSelectView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, -40)
             }
+            
+            Text(tugEndInfoString)
+                .font(.footnote).italic()
+                .multilineTextAlignment(.center)
+                .padding()
         }
     }
 }
