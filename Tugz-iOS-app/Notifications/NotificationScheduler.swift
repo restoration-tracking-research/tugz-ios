@@ -24,6 +24,8 @@ struct NotificationScheduler {
     
     var components: Set<Calendar.Component> { [.calendar, .year, .month, .day, .hour, .minute, .timeZone] }
     
+    var dayComponents: Set<Calendar.Component> { [.calendar, .day, .hour, .minute, .timeZone] }
+    
     func request(_ callback: ((Bool)->())?) {
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
@@ -36,23 +38,22 @@ struct NotificationScheduler {
     
     private func buildContent(tugTime: DateComponents, index: Int?, of max: Int?, textProvider: NotificationTextProvider = NotificationTextProvider()) -> UNMutableNotificationContent {
         
-        let notification = UNMutableNotificationContent()
+        let content = UNMutableNotificationContent()
         if #available(iOS 15.0, *) {
-            notification.interruptionLevel = .timeSensitive
+            content.interruptionLevel = .timeSensitive
         }
         
-        
-        notification.title = textProvider.title(for: index, of: max)
+        content.title = textProvider.title(for: index, of: max)
         if let date = Calendar.current.date(from: tugTime) {
-            notification.subtitle = "Scheduled for \(timeFormatter.string(from: date))"
+            content.subtitle = "Scheduled for \(timeFormatter.string(from: date))"
         }
-        notification.body = textProvider.body(for: index, of: max)
-        notification.categoryIdentifier = NotificationAction.tugCategoryIdentifier
+        content.body = textProvider.body(for: index, of: max)
+        content.categoryIdentifier = NotificationAction.tugCategoryIdentifier
         if let index = index, let max = max {
-            notification.userInfo = ["index": index, "max": max]
+            content.userInfo = ["index": index, "max": max]
         }
         
-        return notification
+        return content
     }
     
     func scheduleAlerts(addingDays: Int = 0) {
@@ -88,7 +89,9 @@ struct NotificationScheduler {
     
     private func schedule(notification: UNMutableNotificationContent, at date: Date) {
         
-        let scheduledTugComponents = Calendar.current.dateComponents(components, from: date)
+        let scheduledTugComponents = Calendar.current.dateComponents(dayComponents, from: date)
+        
+        
         
         /// Debug
 //        let scheduledTugComponents = Calendar.current.dateComponents(components, from: Date(timeIntervalSinceNow: 15))
@@ -96,7 +99,10 @@ struct NotificationScheduler {
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: scheduledTugComponents, repeats: true)
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: trigger)
+        /// Use the same identifier always, so that new ones replace old ones
+        let identifier = "uQPr9d56Ez2g7MymcATt3f8uuTPdRd56sMDbL4xp"
+        
+        let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in
             
@@ -122,18 +128,20 @@ extension NotificationScheduler {
     
     static func sendTestNotification() {
         
-        let now = Calendar.current.dateComponents([.calendar, .day, .month, .year, .hour, .minute, .second, .timeZone], from: Date())
+        let now = Calendar.current.dateComponents([.calendar, .day, .month, .year, .hour, .minute, .second, .timeZone], from: Date(timeIntervalSinceNow: 1))
 //        now.second = now.second ?? 0 + 10
         
-        let notification = UNMutableNotificationContent()
+        let content = UNMutableNotificationContent()
         
-        notification.title = "Test alert!"
-        notification.subtitle = "Can you see the subtitle?"
-        notification.body = "Tap to get started."
+        content.title = "Test alert!"
+        content.subtitle = "Can you see the subtitle?"
+        content.body = "Tap to get started."
+        content.categoryIdentifier = NotificationAction.tugCategoryIdentifier
+        content.userInfo = ["index": 0, "max": 10]
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: now, repeats: false)
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in
             

@@ -33,6 +33,8 @@ struct TugzApp: App {
                 TabBarHostingView(config: config)
                     .onAppear {
                         
+                        appDelegate.app = self
+                        
                         let noteSch = NotificationScheduler(settings: config.settings,
                                                             prefs: config.prefs,
                                                             scheduler: config.scheduler)
@@ -117,15 +119,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // The method will be called on the delegate only if the application is in the foreground. If the method is not implemented or the handler is not called in a timely manner then the notification will not be presented. The application can choose to have the notification presented as a sound, badge, alert and/or in the notification list. This decision should be based on whether the information in the notification is otherwise visible to the user.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print(notification)
+        completionHandler(.banner)
     }
     
 //    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
 //
-//
+////        print(notification)
+//        print("hi")
 //    }
-    
+//    
 //    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-//
+//        print(response)
 //    }
     
     

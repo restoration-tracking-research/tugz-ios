@@ -41,6 +41,11 @@ final class Navigator {
             case .turnOffForToday:
                 scheduler().cancelTodayAndRescheduleTomorrow()
             }
+            
+        } else {
+            
+            print("Couldn't handle action!")
+            print(response)
         }
     }
     
