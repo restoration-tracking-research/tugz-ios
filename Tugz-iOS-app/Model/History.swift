@@ -55,6 +55,23 @@ final class History: NSObject, Codable, ObservableObject {
         super.init()
     }
     
+    init(forTest: Bool) {
+        self.tugs = [
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true),
+            Tug.testTug(started: true, finished: true)
+            ]
+        
+        super.init()
+    }
+    
     func save() {
         
         do {
@@ -87,7 +104,7 @@ final class History: NSObject, Codable, ObservableObject {
             var found = false
             for (index, existingArr) in sortedByDate.enumerated() {
 
-                if Calendar.current.isDate(tug.start!, inSameDayAs: existingArr.first!.start!) {
+                if let start = tug.start, Calendar.current.isDate(start, inSameDayAs: existingArr.first!.start!) {
                     sortedByDate[index].append(tug)
                     found = true
                     continue

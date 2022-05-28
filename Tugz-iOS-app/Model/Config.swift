@@ -38,7 +38,7 @@ class Config: ObservableObject {
     
     init(forTest: Bool) {
         
-        let h = History(tugs: [Tug.testTug()])
+        let h = History(forTest: true)
         let prefs = UserPrefs(forTest: forTest)
         
         history = h

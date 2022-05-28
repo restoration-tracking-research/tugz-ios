@@ -26,12 +26,14 @@ struct HistorySection: View {
     var tugs: [Tug]
     
     var totalTimeFormatted: String {
-        TimeInterval(tugs.reduce(0) { $0 + $1.duration }).formatted
+        "\(TimeInterval(tugs.reduce(0) { $0 + $1.duration }).minute) min"
     }
     
     var header: some View {
         HStack {
             Text(tugs.first?.formattedDay ?? "Error")
+                .font(.subheadline)
+                .foregroundColor(.black)
             Spacer()
             Text(totalTimeFormatted)
         }

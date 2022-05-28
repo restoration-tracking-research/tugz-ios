@@ -22,7 +22,12 @@ final class Navigator {
     }
     
     func appLaunchedFromNotification(response: UNNotificationResponse) {
-            
+        
+        if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            needsToStartTugFromNotification = true
+            return
+        }
+        
         let userInfo = response.notification.request.content.userInfo
         
         if let action = NotificationAction.Action(rawValue: response.actionIdentifier) {

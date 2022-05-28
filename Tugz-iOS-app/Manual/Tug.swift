@@ -172,8 +172,16 @@ final class Tug: Codable, Identifiable {
 
 extension Tug {
     
-    static func testTug() -> Tug {
-        Tug(scheduledFor: Date(), scheduledDuration: 60)
+    static func testTug(started: Bool = false, finished: Bool = false) -> Tug {
+        
+        let t = Tug(scheduledFor: Date(timeIntervalSinceNow: -Double.random(in: 0..<806400)), scheduledDuration: 60)
+        if started {
+            t.start = t.scheduledFor
+        }
+        if finished {
+            t.end = t.start?.advanced(by: t.scheduledDuration)
+        }
+        return t
     }
     
     static func testTugInProgress() -> Tug {
