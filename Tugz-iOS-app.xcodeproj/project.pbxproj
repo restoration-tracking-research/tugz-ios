@@ -86,7 +86,6 @@
 		C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
-		C08F1E5927121F3C00EFEE35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C08F1E5A271220DB00EFEE35 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C08F1E5C271221CC00EFEE35 /* TugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugView.swift; sourceTree = "<group>"; };
 		C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
@@ -209,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				C0DDCB00280D89200066B423 /* Tugz-iOS-app.entitlements */,
-				C08F1E5927121F3C00EFEE35 /* Info.plist */,
 				C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */,
 				C06DFFE4270B5A97006CEBA0 /* TugzApp.swift */,
 				C0AF64E327148A7400162216 /* Navigator.swift */,
