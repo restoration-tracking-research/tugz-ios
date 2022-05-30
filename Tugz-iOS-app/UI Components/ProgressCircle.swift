@@ -16,12 +16,12 @@ struct ProgressCircle: View {
             Circle()
                 .stroke(lineWidth: 20.0)
                 .opacity(0.3)
-                .foregroundColor(.red)
+                .foregroundColor(progress <= 1 ? .red : .green)
             
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
                 .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                .foregroundColor(.red)
+                .foregroundColor(progress <= 1 ? .red : .green)
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear, value: progress)
             

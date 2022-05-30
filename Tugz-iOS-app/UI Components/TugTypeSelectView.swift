@@ -31,24 +31,20 @@ struct TugTypeSelectView: View {
     
     @ObservedObject var config: Config
     
-    var prefs: UserPrefs { config.prefs }
+    private var prefs: UserPrefs { config.prefs }
     
     @State var tug: Tug
     
     @State var isManual: Bool
     
-    @State var manualMethod: ManualMethod? {
+    @State var manualMethod: ManualMethod = .other {
         didSet {
-            if let manualMethod = manualMethod {
-                tug.method = .manual(method: manualMethod)
-            }
+            tug.method = .manual(method: manualMethod)
         }
     }
-    @State var device: Device? {
+    @State var device: Device {
         didSet {
-            if let device = device {
-                tug.method = .device(device: device)
-            }
+            tug.method = .device(device: device)
         }
     }
     
@@ -58,6 +54,31 @@ struct TugTypeSelectView: View {
     
     var tugEndInfoString: String {
         isManual ? "The app will record your manual session tug time." : "Your session will continue in the background until you come back and end it."
+    }
+    
+    init(config: Config, tug: Tug) {
+        
+        self.config = config
+        self.tug = tug
+        
+        /// Default to whatever we used last
+        if case .device = config.history.lastTug?.method {
+            self.isManual = false
+        } else {
+            self.isManual = true
+        }
+        
+        if let lastManual = config.history.lastManualMethod {
+            self.manualMethod = lastManual
+        }
+        
+        if let lastDevice = config.history.lastDevice {
+            self.device = lastDevice
+        } else if let device = config.prefs.userOwnedDevices.first {
+            self.device = device
+        } else {
+            self.device = .DTR /// ??
+        }
     }
     
     var body: some View {
@@ -74,12 +95,13 @@ struct TugTypeSelectView: View {
                     .padding(.top, 20)
                 
                 Picker("", selection: $manualMethod) {
-                    ForEach(ManualMethod.allCases) { method in
+                    ForEach(ManualMethod.allCases, id: \.self) { method in
                         Text(method.rawValue.capitalized)
                     }
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
+                .id(manualMethod)
 
             } else {
 
@@ -102,6 +124,7 @@ struct TugTypeSelectView: View {
                 .multilineTextAlignment(.center)
                 .padding()
         }
+        .animation(.default)
     }
 }
 
@@ -110,10 +133,10 @@ struct TugTypeSelectView_Previews: PreviewProvider {
     static let config = Config(forTest: true)
     
     static var previews: some View {
-        TugTypeSelectView(config: config, tug: Tug.testTug(), isManual: true)
+        TugTypeSelectView(config: config, tug: Tug.testTug())
             .previewLayout(.sizeThatFits)
         
-        TugTypeSelectView(config: config, tug: Tug.testTug(), isManual: false)
+        TugTypeSelectView(config: config, tug: Tug.testTug())
             .previewLayout(.sizeThatFits)
     }
 }

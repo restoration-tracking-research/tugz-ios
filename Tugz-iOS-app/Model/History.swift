@@ -20,7 +20,7 @@ final class History: NSObject, Codable, ObservableObject {
     var lastTug: Tug? {
         tugs.last
     }
-    var tugs: [Tug] {
+    private(set) var tugs: [Tug] {
         didSet {
             self.tugs = tugs
                 .filter { $0.start != nil }
@@ -28,15 +28,31 @@ final class History: NSObject, Codable, ObservableObject {
         }
     }
     
+    var lastManualMethod: ManualMethod? {
+        
+        for tug in tugs.reversed() {
+            if case .manual(let method) = tug.method {
+                return method
+            }
+        }
+        return nil
+    }
+    
+    var lastDevice: Device? {
+        
+        for tug in tugs.reversed() {
+            if case .device(let device) = tug.method {
+                return device
+            }
+        }
+        return nil
+    }
+    
     private let jsonEncoder = JSONEncoder()
     
     static func loadFromStore() -> History {
         
         guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
-            
-            /// TEMP DEBUG DATA
-//            return History(tugs: [Tug(scheduledFor: Date(timeIntervalSinceNow: -86400), scheduledDuration: 60, start: Date(timeIntervalSinceNow: -86400), end: Date(timeIntervalSinceNow: 86300)),
-//                                  Tug(scheduledFor: Date(timeIntervalSinceNow: -3000), scheduledDuration: 60, start: Date(timeIntervalSinceNow: -3000), end: Date(timeIntervalSinceNow: -2000))])
             return History(tugs: [])
         }
         
@@ -70,6 +86,10 @@ final class History: NSObject, Codable, ObservableObject {
             ]
         
         super.init()
+    }
+    
+    func append(_ tug: Tug) {
+        tugs.append(tug)
     }
     
     func save() {

@@ -100,7 +100,7 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: TugView(config: config, tug: nil, isPresented: $navToTugNowActive),
+                    NavigationLink(destination: TugView(config: config, isPresented: $navToTugNowActive),
                                    isActive: $navToTugNowActive) {
                         
                         Button {
@@ -123,22 +123,6 @@ struct HomeView: View {
             self.formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
         }
     }
-    
-//    func tugNowTug() -> Tug {
-//        
-//        let duration = prefs.tugDuration.converted(to: .seconds).value
-//        let tugDelta = prefs.tugInterval.converted(to: .seconds).value / 10
-//        let now = Date()
-//        
-//        if let nextTugTime = scheduler.timeOfNextTug(), nextTugTime.timeIntervalSinceNow.magnitude < tugDelta {
-//            
-//            return Tug(scheduledFor: nextTugTime, scheduledDuration: duration, start: now, state: .started)
-//            
-//        } else {
-//            
-//            return Tug(scheduledFor: nil, scheduledDuration: duration, start: now, state: .started)
-//        }
-//    }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -28,7 +28,13 @@ private let dayFormatter: DateFormatter = {
     return df
 }()
 
-final class Tug: Codable, Identifiable {
+final class Tug: Codable, Identifiable, Equatable, ObservableObject {
+    
+    let id = UUID()
+    
+    static func == (lhs: Tug, rhs: Tug) -> Bool {
+        lhs.id == rhs.id
+    }
     
     enum State: String {
         case scheduled
@@ -49,10 +55,10 @@ final class Tug: Codable, Identifiable {
     
     let scheduledFor: Date?
     let scheduledDuration: TimeInterval
-    var start: Date?
-    var end: Date?
-    var state: State
-    var method: Method?
+    @Published var start: Date?
+    @Published var end: Date?
+    @Published var state: State
+    @Published var method: Method?
     
     var formattedStartTime: String {
         if let start = start {
@@ -88,6 +94,8 @@ final class Tug: Codable, Identifiable {
     var duration: TimeInterval {
         if let start = start, let end = end {
             return end.timeIntervalSince(start)
+        } else if let start = start {
+            return -start.timeIntervalSinceNow
         }
         return 0
     }
@@ -113,7 +121,7 @@ final class Tug: Codable, Identifiable {
     
     init(scheduledFor: Date?, scheduledDuration: TimeInterval, start: Date? = nil, end: Date? = nil, state: State = .scheduled) {
         self.scheduledFor = scheduledFor
-        self.scheduledDuration = scheduledDuration
+        self.scheduledDuration = 5 //scheduledDuration
         self.start = start
         self.end = end
         self.state = state
@@ -188,3 +196,9 @@ extension Tug {
         Tug(scheduledFor: Date(timeIntervalSinceNow: -30), scheduledDuration: 360, start: Date(timeIntervalSinceNow: -10), state: .started)
     }
 }
+
+//extension Tug: CustomDebugStringConvertible {
+//    var debugDescription: String {
+//        "\(self) represents the post with title \"\(blogPost.title)\" and body \"\(blogPost.body)\""
+//    }
+//}

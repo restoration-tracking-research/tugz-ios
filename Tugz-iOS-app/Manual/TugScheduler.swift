@@ -71,6 +71,40 @@ final class TugScheduler: ObservableObject {
         self.prefs = prefs
         self.history = history
     }
+    
+    private var _activeTug: Tug? {
+        willSet {
+            if let _activeTug = _activeTug, let newValue = newValue {
+                assert(_activeTug.state != .started)
+                assert(newValue.state != .started)
+            }
+        }
+    }
+    
+    func activeTug() -> Tug {
+        
+        /// If there's an active tug, return it
+        if let _activeTug = _activeTug {
+            assert(_activeTug.state != .finished)
+            return _activeTug
+        }
+        
+        let tug: Tug
+        
+        /// If there's a tug scheduled for now, but not started, return that one
+        let duration = prefs.tugDuration.converted(to: .seconds).value
+        let tugDelta = prefs.tugInterval.converted(to: .seconds).value / 5
+        
+        if let nextTugTime = timeOfNextTug(), nextTugTime.timeIntervalSinceNow.magnitude < tugDelta {
+             tug = Tug(scheduledFor: nextTugTime, scheduledDuration: duration, state: .due)
+        } else {
+            /// Otherwise make a new one
+            tug = Tug(scheduledFor: nil, scheduledDuration: duration, state: .due)
+        }
+        
+        _activeTug = tug
+        return tug
+    }
 }
 
 /// Query

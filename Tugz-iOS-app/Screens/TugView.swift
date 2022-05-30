@@ -20,7 +20,7 @@ struct TugView: View {
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    @State var tug: Tug
+    @ObservedObject var tug: Tug
     @State var isPresented: Binding<Bool>
     
     var canStartTug: Bool {
@@ -34,11 +34,9 @@ struct TugView: View {
     var tugButtonTitle: String {
         
         if canStartTug {
-            return "Tap to Start"
-        } else if tug.duration < 60 {
-            return "Tugging for \(tug.duration.second) sec"
+            return "TAP TO START"
         } else {
-            return "Tugging for \(tug.duration.minute):\(tug.duration.second)"
+            return "Tugging for \(tug.duration.minuteSecond)"
         }
     }
     
@@ -54,11 +52,14 @@ struct TugView: View {
     
     @State private var showingActionSheet = false
     
-    init(config: Config, tug: Tug?, isPresented: Binding<Bool>) {
+    init(config: Config, tug: Tug? = nil, isPresented: Binding<Bool>) {
         self.config = config
-        self.tug = tug ?? Tug(scheduledFor: nil, scheduledDuration: config.prefs.tugDuration.converted(to: .seconds).value)
+        
+        let tug = tug ?? config.scheduler.activeTug()
+        
+        self.tug = tug
         self.isPresented = isPresented
-        percentDone = tug?.percentDone ?? 0
+        percentDone = tug.percentDone
     }
     
     var backButton: some View {
@@ -99,7 +100,7 @@ struct TugView: View {
                 if canStartTug {
                     
                     /// Manual vs Device
-                    TugTypeSelectView(config: config, tug: tug, isManual: true)
+                    TugTypeSelectView(config: config, tug: tug)
                     
                 } else {
                 
@@ -113,11 +114,15 @@ struct TugView: View {
                     tug.startTug()
                 } label: {
                     Text(tugButtonTitle)
-                        .frame(width: 250)
+                        .bold()
+                        .frame(width: 300, height: 55)
                 }
-                .buttonStyle(FilledButton())
+                .buttonStyle(.borderedProminent)
+                .foregroundColor(.white)
                 .disabled(!canStartTug)
-                .padding(.vertical, 44)
+                .background(.gray)
+                .cornerRadius(8)
+                .padding(.bottom, 44)
                 
                 if let start = tug.start {
                     VStack {
@@ -135,17 +140,22 @@ struct TugView: View {
                     Button {
                         showingActionSheet.toggle()
                     } label: {
-                        Text("Done!")
-                            .frame(width: 250)
+                        Text(tug.percentDone <= 1 ? "Stop" : "All Done")
+                            .bold()
+                            .frame(width: 300, height: 55)
+                            .background(.clear)
                     }
-                    .buttonStyle(FilledButton())
+                    .buttonStyle(.borderedProminent)
+                    .foregroundColor(.white)
+                    .background(tug.percentDone <= 1 ? Color.accentColor : .green)
+                    .cornerRadius(8)
                     .padding(.bottom, 75)
+                    .padding(.top, 22)
                     .actionSheet(isPresented: $showingActionSheet) {
                         ActionSheet(title: Text("All Done?"), message: nil, buttons: [
                             .default(Text("Finish Tugging")) {
                                 
                                 tug.endTug()
-                                config.history.tugs.append(tug)
                                 config.history.save()
                                 
                                 self.isPresented.wrappedValue = false

@@ -18,24 +18,31 @@ struct DeviceListView: View {
     
     @State var onlyShowOwned: Bool
     
+    @EnvironmentObject var userPrefs: UserPrefs
+    
     func devices(for category: DeviceCategory) -> [Device] {
-        category.devices() //.filter { onlyShowOwned ? $0.userOwns : true }
+        category.devices().filter { onlyShowOwned ? userPrefs.userOwnedDevices.contains($0) : true }
     }
     
     var body: some View {
         
         VStack {
+            
             List {
+                
                 ForEach(DeviceCategory.allCases) { category in
                     
-                    Section(header: Text(category.displayName)) {
+                    if !devices(for: category).isEmpty {
                         
-                        ForEach(devices(for: category)) { device in
+                        Section(header: Text(category.displayName)) {
                             
-                            Text(device.displayName)
-                                .onTapGesture {
-                                    selectedDevice = device
-                                }
+                            ForEach(devices(for: category)) { device in
+                                
+                                Text(device.displayName)
+                                    .onTapGesture {
+                                        selectedDevice = device
+                                    }
+                            }
                         }
                     }
                 }
@@ -48,7 +55,9 @@ struct DeviceListView_Previews: PreviewProvider {
     
     static var previews: some View {
         DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse)), onlyShowOwned: true)
+            .environmentObject(UserPrefs(forTest: true))
         
         DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse)), onlyShowOwned: false)
+            .environmentObject(UserPrefs(forTest: true))
     }
 }
