@@ -51,13 +51,13 @@ struct TugzApp: App {
                             config.navigator.appBackgrounded()
                             
                             /// Send debug test notification
-                            NotificationScheduler.sendTestNotification()
+//                            NotificationScheduler.sendTestNotification()
                             
                         case .inactive:
                             config.navigator.appBackgrounded()
                             
                             /// Send debug test notification
-                            NotificationScheduler.sendTestNotification()
+//                            NotificationScheduler.sendTestNotification()
                             
                         case .active:
                             break
