@@ -55,11 +55,16 @@ struct TugView: View {
     init(config: Config, tug: Tug? = nil, isPresented: Binding<Bool>) {
         self.config = config
         
-        let tug = tug ?? config.scheduler.activeTug()
+        if let tug = tug, tug.state != .finished {
+            self.tug = tug
+            percentDone = tug.percentDone
+        } else {
+            let tug = config.scheduler.activeTug()
+            self.tug = tug
+            percentDone = tug.percentDone
+        }
         
-        self.tug = tug
         self.isPresented = isPresented
-        percentDone = tug.percentDone
     }
     
     var backButton: some View {
@@ -156,7 +161,7 @@ struct TugView: View {
                             .default(Text("Finish Tugging")) {
                                 
                                 tug.endTug()
-                                config.history.save()
+                                config.history.append(tug)
                                 
                                 self.isPresented.wrappedValue = false
                                 self.timer.upstream.connect().cancel()

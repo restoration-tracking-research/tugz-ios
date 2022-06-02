@@ -100,7 +100,8 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: TugView(config: config, isPresented: $navToTugNowActive),
+                    NavigationLink(destination:
+                                    LazyView(TugView(config: config, isPresented: $navToTugNowActive)),
                                    isActive: $navToTugNowActive) {
                         
                         Button {

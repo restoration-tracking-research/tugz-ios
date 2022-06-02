@@ -90,6 +90,7 @@ final class History: NSObject, Codable, ObservableObject {
     
     func append(_ tug: Tug) {
         tugs.append(tug)
+        save()
     }
     
     func save() {

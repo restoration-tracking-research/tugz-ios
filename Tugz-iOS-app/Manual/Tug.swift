@@ -121,7 +121,7 @@ final class Tug: Codable, Identifiable, Equatable, ObservableObject {
     
     init(scheduledFor: Date?, scheduledDuration: TimeInterval, start: Date? = nil, end: Date? = nil, state: State = .scheduled) {
         self.scheduledFor = scheduledFor
-        self.scheduledDuration = 5 //scheduledDuration
+        self.scheduledDuration = scheduledDuration
         self.start = start
         self.end = end
         self.state = state

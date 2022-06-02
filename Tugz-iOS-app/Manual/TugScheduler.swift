@@ -85,8 +85,12 @@ final class TugScheduler: ObservableObject {
         
         /// If there's an active tug, return it
         if let _activeTug = _activeTug {
-            assert(_activeTug.state != .finished)
-            return _activeTug
+            
+            if _activeTug.state == .finished {
+                self._activeTug = nil
+            } else {
+                return _activeTug
+            }
         }
         
         let tug: Tug
