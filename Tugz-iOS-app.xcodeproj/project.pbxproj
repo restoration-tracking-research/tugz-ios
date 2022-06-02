@@ -25,6 +25,7 @@
 		C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */; };
 		C06DFFEC270B5A9B006CEBA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */; };
 		C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */; };
+		C074989C2845411600B82673 /* DeviceSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074989B2845411600B82673 /* DeviceSelectView.swift */; };
 		C08F1E5B271220DB00EFEE35 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C08F1E5A271220DB00EFEE35 /* Launch.storyboard */; };
 		C08F1E5D271221CC00EFEE35 /* TugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08F1E5C271221CC00EFEE35 /* TugView.swift */; };
 		C09191CC270BAD3D00EFBE34 /* SchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */; };
@@ -86,6 +87,7 @@
 		C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
+		C074989B2845411600B82673 /* DeviceSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectView.swift; sourceTree = "<group>"; };
 		C08F1E5A271220DB00EFEE35 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C08F1E5C271221CC00EFEE35 /* TugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugView.swift; sourceTree = "<group>"; };
 		C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerTests.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				C0BE55F52721F22F00B38112 /* SettingsView.swift */,
 				C0BE55F72721F27300B38112 /* AboutView.swift */,
 				C0DDCB06280D96370066B423 /* DeviceListView.swift */,
+				C074989B2845411600B82673 /* DeviceSelectView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */,
 				C03496E127854D6B0084C604 /* Config.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */,
+				C074989C2845411600B82673 /* DeviceSelectView.swift in Sources */,
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
 				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
 				C0F3583E28393D2F00B50A71 /* TugScheduleView.swift in Sources */,

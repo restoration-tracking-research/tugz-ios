@@ -14,15 +14,7 @@ import SwiftUI
 
 struct DeviceListView: View {
     
-    @Binding var selectedDevice: Device
-    
-    @State var onlyShowOwned: Bool
-    
     @EnvironmentObject var userPrefs: UserPrefs
-    
-    func devices(for category: DeviceCategory) -> [Device] {
-        category.devices().filter { onlyShowOwned ? userPrefs.userOwnedDevices.contains($0) : true }
-    }
     
     var body: some View {
         
@@ -32,16 +24,23 @@ struct DeviceListView: View {
                 
                 ForEach(DeviceCategory.allCases) { category in
                     
-                    if !devices(for: category).isEmpty {
+                    Section(header: Text(category.displayName)) {
                         
-                        Section(header: Text(category.displayName)) {
+                        ForEach(category.devices()) { device in
                             
-                            ForEach(devices(for: category)) { device in
+                            HStack {
+                                
+                                Image(systemName: "checkmark")
+                                    .opacity(userPrefs.userOwnedDevices.contains(device) ? 1 : 0)
                                 
                                 Text(device.displayName)
-                                    .onTapGesture {
-                                        selectedDevice = device
-                                    }
+                            }
+                            .onTapGesture {
+                                if userPrefs.userOwnedDevices.contains(device) {
+                                    userPrefs.userOwnedDevices = userPrefs.userOwnedDevices.filter { $0 != device }
+                                } else {
+                                    userPrefs.userOwnedDevices.append(device)
+                                }
                             }
                         }
                     }
@@ -54,10 +53,7 @@ struct DeviceListView: View {
 struct DeviceListView_Previews: PreviewProvider {
     
     static var previews: some View {
-        DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse)), onlyShowOwned: true)
-            .environmentObject(UserPrefs(forTest: true))
-        
-        DeviceListView(selectedDevice: Binding(projectedValue: .constant(.Foreskinned_Workhorse)), onlyShowOwned: false)
+        DeviceListView()
             .environmentObject(UserPrefs(forTest: true))
     }
 }

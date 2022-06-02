@@ -23,7 +23,33 @@ struct SettingsView: View {
                 .opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             
-            TugScheduleView(userPrefs: config.prefs)            
+            VStack(alignment: .leading, spacing: 12) {
+                TugScheduleView(userPrefs: config.prefs)
+                
+                NavigationLink(destination: {
+                    DeviceListView()
+                        .environmentObject(config.prefs)
+                }, label: {
+                    
+                    ZStack {
+    
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(.white)
+                            .frame(height: 44)
+                            .padding(.horizontal, 20)
+                        
+                        HStack {
+                            Text("My Devices")
+                                .background(.white)
+                                .foregroundColor(.black)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding(.horizontal, 40)
+                    }
+                    .padding(.bottom, 55)
+                })
+            }
         }
         .navigationBarTitle(Text("Settings"))
         .onAppear {
