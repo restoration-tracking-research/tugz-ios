@@ -259,10 +259,9 @@ struct OnboardingSubview: View {
             Rectangle()
                 .fill(.white)
                 .edgesIgnoringSafeArea(.all)
-            
-            Form {
+
                 VStack(alignment: .leading, spacing: 20) {
-                    
+
                     HStack {
                         Spacer()
                         Image(systemName: "t.circle.fill")
@@ -270,42 +269,19 @@ struct OnboardingSubview: View {
                             .foregroundColor(.orange)
                         Spacer()
                     }
-                    
+
                     Text("Select the devices you own")
                         .font(.system(.largeTitle))
                         .bold()
                         .listRowSeparator(.hidden)
-                    
+
                     Text("If you get more devices in the future, you can add them later.")
                         .font(.system(.body))
                     
-                    ForEach(DeviceCategory.allCases) { category in
-                        
-                        Section(header: Text(category.displayName)) {
-                            
-                            ForEach(category.devices(), id: \.self) { device in
-                                
-                                Button(action: {
-                                    withAnimation {
-                                        if userPrefs.userOwnedDevices.contains(device) {
-                                            userPrefs.userOwnedDevices.removeAll { device.id == $0.id }
-                                        } else {
-                                            userPrefs.userOwnedDevices.append(device)
-                                        }
-                                    }
-                                }) {
-                                    HStack {
-                                        Image(systemName: "checkmark")
-                                            .opacity(userPrefs.userOwnedDevices.contains(device) ? 1.0 : 0.0)
-                                        Text(device.displayName)
-                                    }
-                                }
-                                .foregroundColor(.primary)
-                            }
-                        }
-                    }
-                }
+                    DeviceListView()
+                        .environmentObject(userPrefs)
             }
+                .padding()
         }
     }
     
