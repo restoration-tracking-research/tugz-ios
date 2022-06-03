@@ -20,62 +20,62 @@ struct TugzApp: App {
         OnboardingViewPure(onboarding: Onboarding(prefs: config.prefs, onDone: {
             print("done")
             config.hasSeenOnboarding = true
+            $presented.wrappedValue = false
         }))
         .environmentObject(config.prefs)
     }
+    
+    @State var presented = false
 
     var body: some Scene {
         
         WindowGroup {
             
-//            if config.hasSeenOnboarding {
-
-                TabBarHostingView(config: config)
-                    .onAppear {
-                        
-                        appDelegate.app = self
-                        
-                        let noteSch = NotificationScheduler(settings: config.settings,
-                                                            prefs: config.prefs,
-                                                            scheduler: config.scheduler)
-                        noteSch.request() { granted in
-                            if granted {
-                                noteSch.scheduleAlerts()
-                            }
+            TabBarHostingView(config: config)
+                .onAppear {
+                    
+                    appDelegate.app = self
+                    
+                    let noteSch = NotificationScheduler(settings: config.settings,
+                                                        prefs: config.prefs,
+                                                        scheduler: config.scheduler)
+                    noteSch.request() { granted in
+                        if granted {
+                            noteSch.scheduleAlerts()
                         }
                     }
-                    .onChange(of: scenePhase) { newPhase in
-                        switch newPhase {
-                            
-                        case .background:
-                            config.navigator.appBackgrounded()
-                            
-                            /// Send debug test notification
-//                            NotificationScheduler.sendTestNotification()
-                            
-                        case .inactive:
-                            config.navigator.appBackgrounded()
-                            
-                            /// Send debug test notification
-//                            NotificationScheduler.sendTestNotification()
-                            
-                        case .active:
-                            break
-                            
-                        @unknown default:
-                            fatalError("New thing here")
-                        }
+                }
+                .onChange(of: scenePhase) { newPhase in
+                    switch newPhase {
+                        
+                    case .background:
+                        config.navigator.appBackgrounded()
+                        
+                        /// Send debug test notification
+                        //                            NotificationScheduler.sendTestNotification()
+                        
+                    case .inactive:
+                        config.navigator.appBackgrounded()
+                        
+                        /// Send debug test notification
+                        //                            NotificationScheduler.sendTestNotification()
+                        
+                    case .active:
+                        break
+                        
+                    @unknown default:
+                        fatalError("New thing here")
                     }
-                    .onOpenURL { url in
-                        print(url)
-                    }
-                    .sheet(isPresented: $config.hasSeenOnboarding) {
-                        onboarding
-                    }
-                
-//            } else {
-            
-            
+                }
+                .onOpenURL { url in
+                    print(url)
+                }
+                .sheet(isPresented: $presented) {
+                    onboarding
+                }
+                .onAppear {
+                    $presented.wrappedValue = !config.hasSeenOnboarding
+                }
         }
     }
 }

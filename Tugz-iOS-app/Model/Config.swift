@@ -17,8 +17,8 @@ class Config: ObservableObject {
     var navigator: Navigator!
     
     @Published var hasSeenOnboarding: Bool {
-        didSet {
-            UserDefaults.standard.set(hasSeenOnboarding, forKey: "hasSeenOnboarding")
+        willSet {
+            UserDefaults.standard.set(newValue, forKey: "hasSeenOnboarding")
         }
     }
     
