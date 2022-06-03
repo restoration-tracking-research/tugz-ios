@@ -195,6 +195,13 @@ extension Tug {
     static func testTugInProgress() -> Tug {
         Tug(scheduledFor: Date(timeIntervalSinceNow: -30), scheduledDuration: 360, start: Date(timeIntervalSinceNow: -10), state: .started)
     }
+    
+    static func testDeviceTug() -> Tug {
+        let t = Tug(scheduledFor: Date(timeIntervalSinceNow: -30), scheduledDuration: 360, start: Date(timeIntervalSinceNow: -10), state: .started)
+        t.method = .device(device: .DTR)
+        return t
+    }
+    
 }
 
 //extension Tug: CustomDebugStringConvertible {

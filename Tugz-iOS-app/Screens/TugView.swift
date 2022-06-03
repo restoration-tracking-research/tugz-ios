@@ -107,7 +107,7 @@ struct TugView: View {
                     /// Manual vs Device
                     TugTypeSelectView(config: config, tug: tug)
                     
-                } else {
+                } else if case .manual(_) = tug.method {
                 
                     ProgressCircle(progress: percentDone)
                         .frame(width: 150.0, height: 150.0)
@@ -135,9 +135,14 @@ struct TugView: View {
                             Text("Started at")
                             Text(formatter.string(from: start))
                         }
-                        HStack {
-                            Text("Tugging until")
-                            Text(formatter.string(from: start.advanced(by: tug.scheduledDuration)))
+                        if case .manual(_) = tug.method {
+                            HStack {
+                                Text("Tugging until")
+                                Text(formatter.string(from: start.advanced(by: tug.scheduledDuration)))
+                            }
+                        } else {
+                            Text("Feel free to background the app; your session will continue until you stop it.")
+                                .padding()
                         }
                     }
                     Spacer()
@@ -191,6 +196,10 @@ struct TugView_Previews: PreviewProvider {
             TugView(config: Config(forTest: true), tug: Tug.testTugInProgress(), isPresented: .constant(true))
                 .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
                 .previewDisplayName("iPhone 12 Pro Max")
-
+        
+        
+        TugView(config: Config(forTest: true), tug: Tug.testDeviceTug(), isPresented: .constant(true))
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+            .previewDisplayName("iPhone SE")
     }
 }
