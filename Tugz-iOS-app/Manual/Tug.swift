@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CloudKit
 
 private let timeFormatter: DateFormatter = {
     let df = DateFormatter()
@@ -28,9 +29,9 @@ private let dayFormatter: DateFormatter = {
     return df
 }()
 
-final class Tug: Codable, Identifiable, Equatable, ObservableObject {
+final class Tug: Identifiable, Equatable, ObservableObject {
     
-    let id = UUID()
+    let id: CKRecord.ID
     
     static func == (lhs: Tug, rhs: Tug) -> Bool {
         lhs.id == rhs.id
@@ -42,6 +43,7 @@ final class Tug: Codable, Identifiable, Equatable, ObservableObject {
         case started
         case finished
         case skipped
+        case unknown
     }
     
     enum CodingKeys: String, CodingKey {
@@ -102,7 +104,7 @@ final class Tug: Codable, Identifiable, Equatable, ObservableObject {
     
     var percentDone: Double {
         switch state {
-        case .scheduled, .due, .skipped:
+        case .scheduled, .due, .skipped, .unknown:
             return 0
         case .started:
             if let start = start {
@@ -120,6 +122,10 @@ final class Tug: Codable, Identifiable, Equatable, ObservableObject {
     }
     
     init(scheduledFor: Date?, scheduledDuration: TimeInterval, start: Date? = nil, end: Date? = nil, state: State = .scheduled) {
+        
+        let record = CKRecord(recordType: "Tug")
+        
+        self.id = record.recordID
         self.scheduledFor = scheduledFor
         self.scheduledDuration = scheduledDuration
         self.start = start
@@ -127,31 +133,85 @@ final class Tug: Codable, Identifiable, Equatable, ObservableObject {
         self.state = state
     }
     
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
+    init(record: CKRecord) {
         
-        // Try decoding properties
-        scheduledFor = try values.decodeIfPresent(Date.self, forKey: .scheduledFor)
-        scheduledDuration = try values.decode(TimeInterval.self, forKey: .scheduledDuration)
-        start = try values.decodeIfPresent(Date.self, forKey: .start)
-        end = try values.decodeIfPresent(Date.self, forKey: .end)
-        let rawState = try values.decode(String.self, forKey: .state)
-        guard let state = State(rawValue: rawState) else {
-            throw DecodingError.valueNotFound(State.self, DecodingError.Context(codingPath: [CodingKeys.state], debugDescription: "State not found", underlyingError: nil))
+        id = record.recordID
+        
+        scheduledFor = record[CodingKeys.scheduledFor.stringValue]
+        if let duration = record[CodingKeys.scheduledDuration.stringValue] as? NSNumber {
+            scheduledDuration = duration.doubleValue
+        } else {
+            scheduledDuration = 3 * 60
         }
-        self.state = state
-        self.method = try values.decodeIfPresent(Method.self, forKey: .method)
+        start = record[CodingKeys.start.stringValue]
+        end = record[CodingKeys.end.stringValue]
+        
+        if let rawState = record[CodingKeys.state.stringValue] as? String, let state = State(rawValue: rawState) {
+            self.state = state
+        } else {
+            state = .unknown
+        }
+        
+        if let methodValue = record[CodingKeys.method.stringValue] as? String {
+            
+            if let manualMethod = ManualMethod(rawValue: methodValue) {
+                method = .manual(method: manualMethod)
+            } else if let device = Device(rawValue: methodValue) {
+                method = .device(device: device)
+            }
+        }
     }
     
-    public func encode(to encoder: Encoder) throws {
-        var values = encoder.container(keyedBy: CodingKeys.self)
+//    init(from decoder: Decoder) throws {
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//
+//        // Try decoding properties
+//        scheduledFor = try values.decodeIfPresent(Date.self, forKey: .scheduledFor)
+//        scheduledDuration = try values.decode(TimeInterval.self, forKey: .scheduledDuration)
+//        start = try values.decodeIfPresent(Date.self, forKey: .start)
+//        end = try values.decodeIfPresent(Date.self, forKey: .end)
+//        let rawState = try values.decode(String.self, forKey: .state)
+//        guard let state = State(rawValue: rawState) else {
+//            throw DecodingError.valueNotFound(State.self, DecodingError.Context(codingPath: [CodingKeys.state], debugDescription: "State not found", underlyingError: nil))
+//        }
+//        self.state = state
+//        self.method = try values.decodeIfPresent(Method.self, forKey: .method)
+//    }
+    
+//    public func encode(to encoder: Encoder) throws {
+//        var values = encoder.container(keyedBy: CodingKeys.self)
+//
+//        try values.encode(scheduledFor, forKey: .scheduledFor)
+//        try values.encode(scheduledDuration, forKey: .scheduledDuration)
+//        try values.encode(start, forKey: .start)
+//        try values.encode(end, forKey: .end)
+//        try values.encode(state.rawValue, forKey: .state)
+//        try values.encode(method, forKey: .method)
+//    }
+    
+    func save() async throws {
         
-        try values.encode(scheduledFor, forKey: .scheduledFor)
-        try values.encode(scheduledDuration, forKey: .scheduledDuration)
-        try values.encode(start, forKey: .start)
-        try values.encode(end, forKey: .end)
-        try values.encode(state.rawValue, forKey: .state)
-        try values.encode(method, forKey: .method)
+        let db = CKContainer.default().privateCloudDatabase
+        
+        let record = CKRecord(recordType: "Tug", recordID: id) // CKRecord(recordType: "Tug")
+//        let reference = CKRecord.Reference(recordID: record.recordID, action: .deleteSelf)
+        
+        record[CodingKeys.scheduledFor.stringValue] = scheduledFor
+        record[CodingKeys.scheduledDuration.stringValue] = scheduledDuration
+        record[CodingKeys.start.stringValue] = start
+        record[CodingKeys.end.stringValue] = end
+        record[CodingKeys.state.stringValue] = state.rawValue
+        
+        if let method = method {
+            switch method {
+            case .manual(let method):
+                record[CodingKeys.method.stringValue] = method.rawValue
+            case .device(let device):
+                record[CodingKeys.method.stringValue] = device.rawValue
+            }
+        }
+        
+        try await db.save(record)
     }
     
     func startTug() {

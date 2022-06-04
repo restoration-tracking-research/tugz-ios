@@ -45,6 +45,7 @@
 		C0C6CA8F282A2ECA00AE5EA3 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA8E282A2ECA00AE5EA3 /* FirebaseMessaging */; };
 		C0C6CA91282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0C6CA90282A2ECA00AE5EA3 /* FirebaseRemoteConfigSwift */; };
 		C0C8FD41284950DF00AC65C8 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8FD40284950DF00AC65C8 /* LazyView.swift */; };
+		C0C8FD43284BDAD700AC65C8 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8FD42284BDAD700AC65C8 /* Database.swift */; };
 		C0CA249D2819E45400AE9A65 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA249C2819E45400AE9A65 /* OnboardingView.swift */; };
 		C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */; };
 		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
@@ -103,6 +104,7 @@
 		C0BE55F52721F22F00B38112 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C0BE55F72721F27300B38112 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C0C8FD40284950DF00AC65C8 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		C0C8FD42284BDAD700AC65C8 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		C0CA249C2819E45400AE9A65 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubview.swift; sourceTree = "<group>"; };
 		C0DDA538272204A20033AFCD /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				C06D0017270BA2DF006CEBA0 /* DeviceSettings.swift */,
+				C0C8FD42284BDAD700AC65C8 /* Database.swift */,
 				C03496E027854D6B0084C604 /* Config.swift */,
 				C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */,
 				C06D001B270BA2FF006CEBA0 /* History.swift */,
@@ -419,6 +422,7 @@
 				C06D001E270BA322006CEBA0 /* TugScheduler.swift in Sources */,
 				C0DDCB07280D96370066B423 /* DeviceListView.swift in Sources */,
 				C0BE55F82721F27300B38112 /* AboutView.swift in Sources */,
+				C0C8FD43284BDAD700AC65C8 /* Database.swift in Sources */,
 				C0DDCB05280D8B6B0066B423 /* Photo.swift in Sources */,
 				C08F1E5D271221CC00EFEE35 /* TugView.swift in Sources */,
 				C03496D72777CB890084C604 /* NotificationAction.swift in Sources */,

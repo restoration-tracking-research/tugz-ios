@@ -6,12 +6,22 @@
 //
 
 import Foundation
+import CloudKit
 
 /*
  The record of past tugs
  */
 
-final class History: NSObject, Codable, ObservableObject {
+final class History: NSObject, ObservableObject {
+    
+    enum FetchState {
+        case notFetched
+        case fetching(date: Date)
+        case fetched(date: Date)
+        case error(error: Error)
+    }
+    
+    var fetchState = FetchState.notFetched
     
     enum CodingKeys: String, CodingKey {
         case tugs
@@ -20,6 +30,7 @@ final class History: NSObject, Codable, ObservableObject {
     var lastTug: Tug? {
         tugs.last
     }
+    
     private(set) var tugs: [Tug] {
         didSet {
             self.tugs = tugs
@@ -50,18 +61,34 @@ final class History: NSObject, Codable, ObservableObject {
     
     private let jsonEncoder = JSONEncoder()
     
-    static func loadFromStore() -> History {
+//    static func loadFromStore() -> History {
+//
+//        guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
+//            return History(tugs: [])
+//        }
+//
+//        do {
+//            let history = try JSONDecoder().decode(History.self, from: data)
+//            return history
+//        } catch {
+//            print(error)
+//            return History(tugs: [])
+//        }
+//    }
+    
+    override init() {
+        self.tugs = []
         
-        guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
-            return History(tugs: [])
-        }
-        
-        do {
-            let history = try JSONDecoder().decode(History.self, from: data)
-            return history
-        } catch {
-            print(error)
-            return History(tugs: [])
+        super.init()
+
+        Task.init {
+            do {
+                fetchState = .fetching(date: Date())
+                try await fetchFromCloud()
+            } catch {
+                print(error)
+                fetchState = .error(error: error)
+            }
         }
     }
     
@@ -88,19 +115,51 @@ final class History: NSObject, Codable, ObservableObject {
         super.init()
     }
     
+    func fetchFromCloud() async throws {
+        
+        /// We can only see our own tugs, so we can just request "all of them"
+        let query = CKQuery(recordType: "Tug", predicate: NSPredicate(value: true))
+        let db = CKContainer.default().privateCloudDatabase
+        
+        let tuple = try await db.records(matching: query)
+        
+        let tugs = try tuple.matchResults
+            .compactMap { try $1.get() }
+            .compactMap { Tug(record: $0 ) }
+        
+        self.tugs = tugs
+        
+        fetchState = .fetched(date: Date())
+    }
+    
     func append(_ tug: Tug) {
+        
         tugs.append(tug)
-        save()
+        Task.init {
+            do {
+                try await tug.save()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func save() {
         
-        do {
-            let data = try jsonEncoder.encode(self)
-            UserDefaults.standard.set(data, forKey: "History")
-        } catch {
-            print(error)
-        }
+        /// I don't think we need to do 'save' anymore
+        
+//        CKContainer.default().privateCloudDatabase.sa
+        
+        /// CloudKit save
+
+        
+        /// UserDefaults save
+//        do {
+//            let data = try jsonEncoder.encode(self)
+//            UserDefaults.standard.set(data, forKey: "History")
+//        } catch {
+//            print(error)
+//        }
     }
     
     /// TODO provide summary stats per day
@@ -136,6 +195,8 @@ final class History: NSObject, Codable, ObservableObject {
                 sortedByDate.append([tug])
             }
         }
+        
+        print("History: \(sortedByDate.count) tugs \(includingToday ? "including today" : "not including today"). \(tugs.count) tugs total.")
 
         return sortedByDate
     }
