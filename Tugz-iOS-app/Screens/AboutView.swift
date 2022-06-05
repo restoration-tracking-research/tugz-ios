@@ -32,7 +32,6 @@ struct HowToUseView: View {
                 Spacer()
             }
         }
-        .navigationBarTitle(Text("How To Use"))
     }
 }
 
@@ -59,7 +58,6 @@ struct PrivacyView: View {
                 Spacer()
             }
         }
-        .navigationBarTitle(Text("Privacy"))
     }
 }
 
@@ -96,6 +94,7 @@ struct AboutView: View {
                         } label: {
                             Text("Privacy")
                         }
+                        .navigationBarTitle(Text("Privacy"))
 
                         Link(destination: URL(string: "https://www.patreon.com/restorationapp")!) {
                             HStack {
@@ -130,15 +129,13 @@ struct AboutView: View {
                         }
                     }
                     .headerProminence(.increased)
-                    
+                    .navigationBarTitle(Text("About"))
                 }
-//                .listRowBackground(Color.clear)
                 
                 Spacer()
                 
             }
         }
-        .navigationBarTitle(Text("About"))
     }
 }
 

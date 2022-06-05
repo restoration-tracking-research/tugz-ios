@@ -29,6 +29,8 @@ struct SettingsView: View {
                 NavigationLink(destination: {
                     DeviceListView()
                         .environmentObject(config.prefs)
+                        .navigationBarTitle(Text("My Devices"))
+
                 }, label: {
                     
                     ZStack {
@@ -48,10 +50,9 @@ struct SettingsView: View {
                         .padding(.horizontal, 40)
                     }
                     .padding(.bottom, 55)
-                })
+                    })
             }
         }
-        .navigationBarTitle(Text("Settings"))
         .onAppear {
             
             var components = Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())

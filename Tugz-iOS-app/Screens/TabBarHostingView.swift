@@ -28,6 +28,7 @@ struct TabBarHostingView: View {
             NavigationView {
                 HistoryView(config: config, history: config.history)
             }
+            .navigationBarTitle(Text("History"))
             .navigationBarHidden(true)
             .tabItem {
                 Label("History", systemImage: "text.book.closed")
@@ -35,6 +36,7 @@ struct TabBarHostingView: View {
             
             NavigationView {
                 SettingsView(config: config)
+                    .navigationBarTitle(Text("Settings"))
             }
             .navigationBarHidden(true)
             .tabItem {
@@ -44,6 +46,7 @@ struct TabBarHostingView: View {
             NavigationView {
                 AboutView()
             }
+            .navigationBarTitle(Text("About"))
             .navigationBarHidden(true)
             .tabItem {
                 Label("About", systemImage: "info.circle.fill")
