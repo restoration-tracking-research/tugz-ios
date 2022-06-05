@@ -28,8 +28,10 @@ extension TimeInterval {
     var formatted: String {
         if hour > 0 {
             return String(format:"%d h %02d m", hour, minute)
+        } else if minute > 0 {
+            return String(format:"%d m %02d s", minute, second)
         } else {
-            return String(format:"%02d m %02d s", minute, second)
+            return String(format:"%d s", second)
         }
     }
     

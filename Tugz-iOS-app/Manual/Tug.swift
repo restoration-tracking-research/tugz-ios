@@ -57,10 +57,22 @@ final class Tug: Identifiable, Equatable, ObservableObject {
     
     let scheduledFor: Date?
     let scheduledDuration: TimeInterval
-    @Published var start: Date?
-    @Published var end: Date?
-    @Published var state: State
-    @Published var method: Method?
+    var start: Date? {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    var end: Date? {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    var state: State {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    var method: Method? /// published causes an update loop, idk
     
     var formattedStartTime: String {
         if let start = start {

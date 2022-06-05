@@ -26,7 +26,7 @@ struct TabBarHostingView: View {
             }
             
             NavigationView {
-                HistoryView(config: config)
+                HistoryView(config: config, history: config.history)
             }
             .navigationBarHidden(true)
             .tabItem {

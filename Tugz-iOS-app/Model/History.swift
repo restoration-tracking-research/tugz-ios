@@ -23,6 +23,12 @@ final class History: NSObject, ObservableObject {
         case error(error: Error)
     }
     
+    private(set) var tugs: [Tug] {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
     private(set) var fetchState = FetchState.notFetched
     
     private let refreshInterval: TimeInterval = 60 * 60
@@ -33,14 +39,6 @@ final class History: NSObject, ObservableObject {
     
     var lastTug: Tug? {
         tugs.last
-    }
-    
-    private(set) var tugs: [Tug] {
-        didSet {
-            self.tugs = tugs
-                .filter { $0.start != nil }
-                .sorted { $0.start!.timeIntervalSince1970 > $1.start!.timeIntervalSince1970 }
-        }
     }
     
     var lastManualMethod: ManualMethod? {
@@ -138,6 +136,8 @@ final class History: NSObject, ObservableObject {
             let tugs = try tuple.matchResults
                 .compactMap { try $1.get() }
                 .compactMap { Tug(record: $0 ) }
+                .filter { $0.start != nil } /// Don't show scheduled ones
+                .sorted { $0.start!.timeIntervalSince1970 > $1.start!.timeIntervalSince1970 }
             
             self.tugs = tugs
             
@@ -151,7 +151,7 @@ final class History: NSObject, ObservableObject {
     
     func append(_ tug: Tug) {
         
-        tugs.append(tug)
+        tugs.insert(tug, at: 0)
         Task.init {
             do {
                 try await tug.save()

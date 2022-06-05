@@ -53,6 +53,8 @@ struct HistoryView: View {
     
     let config: Config
     
+    @ObservedObject var history: History
+    
     var todayHeader: some View {
         
         Text("Today")
@@ -86,7 +88,7 @@ struct HistoryView: View {
                     
                     Section(header: todayHeader, footer: todayFooter) {
                         
-                        let today = config.history.tugsToday()
+                        let today = history.tugsToday()
                         if today.isEmpty {
                             Text("Nothing yet today… 🤷‍♂️")
                         } else {
@@ -97,7 +99,7 @@ struct HistoryView: View {
                     }
                     .headerProminence(.increased)
                     
-                    ForEach(config.history.tugsByDay(includingToday: false).reversed()) {
+                    ForEach(history.tugsByDay(includingToday: false).reversed()) {
                         HistorySection(tugs: $0)
                     }
                     
@@ -113,6 +115,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(config: Config(forTest: true))
+        HistoryView(config: Config(forTest: true), history: Config(forTest: true).history)
     }
 }

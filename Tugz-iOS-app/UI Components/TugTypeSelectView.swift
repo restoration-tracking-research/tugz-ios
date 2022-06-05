@@ -62,12 +62,15 @@ struct TugTypeSelectView: View {
         
         if let lastManual = config.history.lastManualMethod {
             self.manualMethod = lastManual
+            tug.method = .manual(method: lastManual)
         }
         
         if let lastDevice = config.history.lastDevice {
             self.device = lastDevice
+            tug.method = .device(device: lastDevice)
         } else if let device = config.prefs.userOwnedDevices.first {
             self.device = device
+            tug.method = .device(device: device)
         } else {
             self.device = .DTR /// ??
         }
