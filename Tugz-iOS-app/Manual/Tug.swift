@@ -191,7 +191,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
     
     func save() async throws {
         
-        let db = CKContainer.default().privateCloudDatabase
+        let db = Database.privateDb
         
         let record = CKRecord(recordType: "Tug", recordID: id) // CKRecord(recordType: "Tug")
 //        let reference = CKRecord.Reference(recordID: record.recordID, action: .deleteSelf)
@@ -204,8 +204,8 @@ final class Tug: Identifiable, Equatable, ObservableObject {
         
         if let method = method {
             switch method {
-            case .manual(let method):
-                record[CodingKeys.method.stringValue] = method.rawValue
+            case .manual(let manualMethod):
+                record[CodingKeys.method.stringValue] = manualMethod.rawValue
             case .device(let device):
                 record[CodingKeys.method.stringValue] = device.rawValue
             }

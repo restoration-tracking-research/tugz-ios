@@ -14,6 +14,8 @@ import CloudKit
 
 final class History: NSObject, ObservableObject {
     
+    static let shared = History()
+    
     enum FetchState {
         case notFetched
         case fetching(date: Date)
@@ -21,7 +23,9 @@ final class History: NSObject, ObservableObject {
         case error(error: Error)
     }
     
-    var fetchState = FetchState.notFetched
+    private(set) var fetchState = FetchState.notFetched
+    
+    private let refreshInterval: TimeInterval = 60 * 60
     
     enum CodingKeys: String, CodingKey {
         case tugs
@@ -61,41 +65,12 @@ final class History: NSObject, ObservableObject {
     
     private let jsonEncoder = JSONEncoder()
     
-//    static func loadFromStore() -> History {
-//
-//        guard let data = UserDefaults.standard.object(forKey: "History") as? Data else {
-//            return History(tugs: [])
-//        }
-//
-//        do {
-//            let history = try JSONDecoder().decode(History.self, from: data)
-//            return history
-//        } catch {
-//            print(error)
-//            return History(tugs: [])
-//        }
-//    }
-    
-    override init() {
+    override private init() {
         self.tugs = []
         
         super.init()
 
-        Task.init {
-            do {
-                fetchState = .fetching(date: Date())
-                try await fetchFromCloud()
-            } catch {
-                print(error)
-                fetchState = .error(error: error)
-            }
-        }
-    }
-    
-    init(tugs: [Tug]) {
-        self.tugs = tugs
-        
-        super.init()
+        fetchIfNeeded()
     }
     
     init(forTest: Bool) {
@@ -115,21 +90,63 @@ final class History: NSObject, ObservableObject {
         super.init()
     }
     
-    func fetchFromCloud() async throws {
+    func fetchIfNeeded() {
+        
+        switch fetchState {
+            
+        case .notFetched, .error(_):
+            _fetchImpl()
+        case .fetching(let date), .fetched(let date):
+            if date.timeIntervalSinceNow < refreshInterval {
+                _fetchImpl()
+            }
+        }
+    }
+    
+    func _fetchImpl() {
+        Task.init {
+            await self.fetchFromCloud()
+        }
+    }
+    
+    func handle(error: Error) {
+        
+        fetchState = .error(error: error)
+        
+        /// TODO lol
+        print(error)
+        
+        
+        /// What could happen here?
+        /// Tug fails to save
+        /// Do we store it locally and try again?
+        /// Alert the user?
+    }
+    
+    func fetchFromCloud() async {
+        
+        fetchState = .fetching(date: Date())
         
         /// We can only see our own tugs, so we can just request "all of them"
         let query = CKQuery(recordType: "Tug", predicate: NSPredicate(value: true))
-        let db = CKContainer.default().privateCloudDatabase
+        let db = Database.privateDb
         
-        let tuple = try await db.records(matching: query)
-        
-        let tugs = try tuple.matchResults
-            .compactMap { try $1.get() }
-            .compactMap { Tug(record: $0 ) }
-        
-        self.tugs = tugs
-        
-        fetchState = .fetched(date: Date())
+        do {
+            
+            let tuple = try await db.records(matching: query)
+            
+            let tugs = try tuple.matchResults
+                .compactMap { try $1.get() }
+                .compactMap { Tug(record: $0 ) }
+            
+            self.tugs = tugs
+            
+            fetchState = .fetched(date: Date())
+            
+        } catch {
+            
+            handle(error: error)
+        }
     }
     
     func append(_ tug: Tug) {
@@ -139,27 +156,9 @@ final class History: NSObject, ObservableObject {
             do {
                 try await tug.save()
             } catch {
-                print(error)
+                handle(error: error)
             }
         }
-    }
-    
-    func save() {
-        
-        /// I don't think we need to do 'save' anymore
-        
-//        CKContainer.default().privateCloudDatabase.sa
-        
-        /// CloudKit save
-
-        
-        /// UserDefaults save
-//        do {
-//            let data = try jsonEncoder.encode(self)
-//            UserDefaults.standard.set(data, forKey: "History")
-//        } catch {
-//            print(error)
-//        }
     }
     
     /// TODO provide summary stats per day

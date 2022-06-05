@@ -25,7 +25,7 @@ class Config: ObservableObject {
     init() {
         
         let prefs = UserPrefs.loadFromStore()
-        let history = History() //.loadFromStore()
+        let history = History.shared
         let scheduler = TugScheduler(prefs: prefs, history: history)
         self.prefs = prefs
         self.history = history

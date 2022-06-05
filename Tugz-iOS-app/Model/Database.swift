@@ -9,7 +9,7 @@ import CloudKit
 
 struct Database {
     
-    static let container = CKContainer.default()
+    static let container = CKContainer(identifier: "iCloud.Tugz")
     static let publicDb = container.publicCloudDatabase
     static let privateDb = container.privateCloudDatabase
     

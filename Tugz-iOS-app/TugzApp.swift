@@ -61,7 +61,7 @@ struct TugzApp: App {
                         //                            NotificationScheduler.sendTestNotification()
                         
                     case .active:
-                        break
+                        History.shared.fetchIfNeeded()
                         
                     @unknown default:
                         fatalError("New thing here")
@@ -93,7 +93,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UITableViewCell.appearance().backgroundColor = .clear
         
         NotificationAction.register()
-
         
         return true
     }

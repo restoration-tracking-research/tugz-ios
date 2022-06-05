@@ -128,7 +128,7 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
         
-    static let h = History(tugs: [Tug.testTug()])
+    static let h = History(forTest: true)
     
     static var previews: some View {
         
