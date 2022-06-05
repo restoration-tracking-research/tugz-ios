@@ -37,16 +37,8 @@ struct TugTypeSelectView: View {
     
     @State var isManual: Bool
     
-    @State var manualMethod: ManualMethod = .other {
-        didSet {
-            tug.method = .manual(method: manualMethod)
-        }
-    }
-    @State var device: Device {
-        didSet {
-            tug.method = .device(device: device)
-        }
-    }
+    @State var manualMethod: ManualMethod = .other
+    @State var device: Device
     
     var toggleTitle: String {
         isManual ? "Manual Method (tap to change)" : "Using a Device (tap to change)"
@@ -102,6 +94,9 @@ struct TugTypeSelectView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 20)
                 .id(manualMethod)
+                .onChange(of: manualMethod) { newValue in
+                    tug.method = .manual(method: newValue)
+                }
 
             } else {
 
@@ -117,6 +112,9 @@ struct TugTypeSelectView: View {
                 .pickerStyle(.inline)
                 .padding(.horizontal, 20)
                 .padding(.vertical, -40)
+                .onChange(of: device) { newValue in
+                    tug.method = .device(device: newValue)
+                }
             }
             
             Text(tugEndInfoString)

@@ -13,18 +13,8 @@ struct TugScheduleView: View {
     let subtitle: String? // "We'll send you notifications to help you meet your goals."
     @ObservedObject var userPrefs: UserPrefs
     
-    @State var firstTugTime = Date() {
-        didSet {
-            userPrefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: firstTugTime)
-        }
-    }
-    
-    @State var lastTugTime = Date() {
-        didSet {
-            userPrefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: lastTugTime)
-        }
-    }
-    
+    @State var firstTugTime = Date()
+    @State var lastTugTime = Date()
     @State private var tugDuration: TimeInterval
     @State private var tugInterval: TimeInterval
     

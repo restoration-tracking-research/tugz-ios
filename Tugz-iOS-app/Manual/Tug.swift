@@ -162,33 +162,6 @@ final class Tug: Identifiable, Equatable, ObservableObject {
         }
     }
     
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//
-//        // Try decoding properties
-//        scheduledFor = try values.decodeIfPresent(Date.self, forKey: .scheduledFor)
-//        scheduledDuration = try values.decode(TimeInterval.self, forKey: .scheduledDuration)
-//        start = try values.decodeIfPresent(Date.self, forKey: .start)
-//        end = try values.decodeIfPresent(Date.self, forKey: .end)
-//        let rawState = try values.decode(String.self, forKey: .state)
-//        guard let state = State(rawValue: rawState) else {
-//            throw DecodingError.valueNotFound(State.self, DecodingError.Context(codingPath: [CodingKeys.state], debugDescription: "State not found", underlyingError: nil))
-//        }
-//        self.state = state
-//        self.method = try values.decodeIfPresent(Method.self, forKey: .method)
-//    }
-    
-//    public func encode(to encoder: Encoder) throws {
-//        var values = encoder.container(keyedBy: CodingKeys.self)
-//
-//        try values.encode(scheduledFor, forKey: .scheduledFor)
-//        try values.encode(scheduledDuration, forKey: .scheduledDuration)
-//        try values.encode(start, forKey: .start)
-//        try values.encode(end, forKey: .end)
-//        try values.encode(state.rawValue, forKey: .state)
-//        try values.encode(method, forKey: .method)
-//    }
-    
     func save() async throws {
         
         let db = Database.privateDb
