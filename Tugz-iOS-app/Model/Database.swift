@@ -13,5 +13,18 @@ struct Database {
     static let publicDb = container.publicCloudDatabase
     static let privateDb = container.privateCloudDatabase
     
+    static var userRecordId: CKRecord.ID?
     
+    static func getUserRecordId(_ completion: @escaping (CKRecord.ID?)->Void) {
+        
+        if let userRecordId = userRecordId {
+            completion(userRecordId)
+            return
+        }
+        
+        CKContainer.default().fetchUserRecordID { recordID, error in
+            userRecordId = recordID
+            completion(recordID)
+        }
+    }
 }

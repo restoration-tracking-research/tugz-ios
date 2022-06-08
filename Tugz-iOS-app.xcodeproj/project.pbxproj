@@ -13,6 +13,7 @@
 		C03496D72777CB890084C604 /* NotificationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D62777CB890084C604 /* NotificationAction.swift */; };
 		C03496D92778D14E0084C604 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D82778D14D0084C604 /* TimePicker.swift */; };
 		C03496E127854D6B0084C604 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496E027854D6B0084C604 /* Config.swift */; };
+		C04D024A284DE9AE006BF5FF /* NeedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04D0249284DE9AE006BF5FF /* NeedLoginView.swift */; };
 		C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D000E270B8577006CEBA0 /* TabBarHostingView.swift */; };
 		C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0010270BA216006CEBA0 /* ProgressCircle.swift */; };
 		C06D0013270BA245006CEBA0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D0012270BA245006CEBA0 /* FilledButton.swift */; };
@@ -75,6 +76,7 @@
 		C03496D62777CB890084C604 /* NotificationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAction.swift; sourceTree = "<group>"; };
 		C03496D82778D14D0084C604 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		C03496E027854D6B0084C604 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		C04D0249284DE9AE006BF5FF /* NeedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginView.swift; sourceTree = "<group>"; };
 		C06D000E270B8577006CEBA0 /* TabBarHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHostingView.swift; sourceTree = "<group>"; };
 		C06D0010270BA216006CEBA0 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		C06D0012270BA245006CEBA0 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				C0BE55F72721F27300B38112 /* AboutView.swift */,
 				C0DDCB06280D96370066B423 /* DeviceListView.swift */,
 				C074989B2845411600B82673 /* DeviceSelectView.swift */,
+				C04D0249284DE9AE006BF5FF /* NeedLoginView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				C006E6D7282A5D0C006ED199 /* Tooltip.swift in Sources */,
 				C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */,
 				C03496E127854D6B0084C604 /* Config.swift in Sources */,
+				C04D024A284DE9AE006BF5FF /* NeedLoginView.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */,
 				C0C8FD41284950DF00AC65C8 /* LazyView.swift in Sources */,
 				C074989C2845411600B82673 /* DeviceSelectView.swift in Sources */,

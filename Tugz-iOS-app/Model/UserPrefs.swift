@@ -35,6 +35,8 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         case dailyGoalTugTime
     }
     
+    private let store = NSUbiquitousKeyValueStore.default
+    
     @Published var usesManual = true
     @Published var usesDevices = false
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import CloudKit
 
 @main
 struct TugzApp: App {
@@ -20,12 +21,13 @@ struct TugzApp: App {
         OnboardingViewPure(onboarding: Onboarding(prefs: config.prefs, onDone: {
             print("done")
             config.hasSeenOnboarding = true
-            $presented.wrappedValue = false
+            $isOnboardingPresented.wrappedValue = false
         }))
         .environmentObject(config.prefs)
     }
     
-    @State var presented = false
+    @State var isOnboardingPresented = false
+    @State var isLoginPresented = false
 
     var body: some Scene {
         
@@ -70,11 +72,18 @@ struct TugzApp: App {
                 .onOpenURL { url in
                     print(url)
                 }
-                .sheet(isPresented: $presented) {
+                .sheet(isPresented: $isOnboardingPresented) {
                     onboarding
                 }
+                .sheet(isPresented: $isLoginPresented) {
+                    NeedLoginView()
+                }
                 .onAppear {
-                    $presented.wrappedValue = !config.hasSeenOnboarding
+                    $isOnboardingPresented.wrappedValue = !config.hasSeenOnboarding
+                    
+                    Database.getUserRecordId { recordId in
+                        $isLoginPresented.wrappedValue = recordId == nil
+                    }
                 }
         }
     }
