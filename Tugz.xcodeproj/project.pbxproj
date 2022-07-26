@@ -89,7 +89,7 @@
 		C06DFFE6270B5A97006CEBA0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tugz-iOS-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06DFFF1270B5A9B006CEBA0 /* TugzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TugzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
 		C074989B2845411600B82673 /* DeviceSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectView.swift; sourceTree = "<group>"; };
 		C08F1E5A271220DB00EFEE35 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
@@ -200,8 +200,8 @@
 		C06DFFD8270B5A97006CEBA0 = {
 			isa = PBXGroup;
 			children = (
-				C06DFFE3270B5A97006CEBA0 /* Tugz-iOS-app */,
-				C06DFFF4270B5A9B006CEBA0 /* Tugz-iOS-appTests */,
+				C06DFFE3270B5A97006CEBA0 /* Tugz */,
+				C06DFFF4270B5A9B006CEBA0 /* TugzTests */,
 				C06DFFE2270B5A97006CEBA0 /* Products */,
 				C09FB0A7282F7F7A009D3CED /* Frameworks */,
 			);
@@ -211,12 +211,12 @@
 			isa = PBXGroup;
 			children = (
 				C06DFFE1270B5A97006CEBA0 /* Tugz.app */,
-				C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */,
+				C06DFFF1270B5A9B006CEBA0 /* TugzTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C06DFFE3270B5A97006CEBA0 /* Tugz-iOS-app */ = {
+		C06DFFE3270B5A97006CEBA0 /* Tugz */ = {
 			isa = PBXGroup;
 			children = (
 				C0DDCB00280D89200066B423 /* Tugz-iOS-app.entitlements */,
@@ -235,7 +235,7 @@
 				C08F1E5A271220DB00EFEE35 /* Launch.storyboard */,
 				C06DFFEA270B5A9B006CEBA0 /* Preview Content */,
 			);
-			path = "Tugz-iOS-app";
+			path = Tugz;
 			sourceTree = "<group>";
 		};
 		C06DFFEA270B5A9B006CEBA0 /* Preview Content */ = {
@@ -246,14 +246,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		C06DFFF4270B5A9B006CEBA0 /* Tugz-iOS-appTests */ = {
+		C06DFFF4270B5A9B006CEBA0 /* TugzTests */ = {
 			isa = PBXGroup;
 			children = (
 				C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */,
 				C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */,
 				C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */,
 			);
-			path = "Tugz-iOS-appTests";
+			path = TugzTests;
 			sourceTree = "<group>";
 		};
 		C09191CD270C5B3D00EFBE34 /* Extensions */ = {
@@ -313,9 +313,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */ = {
+		C06DFFE0270B5A97006CEBA0 /* Tugz */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-app" */;
+			buildConfigurationList = C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz" */;
 			buildPhases = (
 				C06DFFDD270B5A97006CEBA0 /* Sources */,
 				C06DFFDE270B5A97006CEBA0 /* Frameworks */,
@@ -325,7 +325,7 @@
 			);
 			dependencies = (
 			);
-			name = "Tugz-iOS-app";
+			name = Tugz;
 			packageProductDependencies = (
 				C0C6CA88282A2ECA00AE5EA3 /* FirebaseAnalyticsSwift */,
 				C0C6CA8A282A2ECA00AE5EA3 /* FirebaseCrashlytics */,
@@ -337,9 +337,9 @@
 			productReference = C06DFFE1270B5A97006CEBA0 /* Tugz.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C06DFFF0270B5A9B006CEBA0 /* Tugz-iOS-appTests */ = {
+		C06DFFF0270B5A9B006CEBA0 /* TugzTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C06D0008270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appTests" */;
+			buildConfigurationList = C06D0008270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "TugzTests" */;
 			buildPhases = (
 				C06DFFED270B5A9B006CEBA0 /* Sources */,
 				C06DFFEE270B5A9B006CEBA0 /* Frameworks */,
@@ -350,9 +350,9 @@
 			dependencies = (
 				C06DFFF3270B5A9B006CEBA0 /* PBXTargetDependency */,
 			);
-			name = "Tugz-iOS-appTests";
+			name = TugzTests;
 			productName = "Tugz-iOS-appTests";
-			productReference = C06DFFF1270B5A9B006CEBA0 /* Tugz-iOS-appTests.xctest */;
+			productReference = C06DFFF1270B5A9B006CEBA0 /* TugzTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -374,7 +374,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C06DFFDC270B5A97006CEBA0 /* Build configuration list for PBXProject "Tugz-iOS-app" */;
+			buildConfigurationList = C06DFFDC270B5A97006CEBA0 /* Build configuration list for PBXProject "Tugz" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -390,8 +390,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */,
-				C06DFFF0270B5A9B006CEBA0 /* Tugz-iOS-appTests */,
+				C06DFFE0270B5A97006CEBA0 /* Tugz */,
+				C06DFFF0270B5A9B006CEBA0 /* TugzTests */,
 			);
 		};
 /* End PBXProject section */
@@ -477,7 +477,7 @@
 /* Begin PBXTargetDependency section */
 		C06DFFF3270B5A9B006CEBA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C06DFFE0270B5A97006CEBA0 /* Tugz-iOS-app */;
+			target = C06DFFE0270B5A97006CEBA0 /* Tugz */;
 			targetProxy = C06DFFF2270B5A9B006CEBA0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -625,7 +625,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.charliewilliams.Tugz;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-app";
 				PRODUCT_NAME = Tugz;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -659,7 +659,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.charliewilliams.Tugz;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz-iOS-app";
 				PRODUCT_NAME = Tugz;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -718,7 +718,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-app" */ = {
+		C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C06D0006270B5A9B006CEBA0 /* Debug */,
@@ -727,7 +727,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C06D0008270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz-iOS-appTests" */ = {
+		C06D0008270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "TugzTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C06D0009270B5A9B006CEBA0 /* Debug */,
@@ -736,7 +736,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C06DFFDC270B5A97006CEBA0 /* Build configuration list for PBXProject "Tugz-iOS-app" */ = {
+		C06DFFDC270B5A97006CEBA0 /* Build configuration list for PBXProject "Tugz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C06D0003270B5A9B006CEBA0 /* Debug */,

@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C06DFFE0270B5A97006CEBA0"
                BuildableName = "Tugz.app"
-               BlueprintName = "Tugz-iOS-app"
+               BlueprintName = "Tugz"
                ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C06DFFF0270B5A9B006CEBA0"
-               BuildableName = "Tugz-iOS-appTests.xctest"
-               BlueprintName = "Tugz-iOS-appTests"
+               BuildableName = "TugzTests.xctest"
+               BlueprintName = "TugzTests"
                ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,7 +57,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C06DFFE0270B5A97006CEBA0"
             BuildableName = "Tugz.app"
-            BlueprintName = "Tugz-iOS-app"
+            BlueprintName = "Tugz"
             ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,7 +74,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C06DFFE0270B5A97006CEBA0"
             BuildableName = "Tugz.app"
-            BlueprintName = "Tugz-iOS-app"
+            BlueprintName = "Tugz"
             ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
