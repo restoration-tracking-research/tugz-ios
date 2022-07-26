@@ -22,7 +22,7 @@ struct Database {
             return
         }
         
-        CKContainer.default().fetchUserRecordID { recordID, error in
+        container.fetchUserRecordID { recordID, error in
             userRecordId = recordID
             completion(recordID)
         }
