@@ -39,7 +39,12 @@ struct NeedLoginView: View {
                 
                 HStack(alignment: .center) {
                     Button("Log in now") {
+                        guard let url = URL(string: UIApplication.openSettingsURLString),
+                              UIApplication.shared.canOpenURL(url) else {
+                            return
+                        }
                         
+                        UIApplication.shared.open(url)
                     }
                     .buttonStyle(.borderedProminent)
                 }
