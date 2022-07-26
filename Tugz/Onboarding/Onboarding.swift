@@ -1,6 +1,6 @@
 //
 //  Onboarding.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 10/05/2022.
 //

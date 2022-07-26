@@ -1,6 +1,6 @@
 //
 //  Weekday.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 15/05/2022.
 //

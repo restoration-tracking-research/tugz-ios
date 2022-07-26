@@ -1,6 +1,6 @@
 //
 //  TugScheduleView.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 21/05/2022.
 //

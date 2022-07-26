@@ -1,6 +1,6 @@
 //
 //  ManualMethods.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 18/04/2022.
 //

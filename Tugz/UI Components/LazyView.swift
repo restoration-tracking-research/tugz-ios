@@ -1,6 +1,6 @@
 //
 //  LazyView.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 02/06/2022.
 //

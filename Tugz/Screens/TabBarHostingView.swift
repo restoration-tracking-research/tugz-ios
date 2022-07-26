@@ -1,6 +1,6 @@
 //
 //  TabView.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 04/10/2021.
 //

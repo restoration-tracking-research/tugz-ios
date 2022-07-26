@@ -1,6 +1,6 @@
 //
 //  TimePicker.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 26/12/2021.
 //

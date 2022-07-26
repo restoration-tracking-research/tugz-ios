@@ -1,6 +1,6 @@
 //
 //  DeviceSelectView.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 30/05/2022.
 //

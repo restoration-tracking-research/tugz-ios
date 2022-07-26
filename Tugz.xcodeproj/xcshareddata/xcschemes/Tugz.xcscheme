@@ -17,7 +17,21 @@
                BlueprintIdentifier = "C06DFFE0270B5A97006CEBA0"
                BuildableName = "Tugz.app"
                BlueprintName = "Tugz"
-               ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
+               ReferencedContainer = "container:Tugz.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C06DFFF0270B5A9B006CEBA0"
+               BuildableName = "TugzTests.xctest"
+               BlueprintName = "TugzTests"
+               ReferencedContainer = "container:Tugz.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,16 +42,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C06DFFF0270B5A9B006CEBA0"
-               BuildableName = "TugzTests.xctest"
-               BlueprintName = "TugzTests"
-               ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -58,7 +62,7 @@
             BlueprintIdentifier = "C06DFFE0270B5A97006CEBA0"
             BuildableName = "Tugz.app"
             BlueprintName = "Tugz"
-            ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
+            ReferencedContainer = "container:Tugz.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -75,7 +79,7 @@
             BlueprintIdentifier = "C06DFFE0270B5A97006CEBA0"
             BuildableName = "Tugz.app"
             BlueprintName = "Tugz"
-            ReferencedContainer = "container:Tugz-iOS-app.xcodeproj">
+            ReferencedContainer = "container:Tugz.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

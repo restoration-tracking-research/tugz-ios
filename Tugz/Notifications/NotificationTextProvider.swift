@@ -1,6 +1,6 @@
 //
 //  NotificationTextProvider.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 24/12/2021.
 //

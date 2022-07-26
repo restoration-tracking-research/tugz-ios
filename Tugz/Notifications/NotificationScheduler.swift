@@ -1,6 +1,6 @@
 //
 //  NotificationScheduler.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 06/10/2021.
 //

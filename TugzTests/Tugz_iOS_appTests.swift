@@ -1,6 +1,6 @@
 //
 //  Tugz_iOS_appTests.swift
-//  Tugz-iOS-appTests
+//  TugzTests
 //
 //  Created by Charlie Williams on 04/10/2021.
 //

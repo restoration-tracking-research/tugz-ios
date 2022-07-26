@@ -1,6 +1,6 @@
 //
 //  IntroPageViewController.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 27/04/2022.
 //

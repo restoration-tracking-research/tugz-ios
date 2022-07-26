@@ -1,6 +1,6 @@
 //
 //  NotificationAction.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 25/12/2021.
 //

@@ -1,6 +1,6 @@
 //
 //  NeedLoginView.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 06/06/2022.
 //

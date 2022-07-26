@@ -1,6 +1,6 @@
 //
 //  Config.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 04/01/2022.
 //

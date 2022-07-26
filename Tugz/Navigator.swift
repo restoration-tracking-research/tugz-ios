@@ -1,6 +1,6 @@
 //
 //  Navigator.swift
-//  Tugz-iOS-app
+//  Tugz
 //
 //  Created by Charlie Williams on 11/10/2021.
 //
