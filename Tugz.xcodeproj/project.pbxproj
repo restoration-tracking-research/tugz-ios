@@ -25,7 +25,7 @@
 		C06DFFE7270B5A97006CEBA0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFE6270B5A97006CEBA0 /* HomeView.swift */; };
 		C06DFFE9270B5A9B006CEBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */; };
 		C06DFFEC270B5A9B006CEBA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */; };
-		C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */; };
+		C06DFFF6270B5A9B006CEBA0 /* TugzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06DFFF5270B5A9B006CEBA0 /* TugzTests.swift */; };
 		C074989C2845411600B82673 /* DeviceSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074989B2845411600B82673 /* DeviceSelectView.swift */; };
 		C08F1E5B271220DB00EFEE35 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C08F1E5A271220DB00EFEE35 /* Launch.storyboard */; };
 		C08F1E5D271221CC00EFEE35 /* TugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08F1E5C271221CC00EFEE35 /* TugView.swift */; };
@@ -90,7 +90,7 @@
 		C06DFFE8270B5A9B006CEBA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C06DFFEB270B5A9B006CEBA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C06DFFF1270B5A9B006CEBA0 /* TugzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TugzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tugz_iOS_appTests.swift; sourceTree = "<group>"; };
+		C06DFFF5270B5A9B006CEBA0 /* TugzTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugzTests.swift; sourceTree = "<group>"; };
 		C074989B2845411600B82673 /* DeviceSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectView.swift; sourceTree = "<group>"; };
 		C08F1E5A271220DB00EFEE35 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		C08F1E5C271221CC00EFEE35 /* TugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugView.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 		C06DFFF4270B5A9B006CEBA0 /* TugzTests */ = {
 			isa = PBXGroup;
 			children = (
-				C06DFFF5270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift */,
+				C06DFFF5270B5A9B006CEBA0 /* TugzTests.swift */,
 				C09191CB270BAD3D00EFBE34 /* SchedulerTests.swift */,
 				C09191D4270DFDC000EFBE34 /* UserPrefsTests.swift */,
 			);
@@ -466,7 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C06DFFF6270B5A9B006CEBA0 /* Tugz_iOS_appTests.swift in Sources */,
+				C06DFFF6270B5A9B006CEBA0 /* TugzTests.swift in Sources */,
 				C09191D5270DFDC000EFBE34 /* UserPrefsTests.swift in Sources */,
 				C09191CC270BAD3D00EFBE34 /* SchedulerTests.swift in Sources */,
 			);

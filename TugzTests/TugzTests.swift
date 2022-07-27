@@ -1,5 +1,5 @@
 //
-//  Tugz_iOS_appTests.swift
+//  TugzTests.swift
 //  TugzTests
 //
 //  Created by Charlie Williams on 04/10/2021.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Tugz
 
-class Tugz_iOS_appTests: XCTestCase {
+class TugzTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
