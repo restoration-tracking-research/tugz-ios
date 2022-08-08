@@ -49,6 +49,8 @@
 		C0C8FD43284BDAD700AC65C8 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8FD42284BDAD700AC65C8 /* Database.swift */; };
 		C0CA249D2819E45400AE9A65 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA249C2819E45400AE9A65 /* OnboardingView.swift */; };
 		C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */; };
+		C0D591AE2892ADA60034A9C0 /* NewPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D591AD2892ADA60034A9C0 /* NewPhotoView.swift */; };
+		C0D591B02892ADFB0034A9C0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D591AF2892ADFB0034A9C0 /* ImagePicker.swift */; };
 		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
 		C0DDCAF9280D834D0066B423 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAF8280D834D0066B423 /* Device.swift */; };
 		C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAFE280D837D0066B423 /* ManualMethod.swift */; };
@@ -109,6 +111,8 @@
 		C0C8FD42284BDAD700AC65C8 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		C0CA249C2819E45400AE9A65 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C0CA24A02819E4D800AE9A65 /* OnboardingSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubview.swift; sourceTree = "<group>"; };
+		C0D591AD2892ADA60034A9C0 /* NewPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPhotoView.swift; sourceTree = "<group>"; };
+		C0D591AF2892ADFB0034A9C0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C0DDA538272204A20033AFCD /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		C0DDCAF8280D834D0066B423 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C0DDCAFE280D837D0066B423 /* ManualMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualMethod.swift; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 			isa = PBXGroup;
 			children = (
 				C0DDCB01280D8B5E0066B423 /* PhotoGallery.swift */,
+				C0D591AD2892ADA60034A9C0 /* NewPhotoView.swift */,
+				C0D591AF2892ADFB0034A9C0 /* ImagePicker.swift */,
 				C0DDCB04280D8B6B0066B423 /* Photo.swift */,
 			);
 			path = Photos;
@@ -446,6 +452,7 @@
 				C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */,
 				C03496E127854D6B0084C604 /* Config.swift in Sources */,
 				C04D024A284DE9AE006BF5FF /* NeedLoginView.swift in Sources */,
+				C0D591AE2892ADA60034A9C0 /* NewPhotoView.swift in Sources */,
 				C06D000F270B8577006CEBA0 /* TabBarHostingView.swift in Sources */,
 				C0C8FD41284950DF00AC65C8 /* LazyView.swift in Sources */,
 				C074989C2845411600B82673 /* DeviceSelectView.swift in Sources */,
@@ -457,6 +464,7 @@
 				C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */,
 				C0DDCAF9280D834D0066B423 /* Device.swift in Sources */,
 				C06DFFE5270B5A97006CEBA0 /* TugzApp.swift in Sources */,
+				C0D591B02892ADFB0034A9C0 /* ImagePicker.swift in Sources */,
 				C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */,
 				C006E6D5282A5BDF006ED199 /* Onboarding.swift in Sources */,
 			);

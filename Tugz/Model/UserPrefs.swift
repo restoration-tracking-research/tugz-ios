@@ -155,7 +155,9 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         
         guard let dateOfFirstTug = cal.date(from: firstTugTime),
               let dateOfLastTug = cal.date(from: lastTugTime) else {
-                  return []
+                  return [
+                    cal.dateComponents([.calendar, .year, .month, .day, .hour, .minute, .second], from: Date(timeIntervalSinceNow: 60))
+                    ]
               }
         
         var times = [DateComponents]()

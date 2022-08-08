@@ -40,7 +40,7 @@ struct NotificationScheduler {
         
         let content = UNMutableNotificationContent()
         if #available(iOS 15.0, *) {
-            content.interruptionLevel = .timeSensitive
+            content.interruptionLevel = .active
         }
         
         content.title = textProvider.title(for: index, of: max)
@@ -62,7 +62,17 @@ struct NotificationScheduler {
         
         let textProvider = NotificationTextProvider()
         
-        let all = prefs.allDailyTugTimes()
+        var all = prefs.allDailyTugTimes()
+        
+        /// Put in an alert one week and two weeks later in case you fall off the wagon
+        if let date = all.first?.date {
+            let oneWeek = Measurement(value: 7 * 24, unit: UnitDuration.hours).converted(to: .seconds).value
+            for n in 1...2 {
+                let later = Calendar.current.dateComponents([.calendar, .year, .month, .day, .hour, .minute, .second], from: date.advanced(by: oneWeek * Double(n)))
+                all.append(later)
+            }
+        }
+        
         for (index, tugTime) in all.enumerated() {
             
             let notification = buildContent(tugTime: tugTime, index: index, of: all.count, textProvider: textProvider)

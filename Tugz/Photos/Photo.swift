@@ -5,11 +5,12 @@
 //  Created by Charlie Williams on 18/04/2022.
 //
 
-import Foundation
 import UIKit
+import CloudKit
 
 final class Photo {
     
+    var id: CKRecord.ID
     var image: UIImage?
     var date: Date?
     var url: URL?
