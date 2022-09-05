@@ -22,7 +22,7 @@ struct PhotoGallery: View {
         ScrollView {
             LazyVGrid (columns: threeColumnLayout) {
                 ForEach(photos) { photo in
-                    
+                    Rectangle()
                 }
             }
         }

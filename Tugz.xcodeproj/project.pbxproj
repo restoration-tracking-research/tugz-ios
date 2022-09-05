@@ -54,7 +54,6 @@
 		C0DDA539272204A20033AFCD /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDA538272204A20033AFCD /* Array.swift */; };
 		C0DDCAF9280D834D0066B423 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAF8280D834D0066B423 /* Device.swift */; };
 		C0DDCAFF280D837D0066B423 /* ManualMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCAFE280D837D0066B423 /* ManualMethod.swift */; };
-		C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB01280D8B5E0066B423 /* PhotoGallery.swift */; };
 		C0DDCB05280D8B6B0066B423 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB04280D8B6B0066B423 /* Photo.swift */; };
 		C0DDCB07280D96370066B423 /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDCB06280D96370066B423 /* DeviceListView.swift */; };
 		C0F3583E28393D2F00B50A71 /* TugScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F3583D28393D2F00B50A71 /* TugScheduleView.swift */; };
@@ -459,7 +458,6 @@
 				C09191CF270C5B4900EFBE34 /* Date.swift in Sources */,
 				C06D0011270BA216006CEBA0 /* ProgressCircle.swift in Sources */,
 				C0F3583E28393D2F00B50A71 /* TugScheduleView.swift in Sources */,
-				C0DDCB02280D8B5E0066B423 /* PhotoGallery.swift in Sources */,
 				C06D001A270BA2EF006CEBA0 /* UserPrefs.swift in Sources */,
 				C06D0018270BA2DF006CEBA0 /* DeviceSettings.swift in Sources */,
 				C0DDCAF9280D834D0066B423 /* Device.swift in Sources */,

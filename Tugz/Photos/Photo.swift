@@ -8,7 +8,7 @@
 import UIKit
 import CloudKit
 
-final class Photo {
+final class Photo: Identifiable {
     
     var id: CKRecord.ID
     var image: UIImage?
@@ -18,10 +18,12 @@ final class Photo {
     init(image: UIImage, date: Date = Date()) {
         self.image = image
         self.date = date
+        id = CKRecord.ID()
     }
     
     init(url: URL) {
         self.url = url
+        id = CKRecord.ID()
         
         load() { _ in }
     }

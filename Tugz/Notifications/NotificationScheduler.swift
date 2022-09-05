@@ -64,6 +64,8 @@ struct NotificationScheduler {
         
         var all = prefs.allDailyTugTimes()
         
+        assert(!all.isEmpty, "Why don't you have tug times?")
+        
         /// Put in an alert one week and two weeks later in case you fall off the wagon
         if let date = all.first?.date {
             let oneWeek = Measurement(value: 7 * 24, unit: UnitDuration.hours).converted(to: .seconds).value
@@ -79,11 +81,13 @@ struct NotificationScheduler {
             
             guard let tugDate = Calendar.current.date(from: tugTime),
                   let scheduledTugTime = Calendar.current.date(byAdding: .day, value: addingDays, to: tugDate) else {
-                      
-                      print("wtf")
-                      return
-                  }
+                
+                print("wtf")
+                assert(false)
+                return
+            }
             
+            print("scheduling notification for \(scheduledTugTime)")
             schedule(notification: notification, at: scheduledTugTime)
         }
     }
@@ -104,7 +108,7 @@ struct NotificationScheduler {
         
         
         /// Debug
-//        let scheduledTugComponents = Calendar.current.dateComponents(components, from: Date(timeIntervalSinceNow: 15))
+        //        let scheduledTugComponents = Calendar.current.dateComponents(components, from: Date(timeIntervalSinceNow: 15))
         /// End debug
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: scheduledTugComponents, repeats: true)
@@ -139,7 +143,7 @@ extension NotificationScheduler {
     static func sendTestNotification() {
         
         let now = Calendar.current.dateComponents([.calendar, .day, .month, .year, .hour, .minute, .second, .timeZone], from: Date(timeIntervalSinceNow: 1))
-//        now.second = now.second ?? 0 + 10
+        //        now.second = now.second ?? 0 + 10
         
         let content = UNMutableNotificationContent()
         

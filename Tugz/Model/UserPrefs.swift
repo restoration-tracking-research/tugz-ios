@@ -32,7 +32,6 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         case firstTugTime
         case lastTugTime
         case userOwnedDevices
-        case dailyGoalTugTime
     }
     
     private let store = NSUbiquitousKeyValueStore.default
@@ -120,7 +119,6 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         try values.encode([firstTugTime.hour, firstTugTime.minute], forKey: .firstTugTime)
         try values.encode([lastTugTime.hour, lastTugTime.minute], forKey: .lastTugTime)
         try values.encode(userOwnedDevices, forKey: .userOwnedDevices)
-        try values.encode(dailyGoalTugTime.converted(to: .seconds).value, forKey: .dailyGoalTugTime)
     }
     
     static func loadFromStore() -> UserPrefs {
@@ -159,14 +157,14 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
               }
         
         var times = [DateComponents]()
-                
+        let nowComponents = cal.dateComponents([.calendar, .year, .month, .day], from: Date())
+        
         var dateOfNextTug = dateOfFirstTug
         var dailyComponents = firstTugTime
         while dateOfNextTug.timeIntervalSince(dateOfLastTug) < 0 {
             
             let nextTugComponents = cal.dateComponents([.hour, .minute, .second], from: dateOfNextTug)
-            let nowComponents = cal.dateComponents([.calendar, .year, .month, .day], from: Date())
-            
+
             dailyComponents.calendar = nowComponents.calendar
             dailyComponents.year = nowComponents.year
             dailyComponents.month = nowComponents.month
@@ -181,7 +179,12 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
             times.append(dailyComponents)
         }
         
-        times.append(lastTugTime)
+        var lastTime = lastTugTime
+        lastTime.calendar = nowComponents.calendar
+        lastTime.year = nowComponents.year
+        lastTime.month = nowComponents.month
+        lastTime.day = nowComponents.day
+        times.append(lastTime)
         
         return times
     }
