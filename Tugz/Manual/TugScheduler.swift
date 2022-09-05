@@ -130,7 +130,7 @@ extension TugScheduler {
             return tomorrowFirstTug
         }
         /// Otherwise take the time the last tug started and add the tug interval
-        else if let recent = history.lastTug {
+        else if let recent = history.lastTug, recent.end?.isToday == true {
             return recent.start?.addingTimeInterval(prefs.tugInterval.converted(to: .seconds).value)
         }
         /// If we have no last tug, figure out when the next one should be according to the daily schedule

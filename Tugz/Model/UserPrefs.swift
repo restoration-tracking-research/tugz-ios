@@ -21,7 +21,7 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         static let tugInterval = Measurement(value: 1, unit: UnitDuration.hours)
         static let firstTugTime = DateComponents(hour: 9, minute: 0)
         static let lastTugTime = DateComponents(hour: 20, minute: 30)
-        static let dailyGoalTugTime = Measurement(value: 180, unit: UnitDuration.minutes)
+        static let dailyGoalTugTime = Measurement(value: 30, unit: UnitDuration.minutes)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -51,7 +51,9 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     @Published var sendManualReminders = true
     
     /// Daily goals
-    @Published var dailyGoalTugTime: Measurement = Defaults.dailyGoalTugTime { didSet { save() } }
+    var dailyGoalTugTime: Measurement<UnitDuration> {
+        tugDuration * Double(allDailyTugTimes().count)
+    }
     
     @Published var userOwnedDevices = [Device]() { didSet { save() } }
     
@@ -82,7 +84,6 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         let usesDevices = try values.decode(Bool.self, forKey: .usesDevices)
         let tugDuration = try values.decode(TimeInterval.self, forKey: .tugDuration)
         let tugInterval = try values.decode(TimeInterval.self, forKey: .tugInterval)
-        let dailyGoalTugTime = try values.decodeIfPresent(TimeInterval.self, forKey: .dailyGoalTugTime)
         let firstTugTime = try values.decode([Int].self, forKey: .firstTugTime)
         let lastTugTime = try values.decode([Int].self, forKey: .lastTugTime)
         let userDevices = try values.decodeIfPresent([Device].self, forKey: .userOwnedDevices)
@@ -99,9 +100,6 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
             self.userOwnedDevices = Device.allCases
         }
 
-        if let dailyGoalTugTime = dailyGoalTugTime {
-            self.dailyGoalTugTime = Measurement(value: dailyGoalTugTime, unit: UnitDuration.seconds)
-        }
         if firstTugTime.count > 1 {
             self.firstTugTime.hour = firstTugTime[0]
             self.firstTugTime.minute = firstTugTime[1]

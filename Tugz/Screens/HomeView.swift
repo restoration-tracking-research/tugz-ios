@@ -9,22 +9,27 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var config: Config
+    @ObservedObject var config: Config {
+        didSet {
+            scheduler = config.scheduler
+        }
+    }
     
     @State var formattedTimeUntilNextTug: String = ""
     
     var sessionsTodayText: String {
         
-        let count = config.scheduler.todaySessionCount
+        let count = scheduler.todaySessionCount
+        let goal = scheduler.prefs.allDailyTugTimes().count
         
-        return count > 0 ? "\(count)" : "Ready to start"
+        return count > 0 ? "\(count) of \(goal) completed" : "Ready to start"
     }
     
     @State var navToTugNowActive = false
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
-    var scheduler: TugScheduler { config.scheduler }
+    @ObservedObject var scheduler: TugScheduler
     
     var prefs: UserPrefs { config.prefs }
     
@@ -33,8 +38,9 @@ struct HomeView: View {
     init(config: Config) {
         
         self.config = config
+        self.scheduler = config.scheduler
         
-        formattedTimeUntilNextTug = config.scheduler.formattedTimeUntilNextTug()
+        formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
     }
 
     var body: some View {
@@ -63,13 +69,13 @@ struct HomeView: View {
                 Text("Today's progress:")
                     .font(.largeTitle).bold()
                 
-                Text(config.scheduler.formattedTotalTugTimeToday())
+                Text(scheduler.formattedTotalTugTimeToday())
                     .font(.largeTitle)
                     .padding(.top, -4)
                     .padding(.bottom, 10)
                 
-                Text(config.scheduler.formattedGoalTimeToday())
-                    .font(.title)
+                Text(scheduler.formattedGoalTimeToday())
+                    .font(.subheadline)
                     .padding(.bottom, 22)
                 
                 Text("Sessions today:")
@@ -77,7 +83,7 @@ struct HomeView: View {
                 
                 Text(sessionsTodayText)
                     .font(.largeTitle).bold()
-                ProgressCircle(progress: config.scheduler.percentDoneToday)
+                ProgressCircle(progress: scheduler.percentDoneToday)
                     .frame(width: 150.0, height: 150.0)
                     .padding(22)
                 
@@ -94,7 +100,7 @@ struct HomeView: View {
                                 .bold()
                         }
                         Text("at")
-                        Text(config.scheduler.formattedTimeOfNextTug())
+                        Text(scheduler.formattedTimeOfNextTug())
                             .bold()
                     }
                     
