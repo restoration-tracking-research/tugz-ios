@@ -48,6 +48,10 @@ struct TugTypeSelectView: View {
         isManual ? "The app will record your manual session tug time." : "Your session will continue in the background until you come back and end it."
     }
     
+    var displayDevices: [Device] {
+        prefs.userOwnedDevices.isEmpty ? Device.allCases : prefs.userOwnedDevices
+    }
+    
     init(config: Config, tug: Tug) {
         
         self.config = config
@@ -108,7 +112,7 @@ struct TugTypeSelectView: View {
                     .padding(.top, 20)
 
                 Picker("", selection: $device) {
-                    ForEach(prefs.userOwnedDevices, id: \.self) { device in
+                    ForEach(displayDevices, id: \.self) { device in
                         Text(device.displayName)
                     }
                 }
