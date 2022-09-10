@@ -71,32 +71,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CD687643-B1FD-4221-9650-8D327E2642AE"
-            shouldBeEnabled = "No"
+            uuid = "683EF416-065F-4D2A-8EB2-9A2D4EE4C124"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tugz/Model/History.swift"
+            filePath = "Tugz/Model/UserPrefs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "fetchFromCloud()"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "allDailyTugTimes()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F63FD645-1CB2-4E88-BD17-8F59443F2456"
+            uuid = "38C66A01-1B07-49ED-9F54-F041C1CB9677"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tugz/Notifications/NotificationScheduler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "schedule(notification:at:)"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "scheduleAlerts(addingDays:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

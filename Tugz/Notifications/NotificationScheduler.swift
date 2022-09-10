@@ -107,8 +107,11 @@ struct NotificationScheduler {
     
         
         /// Debug
-//        var scheduledTugComponents = Calendar.current.dateComponents(components, from: Date(timeIntervalSinceNow: 15))
-        
+//        scheduledTugComponents = Calendar.current.dateComponents(components, from: Date(timeIntervalSinceNow: 15))
+//        scheduledTugComponents.hour = 11
+//        scheduledTugComponents.minute = 14
+        scheduledTugComponents.second = Int(arc4random() % 60)
+
         
         
         scheduledTugComponents.day = nil
@@ -118,10 +121,7 @@ struct NotificationScheduler {
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: scheduledTugComponents, repeats: true)
         
-        /// Use the same identifier always, so that new ones replace old ones
-        let identifier = "uQPr9d56Ez2g7MymcATt3f8uuTPdRd56sMDbL4xp"
-        
-        let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in
             
