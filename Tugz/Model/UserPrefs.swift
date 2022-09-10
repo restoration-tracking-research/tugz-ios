@@ -49,6 +49,12 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     
     @Published var sendManualReminders = true
     
+    private var onSaves = [()->()]()
+    
+    func onSave(_ callback: @escaping ()->()) {
+        onSaves.append(callback)
+    }
+    
     /// Daily goals
     var dailyGoalTugTime: Measurement<UnitDuration> {
         tugDuration * Double(allDailyTugTimes().count)
@@ -136,13 +142,15 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     }
     
     func save() {
-        
+    
         do {
             let data = try jsonEncoder.encode(self)
             UserDefaults.standard.set(data, forKey: "UserPrefs")
         } catch {
             print(error)
         }
+        
+        onSaves.forEach { $0() }
     }
     
     func allDailyTugTimes() -> [DateComponents] {

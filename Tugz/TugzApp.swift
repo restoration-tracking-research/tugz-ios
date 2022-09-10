@@ -44,6 +44,10 @@ struct TugzApp: App {
                     noteSch.request() { granted in
                         if granted {
                             noteSch.scheduleAlerts()
+                            
+                            config.prefs.onSave {
+                                noteSch.scheduleAlerts()
+                            }
                         }
                     }
                 }

@@ -103,12 +103,17 @@ struct NotificationScheduler {
     
     private func schedule(notification: UNMutableNotificationContent, at date: Date) {
         
-        let scheduledTugComponents = Calendar.current.dateComponents(dayComponents, from: date)
-        
-        
+        var scheduledTugComponents = Calendar.current.dateComponents(dayComponents, from: date)
+    
         
         /// Debug
-        //        let scheduledTugComponents = Calendar.current.dateComponents(components, from: Date(timeIntervalSinceNow: 15))
+//        var scheduledTugComponents = Calendar.current.dateComponents(components, from: Date(timeIntervalSinceNow: 15))
+        
+        
+        
+        scheduledTugComponents.day = nil
+        scheduledTugComponents.month = nil
+        scheduledTugComponents.year = nil
         /// End debug
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: scheduledTugComponents, repeats: true)
