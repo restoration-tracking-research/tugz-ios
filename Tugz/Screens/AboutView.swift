@@ -45,14 +45,14 @@ struct PrivacyView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 
-                Text("No data is sent from your device! This app respects your privacy.")
+                Text("Your history is stored securely in iCloud.")
                     .padding()
                 
-                Text("Please note that because of this, deleting the app will delete your recorded history.")
+                Text("This allows sync between devices while preserving your privacy.")
                     .font(.footnote)
                     .padding()
                 
-                Text("In a near future update, we will add the ability to save your history securely and anonymously to the cloud.")
+                Text("In a future update, we will add the ability to contribute anonymous statistics to help the community learn more about restoration times and methods.")
                     .padding()
                 
                 Spacer()
@@ -96,13 +96,13 @@ struct AboutView: View {
                         }
                         .navigationBarTitle(Text("Privacy"))
 
-                        Link(destination: URL(string: "https://www.patreon.com/restorationapp")!) {
-                            HStack {
-                                Text("Support our Patreon!")
-                                Spacer()
-                                Text("🌐")
-                            }
-                        }
+//                        Link(destination: URL(string: "https://www.patreon.com/restorationapp")!) {
+//                            HStack {
+//                                Text("Support our Patreon!")
+//                                Spacer()
+//                                Text("🌐")
+//                            }
+//                        }
                         
                         Link(destination: URL(string: "https://github.com/restoration-tracking-research/tugz-ios")!) {
                             HStack {
