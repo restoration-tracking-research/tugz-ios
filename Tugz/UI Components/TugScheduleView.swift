@@ -116,7 +116,7 @@ struct TugScheduleView: View {
                 }
                 
                 Picker("Tug every", selection: $tugInterval) {
-                    ForEach([30, 45, 60, 90, 120], id: \.self) { min in
+                    ForEach([10, 30, 45, 60, 90, 120], id: \.self) { min in
                         Text("\(min) min").tag(TimeInterval(min * 60))
                     }
                 }

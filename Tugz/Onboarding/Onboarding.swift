@@ -11,15 +11,13 @@ import AVFAudio
 class Onboarding: ObservableObject {
     
     enum Page: Int {
-        case first
-        case aboutRestoration
         case readyToStart
         case deviceSelect
         case idealSchedule
         case allSet
         
         var showsNextButton: Bool {
-            [Page.aboutRestoration, .readyToStart, .deviceSelect, .idealSchedule, .allSet].contains(self)
+            [Page.readyToStart, .deviceSelect, .idealSchedule, .allSet].contains(self)
         }
     }
     
@@ -29,8 +27,6 @@ class Onboarding: ObservableObject {
     @Published private(set) var currentPage: Page
     
     var pages: [Page] = [
-        .first,
-        .aboutRestoration,
         .readyToStart,
         .deviceSelect,
         .idealSchedule,
@@ -39,9 +35,7 @@ class Onboarding: ObservableObject {
     
     var currentPageGradientOpacity: CGFloat {
         switch currentPage {
-        case .first,
-                .aboutRestoration,
-                .readyToStart:
+        case .readyToStart:
             return 0
         case .deviceSelect:
             return 1
@@ -54,7 +48,7 @@ class Onboarding: ObservableObject {
     
     var onDone: () -> ()
     
-    init(page: Page = .first, prefs: UserPrefs, onDone: @escaping ()->() = {}) {
+    init(page: Page = .readyToStart, prefs: UserPrefs, onDone: @escaping ()->() = {}) {
         
         self.currentPage = page
         self.prefs = prefs
@@ -83,10 +77,6 @@ class Onboarding: ObservableObject {
         let increment: Int
         
         switch currentPage {
-        case .first:
-            increment = 0
-        case .aboutRestoration:
-            increment = 1
         case .readyToStart:
             increment = prefs.usesDevices ? 1 : 2
         case .deviceSelect:
