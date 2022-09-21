@@ -153,15 +153,12 @@ extension TugScheduler {
     
     func formattedTimeUntilNextTug(from date: Date = Date()) -> String {
         
-        guard let timeUntilNextTug = timeUntilNextTug(from: date), let string = intervalFormatter.string(from: timeUntilNextTug) else {
+        guard let timeUntilNextTug = timeUntilNextTug(from: date) else {
             return "(not scheduled)"
         }
-            
-        if timeUntilNextTug < 0 {
+        
+        if timeUntilNextTug < 60 {
             return "Due now"
-        }
-        else if timeUntilNextTug < 60 {
-            return string
         }
         else if timeUntilNextTug < 3600 {
             return "\(Int(timeUntilNextTug / 60)) min"
@@ -184,7 +181,7 @@ extension TugScheduler {
     
     func formattedPercentDoneToday() -> String {
         if percentDoneToday > 0 {
-            return "\(percentDoneToday * 100) %"
+            return "\(Int(percentDoneToday * 100))%"
         }
         return "-"
     }
@@ -208,6 +205,9 @@ extension TugScheduler {
         }
         if timeInterval < oneHourInSeconds {
             return "\(timeInterval.minute) min"
+        }
+        if timeInterval.minute == 0 {
+            return "\(timeInterval.hour) h"
         }
         return "\(timeInterval.hour) h \(timeInterval.minute) min"
     }
