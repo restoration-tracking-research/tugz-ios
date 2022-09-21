@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		C006E6D5282A5BDF006ED199 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006E6D4282A5BDF006ED199 /* Onboarding.swift */; };
 		C006E6D7282A5D0C006ED199 /* Tooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006E6D6282A5D0C006ED199 /* Tooltip.swift */; };
+		C017798D28D07C50006711A5 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C017798C28D07C50006711A5 /* Intents.framework */; };
+		C017799028D07C50006711A5 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C017798F28D07C50006711A5 /* IntentHandler.swift */; };
+		C017799828D07C51006711A5 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C017799728D07C51006711A5 /* IntentsUI.framework */; };
+		C017799B28D07C51006711A5 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C017799A28D07C51006711A5 /* IntentViewController.swift */; };
+		C017799E28D07C51006711A5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C017799C28D07C51006711A5 /* MainInterface.storyboard */; };
+		C01779A228D07C51006711A5 /* Tugz-Intents-ExtensionUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C017799628D07C51006711A5 /* Tugz-Intents-ExtensionUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C01779A528D07C51006711A5 /* Tugz-Intents-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C017798B28D07C50006711A5 /* Tugz-Intents-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C02ABF0128D0801A00A64848 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = C02ABF0028D0801A00A64848 /* Intents.intentdefinition */; };
 		C03496D52776D9EA0084C604 /* NotificationTextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */; };
 		C03496D72777CB890084C604 /* NotificationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D62777CB890084C604 /* NotificationAction.swift */; };
 		C03496D92778D14E0084C604 /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03496D82778D14D0084C604 /* TimePicker.swift */; };
@@ -61,6 +69,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C01779A028D07C51006711A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C06DFFD9270B5A97006CEBA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C017799528D07C51006711A5;
+			remoteInfo = "Tugz-Intents-ExtensionUI";
+		};
+		C01779A328D07C51006711A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C06DFFD9270B5A97006CEBA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C017798A28D07C50006711A5;
+			remoteInfo = "Tugz-Intents-Extension";
+		};
 		C06DFFF2270B5A9B006CEBA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C06DFFD9270B5A97006CEBA0 /* Project object */;
@@ -70,9 +92,34 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C01779A628D07C51006711A5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C01779A528D07C51006711A5 /* Tugz-Intents-Extension.appex in Embed App Extensions */,
+				C01779A228D07C51006711A5 /* Tugz-Intents-ExtensionUI.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C006E6D4282A5BDF006ED199 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		C006E6D6282A5D0C006ED199 /* Tooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tooltip.swift; sourceTree = "<group>"; };
+		C017798B28D07C50006711A5 /* Tugz-Intents-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Tugz-Intents-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C017798C28D07C50006711A5 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		C017798F28D07C50006711A5 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		C017799128D07C50006711A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C017799628D07C51006711A5 /* Tugz-Intents-ExtensionUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Tugz-Intents-ExtensionUI.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C017799728D07C51006711A5 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		C017799A28D07C51006711A5 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		C017799D28D07C51006711A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		C017799F28D07C51006711A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C02ABF0028D0801A00A64848 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Intents.intentdefinition; path = Tugz/Intents.intentdefinition; sourceTree = "<group>"; };
 		C03496D42776D9EA0084C604 /* NotificationTextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTextProvider.swift; sourceTree = "<group>"; };
 		C03496D62777CB890084C604 /* NotificationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAction.swift; sourceTree = "<group>"; };
 		C03496D82778D14D0084C604 /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
@@ -124,6 +171,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C017798828D07C50006711A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C017798D28D07C50006711A5 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C017799328D07C51006711A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C017799828D07C51006711A5 /* IntentsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C06DFFDE270B5A97006CEBA0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +219,25 @@
 				C006E6D6282A5D0C006ED199 /* Tooltip.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		C017798E28D07C50006711A5 /* Tugz-Intents-Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C017798F28D07C50006711A5 /* IntentHandler.swift */,
+				C017799128D07C50006711A5 /* Info.plist */,
+			);
+			path = "Tugz-Intents-Extension";
+			sourceTree = "<group>";
+		};
+		C017799928D07C51006711A5 /* Tugz-Intents-ExtensionUI */ = {
+			isa = PBXGroup;
+			children = (
+				C017799A28D07C51006711A5 /* IntentViewController.swift */,
+				C017799C28D07C51006711A5 /* MainInterface.storyboard */,
+				C017799F28D07C51006711A5 /* Info.plist */,
+			);
+			path = "Tugz-Intents-ExtensionUI";
 			sourceTree = "<group>";
 		};
 		C06D0014270BA2A5006CEBA0 /* Screens */ = {
@@ -203,8 +285,11 @@
 		C06DFFD8270B5A97006CEBA0 = {
 			isa = PBXGroup;
 			children = (
+				C02ABF0028D0801A00A64848 /* Intents.intentdefinition */,
 				C06DFFE3270B5A97006CEBA0 /* Tugz */,
 				C06DFFF4270B5A9B006CEBA0 /* TugzTests */,
+				C017798E28D07C50006711A5 /* Tugz-Intents-Extension */,
+				C017799928D07C51006711A5 /* Tugz-Intents-ExtensionUI */,
 				C06DFFE2270B5A97006CEBA0 /* Products */,
 				C09FB0A7282F7F7A009D3CED /* Frameworks */,
 			);
@@ -215,6 +300,8 @@
 			children = (
 				C06DFFE1270B5A97006CEBA0 /* Tugz.app */,
 				C06DFFF1270B5A9B006CEBA0 /* TugzTests.xctest */,
+				C017798B28D07C50006711A5 /* Tugz-Intents-Extension.appex */,
+				C017799628D07C51006711A5 /* Tugz-Intents-ExtensionUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,6 +359,8 @@
 			isa = PBXGroup;
 			children = (
 				C09FB0A8282F7F7A009D3CED /* CloudKit.framework */,
+				C017798C28D07C50006711A5 /* Intents.framework */,
+				C017799728D07C51006711A5 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -318,6 +407,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C017798A28D07C50006711A5 /* Tugz-Intents-Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01779AC28D07C51006711A5 /* Build configuration list for PBXNativeTarget "Tugz-Intents-Extension" */;
+			buildPhases = (
+				C017798728D07C50006711A5 /* Sources */,
+				C017798828D07C50006711A5 /* Frameworks */,
+				C017798928D07C50006711A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tugz-Intents-Extension";
+			productName = "Tugz-Intents-Extension";
+			productReference = C017798B28D07C50006711A5 /* Tugz-Intents-Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C017799528D07C51006711A5 /* Tugz-Intents-ExtensionUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01779AB28D07C51006711A5 /* Build configuration list for PBXNativeTarget "Tugz-Intents-ExtensionUI" */;
+			buildPhases = (
+				C017799228D07C51006711A5 /* Sources */,
+				C017799328D07C51006711A5 /* Frameworks */,
+				C017799428D07C51006711A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tugz-Intents-ExtensionUI";
+			productName = "Tugz-Intents-ExtensionUI";
+			productReference = C017799628D07C51006711A5 /* Tugz-Intents-ExtensionUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		C06DFFE0270B5A97006CEBA0 /* Tugz */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz" */;
@@ -325,10 +448,13 @@
 				C06DFFDD270B5A97006CEBA0 /* Sources */,
 				C06DFFDE270B5A97006CEBA0 /* Frameworks */,
 				C06DFFDF270B5A97006CEBA0 /* Resources */,
+				C01779A628D07C51006711A5 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C01779A128D07C51006711A5 /* PBXTargetDependency */,
+				C01779A428D07C51006711A5 /* PBXTargetDependency */,
 			);
 			name = Tugz;
 			packageProductDependencies = (
@@ -370,6 +496,12 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					C017798A28D07C50006711A5 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					C017799528D07C51006711A5 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					C06DFFE0270B5A97006CEBA0 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -397,11 +529,28 @@
 			targets = (
 				C06DFFE0270B5A97006CEBA0 /* Tugz */,
 				C06DFFF0270B5A9B006CEBA0 /* TugzTests */,
+				C017798A28D07C50006711A5 /* Tugz-Intents-Extension */,
+				C017799528D07C51006711A5 /* Tugz-Intents-ExtensionUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C017798928D07C50006711A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C017799428D07C51006711A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C017799E28D07C51006711A5 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C06DFFDF270B5A97006CEBA0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,6 +571,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C017798728D07C50006711A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C017799028D07C50006711A5 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C017799228D07C51006711A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C017799B28D07C51006711A5 /* IntentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C06DFFDD270B5A97006CEBA0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,6 +629,7 @@
 				C06DFFE5270B5A97006CEBA0 /* TugzApp.swift in Sources */,
 				C0D591B02892ADFB0034A9C0 /* ImagePicker.swift in Sources */,
 				C0CA24A12819E4D800AE9A65 /* OnboardingSubview.swift in Sources */,
+				C02ABF0128D0801A00A64848 /* Intents.intentdefinition in Sources */,
 				C006E6D5282A5BDF006ED199 /* Onboarding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +647,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C01779A128D07C51006711A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C017799528D07C51006711A5 /* Tugz-Intents-ExtensionUI */;
+			targetProxy = C01779A028D07C51006711A5 /* PBXContainerItemProxy */;
+		};
+		C01779A428D07C51006711A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C017798A28D07C50006711A5 /* Tugz-Intents-Extension */;
+			targetProxy = C01779A328D07C51006711A5 /* PBXContainerItemProxy */;
+		};
 		C06DFFF3270B5A9B006CEBA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C06DFFE0270B5A97006CEBA0 /* Tugz */;
@@ -488,7 +664,122 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		C017799C28D07C51006711A5 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C017799D28D07C51006711A5 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		C01779A728D07C51006711A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tugz-Intents-Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tugz-Intents-Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz.Tugz-Intents-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C01779A828D07C51006711A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tugz-Intents-Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tugz-Intents-Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz.Tugz-Intents-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C01779A928D07C51006711A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tugz-Intents-ExtensionUI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tugz-Intents-ExtensionUI";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz.Tugz-Intents-ExtensionUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C01779AA28D07C51006711A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N2WM6EN8GQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tugz-Intents-ExtensionUI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Tugz-Intents-ExtensionUI";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.charliewilliams.Tugz.Tugz-Intents-ExtensionUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		C06D0003270B5A9B006CEBA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -608,6 +899,7 @@
 		C06D0006270B5A9B006CEBA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -642,6 +934,7 @@
 		C06D0007270B5A9B006CEBA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -724,6 +1017,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C01779AB28D07C51006711A5 /* Build configuration list for PBXNativeTarget "Tugz-Intents-ExtensionUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01779A928D07C51006711A5 /* Debug */,
+				C01779AA28D07C51006711A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01779AC28D07C51006711A5 /* Build configuration list for PBXNativeTarget "Tugz-Intents-Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01779A728D07C51006711A5 /* Debug */,
+				C01779A828D07C51006711A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C06D0005270B5A9B006CEBA0 /* Build configuration list for PBXNativeTarget "Tugz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
