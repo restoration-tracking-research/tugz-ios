@@ -190,7 +190,15 @@ extension TugScheduler {
     }
     
     func formattedGoalTimeToday() -> String {
-        "of \(format(prefs.dailyGoalTugTime.converted(to: .seconds).value)) goal"
+        format(prefs.dailyGoalTugTime.converted(to: .seconds).value)
+    }
+    
+    func formattedProgressString() -> String {
+        if percentDoneToday == 0 {
+            return "\(formattedGoalTimeToday()) daily goal"
+        } else {
+            return "\(formattedPercentDoneToday()) of \(formattedGoalTimeToday()) goal"
+        }
     }
     
     private func format(_ timeInterval: TimeInterval) -> String {

@@ -33,6 +33,9 @@ struct OnboardingSubview: View {
     let onboarding: Onboarding
     
     @EnvironmentObject var userPrefs: UserPrefs
+    @EnvironmentObject var config: Config
+    
+    @Environment(\.dismiss) var dismiss
     
     @State private var logoOpacity = 0.0
     
@@ -54,47 +57,61 @@ struct OnboardingSubview: View {
     
     var readyToStart: some View {
         
-        VStack {
-            Image(systemName: "t.circle.fill")
-                .font(.system(size: 64, weight: .heavy))
-                .foregroundColor(.accentColor)
-            
-            Text("Ready to start?")
-                .font(.system(.largeTitle))
-                .bold()
-                .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
-            
-            Text("Just a couple of questions to get started:")
-                .padding()
-            
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Toggle("Do you use manual methods?", isOn: $userPrefs.usesManual)
-                        .toggleStyle(.automatic)
-                        .font(.system(.headline))
-                        .tint(.black)
-                }
-                Text("If so, Tugz can send you regular reminders throughout the day so you can get all your sessions in.")
-                    .font(.system(.caption))
-
-                Divider()
+        ZStack(alignment: .topTrailing) {
+            VStack {
+                Image(systemName: "t.circle.fill")
+                    .font(.system(size: 64, weight: .heavy))
+                    .foregroundColor(.accentColor)
                 
-                HStack {
-                    Toggle("Do you use any devices?", isOn: $userPrefs.usesDevices)
-                        .toggleStyle(.automatic)
-                        .font(.system(.headline))
-                        .tint(.black)
+                Text("Ready to start?")
+                    .font(.system(.largeTitle))
+                    .bold()
+                    .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
+                
+                Text("Just a couple of questions to get started:")
+                    .padding()
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Toggle("Do you use manual methods?", isOn: $userPrefs.usesManual)
+                            .toggleStyle(.automatic)
+                            .font(.system(.headline))
+                            .tint(.black)
+                    }
+                    Text("If so, Tugz can send you regular reminders throughout the day so you can get all your sessions in.")
+                        .font(.system(.caption))
+                    
+                    Divider()
+                    
+                    HStack {
+                        Toggle("Do you use any devices?", isOn: $userPrefs.usesDevices)
+                            .toggleStyle(.automatic)
+                            .font(.system(.headline))
+                            .tint(.black)
+                    }
+                    Text("If so, we'll let you pick them list of commercially-available devices.")
+                        .font(.system(.caption))
+                    Text("When you start a session, we’ll just show you the devices you actually have instead of this whole list every time.")
+                        .font(.system(.caption))
+                    Text("(If you get more devices in the future, you can add them in later)")
+                        .font(.system(.caption))
                 }
-                Text("If so, we'll let you pick them list of commercially-available devices.")
-                    .font(.system(.caption))
-                Text("When you start a session, we’ll just show you the devices you actually have instead of this whole list every time.")
-                    .font(.system(.caption))
-                Text("(If you get more devices in the future, you can add them in later)")
-                    .font(.system(.caption))
+                .padding()
             }
-            .padding()
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 120, trailing: 20))
+            
+            Button {
+                config.hasSeenOnboarding = true
+                dismiss()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .foregroundColor(.gray)
+            }
+            .padding(15)
+            .offset(CGSize(width: 0, height: -55))
         }
-        .padding(EdgeInsets(top: 0, leading: 20, bottom: 120, trailing: 20))
     }
     
     var deviceSelect: some View {
@@ -203,7 +220,7 @@ struct OnboardingSubview: View {
 
 struct OnboardingSubview_Previews: PreviewProvider {
     
-    static let onboarding = Onboarding(prefs: UserPrefs.loadFromStore())
+    static let onboarding = Onboarding(config: Config(forTest: true))
     static let userPrefs = UserPrefs.loadFromStore()
     static let selectedDevices: [Device] = [.DTR, .Foreskinned_Gravity, .Foreskinned_Air]
     

@@ -62,18 +62,9 @@ struct NotificationScheduler {
         
         let textProvider = NotificationTextProvider()
         
-        var all = prefs.allDailyTugTimes()
+        let all = prefs.allDailyTugTimes()
         
         assert(!all.isEmpty, "Why don't you have tug times?")
-        
-        /// Put in an alert one week and two weeks later in case you fall off the wagon
-        if let date = all.first?.date {
-            let oneWeek = Measurement(value: 7 * 24, unit: UnitDuration.hours).converted(to: .seconds).value
-            for n in 1...2 {
-                let later = Calendar.current.dateComponents([.calendar, .year, .month, .day, .hour, .minute, .second], from: date.advanced(by: oneWeek * Double(n)))
-                all.append(later)
-            }
-        }
         
         for (index, tugTime) in all.enumerated() {
             
