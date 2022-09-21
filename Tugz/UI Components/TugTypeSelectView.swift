@@ -33,12 +33,20 @@ struct TugTypeSelectView: View {
     
     private var prefs: UserPrefs { config.prefs }
     
-    @State var tug: Tug
+    @State var tug: Tug {
+        didSet {
+            if case .manual(method: let method) = tug.method {
+                manualMethod = method
+            } else if case .device(device: let device) = tug.method {
+                self.device = device
+            }
+        }
+    }
     
     @State var isManual: Bool
     
     @State var manualMethod: ManualMethod = .other
-    @State var device: Device
+    @State var device: Device = .DTR
     
     var toggleTitle: String {
         isManual ? "Manual Method (tap to change)" : "Using a Device (tap to change)"
@@ -69,14 +77,12 @@ struct TugTypeSelectView: View {
             tug.method = .manual(method: lastManual)
         }
         
-        if let lastDevice = config.history.lastDevice {
+        else if let lastDevice = config.history.lastDevice {
             self.device = lastDevice
             tug.method = .device(device: lastDevice)
         } else if let device = config.prefs.userOwnedDevices.first {
             self.device = device
             tug.method = .device(device: device)
-        } else {
-            self.device = .DTR /// ??
         }
     }
     

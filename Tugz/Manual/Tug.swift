@@ -72,7 +72,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
             objectWillChange.send()
         }
     }
-    var method: Method? /// published causes an update loop, idk
+    var method: Method = .manual(method: .other) /// published causes an update loop, idk
     
     var formattedStartTime: String {
         if let start = start {
@@ -187,13 +187,11 @@ final class Tug: Identifiable, Equatable, ObservableObject {
         record[CodingKeys.end.stringValue] = end
         record[CodingKeys.state.stringValue] = state.rawValue
         
-        if let method = method {
-            switch method {
-            case .manual(let manualMethod):
-                record[CodingKeys.method.stringValue] = manualMethod.rawValue
-            case .device(let device):
-                record[CodingKeys.method.stringValue] = device.rawValue
-            }
+        switch method {
+        case .manual(let manualMethod):
+            record[CodingKeys.method.stringValue] = manualMethod.rawValue
+        case .device(let device):
+            record[CodingKeys.method.stringValue] = device.rawValue
         }
         
         try await db.save(record)

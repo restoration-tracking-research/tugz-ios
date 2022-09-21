@@ -31,6 +31,8 @@ struct OnboardingViewPure: View {
                 
                 ForEach(onboarding.pages, id: \.self) { page in
                     OnboardingSubview(page: page, onboarding: onboarding)
+                        .environmentObject(onboarding.config)
+                        .environmentObject(onboarding.config.prefs)
                         .offset(x: CGFloat(page.rawValue) * screenWidth)
                         .offset(x: slideGesture.width - CGFloat(onboarding.currentPage.rawValue) * screenWidth)
 //                        .animation(.spring(), value: offset) // ???
@@ -112,7 +114,8 @@ struct OnboardingViewPure: View {
 struct OnboardingViewPure_Previews: PreviewProvider {
     
     static var previews: some View {
-        OnboardingViewPure(onboarding: Onboarding(page: .idealSchedule, prefs: UserPrefs()))
+        OnboardingViewPure(onboarding: Onboarding(page: .idealSchedule, config: Config(forTest: true)))
             .environmentObject(UserPrefs())
+            .environmentObject(Config(forTest: true))
     }
 }
