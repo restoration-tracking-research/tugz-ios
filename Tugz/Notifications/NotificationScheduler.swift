@@ -49,6 +49,10 @@ struct NotificationScheduler {
         }
         content.body = textProvider.body(for: index, of: max)
         content.categoryIdentifier = NotificationAction.tugCategoryIdentifier
+        
+        content.sound = .default //UNNotificationSound(named: UNNotificationSoundName("ding"))
+        content.interruptionLevel = .active
+        
         if let index = index, let max = max {
             content.userInfo = ["index": index, "max": max]
         }
@@ -146,6 +150,8 @@ extension NotificationScheduler {
         content.title = "Test alert!"
         content.subtitle = "Can you see the subtitle?"
         content.body = "Tap to get started."
+        content.sound = .default //UNNotificationSound(named: UNNotificationSoundName("ding"))
+        content.interruptionLevel = .active
         content.categoryIdentifier = NotificationAction.tugCategoryIdentifier
         content.userInfo = ["index": 0, "max": 10]
         

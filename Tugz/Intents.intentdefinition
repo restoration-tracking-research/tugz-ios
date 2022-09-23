@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>tWaTOj</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21G83</string>
+	<string>21G115</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13F100</string>
+	<string>14A309</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>13.4.1</string>
+	<string>14.0</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -25,12 +25,18 @@
 			<string>Start recording a manual tugging session.</string>
 			<key>INIntentDescriptionID</key>
 			<string>GlV5j7</string>
+			<key>INIntentEligibleForWidgets</key>
+			<true/>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
 				<key></key>
 				<dict>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Start a manual tugging session now.</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>MqvdwR</string>
 					<key>INIntentParameterCombinationUpdatesLinked</key>
 					<true/>
 				</dict>
@@ -45,6 +51,10 @@
 					<true/>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Start a manual tugging session now.</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>N0rpMJ</string>
 				</dict>
 			</dict>
 			<key>INIntentResponse</key>
@@ -87,6 +97,84 @@
 			<string>Custom</string>
 			<key>INIntentVerb</key>
 			<string>Start</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>generic</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescriptionID</key>
+			<string>KtM8pX</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Stop a tugging session.</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>f5h9hQ</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>StopTug</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Stop a tugging session.</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>KGgclN</string>
+				</dict>
+			</dict>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Tug stopped.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>pJuAXB</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Tug stopped.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>Yidbyj</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Couldn't stop tug. Try opening the app.</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>ipxPyA</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Couldn't stop tug.</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>a7kA61</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Stop Tug</string>
+			<key>INIntentTitleID</key>
+			<string>CNOWK5</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Do</string>
 		</dict>
 	</array>
 	<key>INTypes</key>
