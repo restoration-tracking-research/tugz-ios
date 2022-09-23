@@ -44,7 +44,7 @@ struct TugView: View {
         if let scheduledFor = tug.scheduledFor {
             return "Scheduled for \(formatter.string(from: scheduledFor))"
         } else {
-            return "Scheduled manually"
+            return ""
         }
     }
     
@@ -74,6 +74,8 @@ struct TugView: View {
             Image(systemName: "xmark.circle.fill")
         })
     }
+    
+    @State var scaled = false
     
     var body: some View {
         
@@ -123,11 +125,17 @@ struct TugView: View {
                         .frame(width: 300, height: 55)
                 }
                 .buttonStyle(.borderedProminent)
-                .foregroundColor(.white)
+                .foregroundColor(canStartTug ? .white : .black)
                 .disabled(!canStartTug)
-                .background(.gray)
+                .background(.clear)
                 .cornerRadius(8)
                 .padding(.bottom, 44)
+//                .scaleEffect(x: scaled && !canStartTug ? 1.1 : 1)
+//                .onAppear {
+//                    withAnimation(.easeInOut(duration: 1)) {
+//                        scaled.toggle()
+//                    }
+//                }
                 
                 if let start = tug.start {
                     VStack {

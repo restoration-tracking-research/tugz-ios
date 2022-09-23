@@ -22,7 +22,8 @@ class Onboarding: ObservableObject {
     }
     
     var view: OnboardingViewPure!
-    let prefs: UserPrefs
+    let config: Config
+    var prefs: UserPrefs { config.prefs }
     
     @Published private(set) var currentPage: Page
     
@@ -48,10 +49,10 @@ class Onboarding: ObservableObject {
     
     var onDone: () -> ()
     
-    init(page: Page = .readyToStart, prefs: UserPrefs, onDone: @escaping ()->() = {}) {
+    init(page: Page = .readyToStart, config: Config, onDone: @escaping ()->() = {}) {
         
         self.currentPage = page
-        self.prefs = prefs
+        self.config = config
         self.onDone = onDone
     }
     

@@ -22,7 +22,7 @@ struct HomeView: View {
         let count = scheduler.todaySessionCount
         let goal = scheduler.prefs.allDailyTugTimes().count
         
-        return count > 0 ? "\(count) of \(goal) completed" : "Ready to start"
+        return count > 0 ? "\(count) of \(goal) sessions" : "Ready to start"
     }
     
     @State var navToTugNowActive = false
@@ -64,25 +64,22 @@ struct HomeView: View {
                 }
             
             VStack(alignment: .center) {
+                
 //                Text("CI-7")
+                Spacer(minLength: 80)
                 
                 Text("Today's progress:")
                     .font(.largeTitle).bold()
                 
-                Text(scheduler.formattedTotalTugTimeToday())
-                    .font(.largeTitle)
+                Text("\(scheduler.formattedTotalTugTimeToday()) / \(sessionsTodayText)")
+                    .font(.largeTitle).bold()
                     .padding(.top, -4)
                     .padding(.bottom, 10)
                 
-                Text(scheduler.formattedGoalTimeToday())
-                    .font(.subheadline)
-                    .padding(.bottom, 22)
-                
-                Text("Sessions today:")
+                Text(scheduler.formattedProgressString())
                     .font(.title)
-                
-                Text(sessionsTodayText)
-                    .font(.largeTitle).bold()
+                    .padding(.bottom, 22)
+    
                 ProgressCircle(progress: scheduler.percentDoneToday)
                     .frame(width: 150.0, height: 150.0)
                     .padding(22)

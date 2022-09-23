@@ -18,7 +18,7 @@ struct TugzApp: App {
     @State var config = Config()
     
     var onboarding: some View {
-        OnboardingViewPure(onboarding: Onboarding(prefs: config.prefs, onDone: {
+        OnboardingViewPure(onboarding: Onboarding(config: config, onDone: {
             print("done")
             config.hasSeenOnboarding = true
             $isOnboardingPresented.wrappedValue = false
