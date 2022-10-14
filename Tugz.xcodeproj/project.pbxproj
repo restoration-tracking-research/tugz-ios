@@ -190,12 +190,15 @@
 		C06D0016270BA2C8006CEBA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C09191D0270C5B8700EFBE34 /* Tug.swift */,
 				C06D0017270BA2DF006CEBA0 /* DeviceSettings.swift */,
 				C0C8FD42284BDAD700AC65C8 /* Database.swift */,
 				C03496E027854D6B0084C604 /* Config.swift */,
 				C06D0019270BA2EF006CEBA0 /* UserPrefs.swift */,
 				C06D001B270BA2FF006CEBA0 /* History.swift */,
 				C09BA73B28313A0500EDFC63 /* DayOfWeek.swift */,
+				C06D001D270BA322006CEBA0 /* TugScheduler.swift */,
+				C0DDCAFE280D837D0066B423 /* ManualMethod.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,7 +232,6 @@
 				C0012CDF2828EBFC0035D93B /* Onboarding */,
 				C0DDCB03280D8B620066B423 /* Photos */,
 				C06D0016270BA2C8006CEBA0 /* Model */,
-				C0DDCAFD280D836D0066B423 /* Manual */,
 				C0DDCAFC280D835D0066B423 /* RestorationDevice */,
 				C0DDCAF7280D83330066B423 /* Notifications */,
 				C06D0015270BA2BA006CEBA0 /* UI Components */,
@@ -292,16 +294,6 @@
 				C0DDCAF8280D834D0066B423 /* Device.swift */,
 			);
 			path = RestorationDevice;
-			sourceTree = "<group>";
-		};
-		C0DDCAFD280D836D0066B423 /* Manual */ = {
-			isa = PBXGroup;
-			children = (
-				C09191D0270C5B8700EFBE34 /* Tug.swift */,
-				C0DDCAFE280D837D0066B423 /* ManualMethod.swift */,
-				C06D001D270BA322006CEBA0 /* TugScheduler.swift */,
-			);
-			path = Manual;
 			sourceTree = "<group>";
 		};
 		C0DDCB03280D8B620066B423 /* Photos */ = {
@@ -630,7 +622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliewilliams.Tugz;
 				PRODUCT_NAME = Tugz;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -664,7 +656,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.charliewilliams.Tugz;
 				PRODUCT_NAME = Tugz;
 				SWIFT_EMIT_LOC_STRINGS = YES;

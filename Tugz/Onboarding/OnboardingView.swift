@@ -56,7 +56,7 @@ struct OnboardingViewPure: View {
                 }
             }
             
-            LinearGradient(colors: [.white.opacity(0), .white], startPoint: UnitPoint(x: 0, y: 0.6), endPoint: UnitPoint(x: 0, y: 1))
+            LinearGradient(colors: [.white.opacity(0), .white], startPoint: UnitPoint(x: 0, y: 0.8), endPoint: UnitPoint(x: 0, y: 1))
                 .opacity(onboarding.currentPageGradientOpacity)
                 .allowsHitTesting(false)
             

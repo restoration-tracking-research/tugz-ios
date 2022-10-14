@@ -32,6 +32,7 @@ private let dayFormatter: DateFormatter = {
 final class Tug: Identifiable, Equatable, ObservableObject {
     
     let id: CKRecord.ID
+    let minDurationToSave: TimeInterval = 15 /// tugs less than 15s not saved
     
     static func == (lhs: Tug, rhs: Tug) -> Bool {
         lhs.id == rhs.id
@@ -43,6 +44,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
         case started
         case finished
         case skipped
+        case cancelled
         case unknown
     }
     
@@ -116,7 +118,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
     
     var percentDone: Double {
         switch state {
-        case .scheduled, .due, .skipped, .unknown:
+        case .scheduled, .due, .skipped, .cancelled, .unknown:
             return 0
         case .started:
             if let start = start {
@@ -194,7 +196,11 @@ final class Tug: Identifiable, Equatable, ObservableObject {
             record[CodingKeys.method.stringValue] = device.rawValue
         }
         
-        try await db.save(record)
+        if duration > minDurationToSave && state != .cancelled {
+            try await db.save(record)
+        } else {
+            try await db.deleteRecord(withID: record.recordID)
+        }
     }
     
     func startTug() {
@@ -217,7 +223,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
         
         assert(state == .due || state == .started)
         
-        state = .skipped
+        state = .cancelled
     }
 }
 
