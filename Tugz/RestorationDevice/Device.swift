@@ -48,6 +48,7 @@ enum Device: String, Codable, CaseIterable, Identifiable {
     case DILE_Insert
     case DTR
     case FED
+    case Foregestalt
     case Foreskinned_Tower
     case TLC_X
     
@@ -58,6 +59,7 @@ enum Device: String, Codable, CaseIterable, Identifiable {
     case Foreskinned_Air
     case HyperRestore_Direct_Air
     case TLC_Air
+    
     // Indirect air
     case DTR_with_Indirect_Air
     case HyperRestore_Original
@@ -89,6 +91,7 @@ enum Device: String, Codable, CaseIterable, Identifiable {
                 .DILE_Insert,
                 .DTR,
                 .FED,
+                .Foregestalt,
                 .Foreskinned_Tower,
                 .TLC_X:
             return .dual_Tension

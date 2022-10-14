@@ -50,6 +50,9 @@ struct TugzApp: App {
                             }
                         }
                     }
+                    
+                    /// check if we changed something in the background
+                    didAppear()
                 }
                 .onChange(of: scenePhase) { newPhase in
                     switch newPhase {
@@ -82,13 +85,15 @@ struct TugzApp: App {
                 .sheet(isPresented: $isLoginPresented) {
                     NeedLoginView()
                 }
-                .onAppear {
-                    $isOnboardingPresented.wrappedValue = !config.hasSeenOnboarding
-                    
-                    Database.getUserRecordId { recordId in
-                        $isLoginPresented.wrappedValue = recordId == nil
-                    }
-                }
+        }
+    }
+    
+    func didAppear() {
+        
+        $isOnboardingPresented.wrappedValue = !config.hasSeenOnboarding
+        
+        Database.getUserRecordId { recordId in
+            $isLoginPresented.wrappedValue = recordId == nil
         }
     }
 }
@@ -116,6 +121,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
 
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        app?.didAppear()
     }
 }
 

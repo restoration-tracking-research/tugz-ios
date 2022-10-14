@@ -34,7 +34,11 @@ struct DeviceListView: View {
                                     .opacity(userPrefs.userOwnedDevices.contains(device) ? 1 : 0)
                                 
                                 Text(device.displayName)
+                                Spacer()
                             }
+                            .contentShape(Rectangle())
+//                            .padding()
+//                            .background(.red)
                             .onTapGesture {
                                 if userPrefs.userOwnedDevices.contains(device) {
                                     userPrefs.userOwnedDevices = userPrefs.userOwnedDevices.filter { $0 != device }

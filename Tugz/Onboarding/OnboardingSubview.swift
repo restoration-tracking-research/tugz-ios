@@ -76,7 +76,7 @@ struct OnboardingSubview: View {
                         Toggle("Do you use manual methods?", isOn: $userPrefs.usesManual)
                             .toggleStyle(.automatic)
                             .font(.system(.headline))
-                            .tint(.black)
+//                            .tint(.green)
                     }
                     Text("If so, Tugz can send you regular reminders throughout the day so you can get all your sessions in.")
                         .font(.system(.caption))
@@ -87,7 +87,7 @@ struct OnboardingSubview: View {
                         Toggle("Do you use any devices?", isOn: $userPrefs.usesDevices)
                             .toggleStyle(.automatic)
                             .font(.system(.headline))
-                            .tint(.black)
+//                            .tint(.green)
                     }
                     Text("If so, we'll let you pick them list of commercially-available devices.")
                         .font(.system(.caption))
@@ -132,7 +132,7 @@ struct OnboardingSubview: View {
                         Spacer()
                     }
 
-                    Text("Select the devices you own")
+                    Text("Select any devices you use")
                         .font(.system(.largeTitle))
                         .bold()
                         .listRowSeparator(.hidden)
@@ -142,8 +142,9 @@ struct OnboardingSubview: View {
                     
                     DeviceListView()
                         .environmentObject(userPrefs)
+                        .edgesIgnoringSafeArea(.horizontal)
             }
-                .padding()
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 55, trailing: 20))
         }
     }
     
