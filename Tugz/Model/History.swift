@@ -161,6 +161,18 @@ final class History: NSObject, ObservableObject {
         }
     }
     
+    func delete(_ tug: Tug) {
+
+        tug.state = .cancelled
+        
+        tugs.removeAll { t in
+            t.id == tug.id
+        }
+        Task {
+            try await tug.save()
+        }
+    }
+    
     /// TODO provide summary stats per day
     /// rather than just a list of individual tugs
     func tugsToday() -> [Tug] {
