@@ -45,6 +45,7 @@ struct TabBarHostingView: View {
             
             NavigationView {
                 AboutView()
+                    .navigationBarTitle(Text("About"))
             }
             .navigationBarTitle(Text("About"))
             .navigationBarHidden(true)
