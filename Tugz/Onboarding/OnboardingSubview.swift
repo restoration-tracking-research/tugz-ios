@@ -132,7 +132,7 @@ struct OnboardingSubview: View {
                         Spacer()
                     }
 
-                    Text("Select the devices you own")
+                    Text("Select any devices you use")
                         .font(.system(.largeTitle))
                         .bold()
                         .listRowSeparator(.hidden)
@@ -142,8 +142,9 @@ struct OnboardingSubview: View {
                     
                     DeviceListView()
                         .environmentObject(userPrefs)
+                        .edgesIgnoringSafeArea(.horizontal)
             }
-                .padding()
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 55, trailing: 20))
         }
     }
     
