@@ -36,7 +36,8 @@ struct DeviceListView: View {
                                 Text(device.displayName)
                                 Spacer()
                             }
-                            .padding()
+                            .contentShape(Rectangle())
+//                            .padding()
 //                            .background(.red)
                             .onTapGesture {
                                 if userPrefs.userOwnedDevices.contains(device) {
