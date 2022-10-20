@@ -111,7 +111,7 @@ struct HistoryView: View {
                     }
                     .headerProminence(.increased)
                     
-                    ForEach(history.tugsByDay(includingToday: false).reversed()) {
+                    ForEach(history.tugsByDay(includingToday: false)) {
                         HistorySection(tugs: $0)
                     }
                     

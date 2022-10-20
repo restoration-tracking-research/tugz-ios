@@ -76,7 +76,7 @@ struct OnboardingSubview: View {
                         Toggle("Do you use manual methods?", isOn: $userPrefs.usesManual)
                             .toggleStyle(.automatic)
                             .font(.system(.headline))
-//                            .tint(.green)
+                            .tint(.blue)
                     }
                     Text("If so, Tugz can send you regular reminders throughout the day so you can get all your sessions in.")
                         .font(.system(.caption))

@@ -36,7 +36,7 @@ struct TugView: View {
         if canStartTug {
             return "TAP TO START"
         } else {
-            return "Tugging for \(tug.duration.minuteSecond)"
+            return "Tugging for \(tug.duration.formatted)"
         }
     }
     
