@@ -71,19 +71,26 @@ final class History: NSObject, ObservableObject {
         fetchIfNeeded()
     }
     
-    init(forTest: Bool) {
-        self.tugs = [
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true)
+    init(forTest: Bool, tugs: [Tug] = []) {
+        
+        precondition(forTest == true)
+        
+        if tugs.isEmpty {
+            self.tugs = [
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true)
             ]
+        } else {
+            self.tugs = tugs
+        }
         
         super.init()
     }
