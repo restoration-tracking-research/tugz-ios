@@ -40,7 +40,11 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     @Published var usesDevices = false
     
     /// Each manual tug
-    @Published var tugDuration: Measurement = Defaults.tugDuration { didSet { save() } }
+    @Published var tugDuration: Measurement = Defaults.tugDuration {
+        didSet {
+            save()
+        }
+    }
     @Published var tugInterval: Measurement = Defaults.tugInterval { didSet { save() } }
     @Published var firstTugTime: DateComponents = Defaults.firstTugTime { didSet { save() } }
     @Published var lastTugTime: DateComponents = Defaults.lastTugTime { didSet { save() } }

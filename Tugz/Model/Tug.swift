@@ -229,7 +229,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
 
 extension Tug {
     
-    static func testTug(started: Bool = false, finished: Bool = false) -> Tug {
+    static func testTug(started: Bool = false, finished: Bool = false, manual: Bool = true) -> Tug {
         
         let t = Tug(scheduledFor: Date(timeIntervalSinceNow: -Double.random(in: 0..<806400)), scheduledDuration: 60)
         if started {
@@ -238,6 +238,9 @@ extension Tug {
         if finished {
             t.end = t.start?.advanced(by: t.scheduledDuration)
         }
+        
+        t.method = manual ? .manual(method: .five) : .device(device: .DTR)
+        
         return t
     }
     

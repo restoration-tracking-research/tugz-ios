@@ -10,9 +10,11 @@ import SwiftUI
 struct CheckToggleStyle: ToggleStyle {
     
     func makeBody(configuration: Configuration) -> some View {
+        
         Button {
             configuration.isOn.toggle()
         } label: {
+            
             Label {
                 configuration.label
             } icon: {
@@ -48,8 +50,20 @@ struct TugTypeSelectView: View {
     @State var manualMethod: ManualMethod = .other
     @State var device: Device = .DTR
     
+    var manualTitle: String {
+        "Manual Method"
+    }
+    
+    var deviceTitle: String {
+        "Device Session"
+    }
+    
     var toggleTitle: String {
-        isManual ? "Manual Method (tap to change)" : "Using a Device (tap to change)"
+        isManual ? manualTitle : deviceTitle //"Manual Method (tap to change)" : "Using a Device (tap to change)"
+    }
+    
+    var otherTypeTitle: String {
+        isManual ? "Device" : "Manual"
     }
     
     var tugEndInfoString: String {
@@ -90,8 +104,14 @@ struct TugTypeSelectView: View {
         
         VStack {
         
-            Toggle(toggleTitle, isOn: $isManual)
-                .toggleStyle(CheckToggleStyle())
+            HStack {
+                Image(systemName: isManual ? "hands.clap" : "testtube.2")
+                Text(toggleTitle)
+                Button("Switch to \(otherTypeTitle)") {
+                    isManual.toggle()
+                }
+                .buttonStyle(.bordered)
+            }
             
             if isManual {
 
@@ -144,10 +164,10 @@ struct TugTypeSelectView_Previews: PreviewProvider {
     static let config = Config(forTest: true)
     
     static var previews: some View {
-        TugTypeSelectView(config: config, tug: Tug.testTug())
+        TugTypeSelectView(config: config, tug: Tug.testTug(manual: true))
             .previewLayout(.sizeThatFits)
         
-        TugTypeSelectView(config: config, tug: Tug.testTug())
+        TugTypeSelectView(config: config, tug: Tug.testTug(manual: false))
             .previewLayout(.sizeThatFits)
     }
 }
