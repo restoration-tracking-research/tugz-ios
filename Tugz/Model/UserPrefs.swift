@@ -40,12 +40,16 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     @Published var usesDevices = false
     
     /// Each manual tug
-    @Published var tugDuration: Measurement = Defaults.tugDuration { didSet { save() } }
-    @Published var tugInterval: Measurement = Defaults.tugInterval { didSet { save() } }
-    @Published var firstTugTime: DateComponents = Defaults.firstTugTime { didSet { save() } }
-    @Published var lastTugTime: DateComponents = Defaults.lastTugTime { didSet { save() } }
+    @Published var tugDuration: Measurement<UnitDuration> {
+        didSet {
+            save()
+        }
+    }
+    @Published var tugInterval: Measurement<UnitDuration> { didSet { save() } }
+    @Published var firstTugTime: DateComponents { didSet { save() } }
+    @Published var lastTugTime: DateComponents { didSet { save() } }
     
-    @Published var daysToTug: [DayOfWeek] = DayOfWeek.weekdays() { didSet { save() } }
+    @Published var daysToTug: [DayOfWeek] { didSet { save() } }
     
     @Published var sendManualReminders = true
     
@@ -65,10 +69,24 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     private let jsonEncoder = JSONEncoder()
     
     override init() {
+        
+        tugDuration = Defaults.tugDuration
+        tugInterval = Defaults.tugInterval
+        firstTugTime = Defaults.firstTugTime
+        lastTugTime = Defaults.lastTugTime
+        daysToTug = DayOfWeek.weekdays()
+        
         super.init()
     }
     
     init(forTest: Bool) {
+        
+        tugDuration = Defaults.tugDuration
+        tugInterval = Defaults.tugInterval
+        firstTugTime = Defaults.firstTugTime
+        lastTugTime = Defaults.lastTugTime
+        daysToTug = DayOfWeek.weekdays()
+        
         super.init()
         
         userOwnedDevices = [
@@ -80,7 +98,6 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     }
     
     required init(from decoder: Decoder) throws {
-        super.init()
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -96,7 +113,7 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         // Safely set properties
         self.usesManual = usesManual
         self.usesDevices = usesDevices
-        self.tugInterval = Measurement(value: tugDuration, unit: UnitDuration.seconds)
+        self.tugDuration = Measurement(value: tugDuration, unit: UnitDuration.seconds)
         self.tugInterval = Measurement(value: tugInterval, unit: UnitDuration.seconds)
         
         if let userDevices = userDevices, !userDevices.isEmpty {
@@ -104,7 +121,14 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
         } else {
             self.userOwnedDevices = Device.allCases
         }
-
+        
+        /// Temp
+        self.firstTugTime = Defaults.firstTugTime
+        self.lastTugTime = Defaults.lastTugTime
+        self.daysToTug = DayOfWeek.weekdays()
+        
+        super.init()
+        
         if firstTugTime.count > 1 {
             self.firstTugTime.hour = firstTugTime[0]
             self.firstTugTime.minute = firstTugTime[1]
@@ -113,24 +137,34 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
             self.lastTugTime.hour = lastTugTime[0]
             self.lastTugTime.minute = lastTugTime[1]
         }
+        
+        
     }
     
     public func encode(to encoder: Encoder) throws {
         var values = encoder.container(keyedBy: CodingKeys.self)
         
-        try values.encode(usesManual, forKey: .usesManual)
-        try values.encode(usesDevices, forKey: .usesDevices)
-        try values.encode(tugDuration.converted(to: .seconds).value, forKey: .tugDuration)
-        try values.encode(tugInterval.converted(to: .seconds).value, forKey: .tugInterval)
-        try values.encode([firstTugTime.hour, firstTugTime.minute], forKey: .firstTugTime)
-        try values.encode([lastTugTime.hour, lastTugTime.minute], forKey: .lastTugTime)
-        try values.encode(userOwnedDevices, forKey: .userOwnedDevices)
+        
+        do {
+            
+            try values.encode(usesManual, forKey: .usesManual)
+            try values.encode(usesDevices, forKey: .usesDevices)
+            try values.encode(tugDuration.converted(to: .seconds).value, forKey: .tugDuration)
+            try values.encode(tugInterval.converted(to: .seconds).value, forKey: .tugInterval)
+            try values.encode([firstTugTime.hour, firstTugTime.minute], forKey: .firstTugTime)
+            try values.encode([lastTugTime.hour, lastTugTime.minute], forKey: .lastTugTime)
+            try values.encode(userOwnedDevices, forKey: .userOwnedDevices)
+            
+        } catch {
+            print(error)
+            print(error)
+        }
     }
-    
+        
     static func loadFromStore() -> UserPrefs {
         
         guard let data = UserDefaults.standard.object(forKey: "UserPrefs") as? Data else {
-                return UserPrefs()
+            return UserPrefs()
         }
         
         do {
@@ -142,6 +176,9 @@ final class UserPrefs: NSObject, Codable, ObservableObject {
     }
     
     func save() {
+        
+        print(FileManager.default.urls(for: .preferencePanesDirectory, in: .userDomainMask).first!)
+        
     
         do {
             let data = try jsonEncoder.encode(self)

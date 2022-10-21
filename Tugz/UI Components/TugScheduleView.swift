@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct TugScheduleView: View {
+
+    @EnvironmentObject var prefs: UserPrefs
     
     let title: String? // "What's your ideal schedule?"
     let subtitle: String? // "We'll send you notifications to help you meet your goals."
-    @ObservedObject var userPrefs: UserPrefs
     
     @State var firstTugTime = Date()
     @State var lastTugTime = Date()
     @State private var tugDuration: TimeInterval
     @State private var tugInterval: TimeInterval
     
-    init(title: String? = nil, subtitle: String? = nil, userPrefs: UserPrefs) {
+    init(title: String? = nil, subtitle: String? = nil, prefs: UserPrefs) {
         
         self.title = title
         self.subtitle = subtitle
-        self.userPrefs = userPrefs
         
-        _tugDuration = State(initialValue: userPrefs.tugDuration.converted(to: .seconds).value)
-        _tugInterval = State(initialValue: userPrefs.tugInterval.converted(to: .seconds).value)
+        _tugDuration = State(initialValue: prefs.tugDuration.converted(to: .seconds).value)
+        _tugInterval = State(initialValue: prefs.tugInterval.converted(to: .seconds).value)
         
-        _firstTugTime = State(initialValue: userPrefs.firstTugTime.toDateInToday())
-        _lastTugTime = State(initialValue: userPrefs.lastTugTime.toDateInToday())
+        _firstTugTime = State(initialValue: prefs.firstTugTime.toDateInToday())
+        _lastTugTime = State(initialValue: prefs.lastTugTime.toDateInToday())
     }
     
     var body: some View {
@@ -65,7 +65,7 @@ struct TugScheduleView: View {
                         ZStack {
                             
                             Circle()
-                                .fill( userPrefs.daysToTug.contains(day) ? .blue : .gray)
+                                .fill( prefs.daysToTug.contains(day) ? .blue : .gray)
                             
                             Text( day.initial )
                                 .font(.system(.headline))
@@ -73,10 +73,10 @@ struct TugScheduleView: View {
                             
                         }
                         .onTapGesture {
-                            if userPrefs.daysToTug.contains(day) {
-                                userPrefs.daysToTug = userPrefs.daysToTug.filter { $0 != day }
+                            if prefs.daysToTug.contains(day) {
+                                prefs.daysToTug = prefs.daysToTug.filter { $0 != day }
                             } else {
-                                userPrefs.daysToTug.append(day)
+                                prefs.daysToTug.append(day)
                             }
                         }
                     }
@@ -90,13 +90,13 @@ struct TugScheduleView: View {
                 
                 DatePicker("First Tug of the day", selection: $firstTugTime, displayedComponents: [.hourAndMinute])
                     .onChange(of: firstTugTime) { newValue in
-                        userPrefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                        prefs.firstTugTime = Calendar.current.dateComponents([.hour, .minute], from: newValue)
                     }
                 
                 DatePicker("Last Tug of the day", selection: $lastTugTime, displayedComponents: [.hourAndMinute])
                     .listRowSeparator(.hidden)
                     .onChange(of: lastTugTime) { newValue in
-                        userPrefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                        prefs.lastTugTime = Calendar.current.dateComponents([.hour, .minute], from: newValue)
                     }
                 
                 Divider()
@@ -112,7 +112,7 @@ struct TugScheduleView: View {
                 }
                 .tag("5")
                 .onChange(of: tugDuration) { newValue in
-                    userPrefs.tugDuration = Measurement(value: newValue, unit: .seconds)
+                    prefs.tugDuration = Measurement(value: newValue, unit: .seconds)
                 }
                 
                 Picker("Tug every", selection: $tugInterval) {
@@ -121,7 +121,7 @@ struct TugScheduleView: View {
                     }
                 }
                 .onChange(of: tugInterval) { newValue in
-                    userPrefs.tugInterval = Measurement(value: newValue, unit: .seconds)
+                    prefs.tugInterval = Measurement(value: newValue, unit: .seconds)
                 }
                 
                 Divider()
@@ -129,11 +129,11 @@ struct TugScheduleView: View {
             .listRowSeparator(.hidden)
             
             Group {
-                Toggle("Send manual tug reminders", isOn: $userPrefs.sendManualReminders)
+                Toggle("Send manual tug reminders", isOn: $prefs.sendManualReminders)
                     .tint(.blue)
                     .onTapGesture {
                         withAnimation {
-                            $userPrefs.sendManualReminders.wrappedValue.toggle()
+                            $prefs.sendManualReminders.wrappedValue.toggle()
                         }
                     }
                     .listRowSeparator(.hidden)
@@ -150,7 +150,9 @@ struct TugScheduleView_Previews: PreviewProvider {
     static var previews: some View {
         TugScheduleView(title: "What's your ideal schedule?",
                         subtitle: "We'll send you notifications to help you meet your goals.",
-                        userPrefs: UserPrefs())
-        TugScheduleView(userPrefs: UserPrefs())
+                        prefs: UserPrefs())
+        .environmentObject(UserPrefs())
+        TugScheduleView(prefs: UserPrefs())
+            .environmentObject(UserPrefs())
     }
 }

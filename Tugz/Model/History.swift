@@ -71,19 +71,26 @@ final class History: NSObject, ObservableObject {
         fetchIfNeeded()
     }
     
-    init(forTest: Bool) {
-        self.tugs = [
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true),
-            Tug.testTug(started: true, finished: true)
+    init(forTest: Bool, tugs: [Tug] = []) {
+        
+        precondition(forTest == true)
+        
+        if tugs.isEmpty {
+            self.tugs = [
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true),
+                Tug.testTug(started: true, finished: true)
             ]
+        } else {
+            self.tugs = tugs
+        }
         
         super.init()
     }
@@ -158,6 +165,18 @@ final class History: NSObject, ObservableObject {
             } catch {
                 handle(error: error)
             }
+        }
+    }
+    
+    func delete(_ tug: Tug) {
+
+        tug.state = .cancelled
+        
+        tugs.removeAll { t in
+            t.id == tug.id
+        }
+        Task {
+            try await tug.save()
         }
     }
     

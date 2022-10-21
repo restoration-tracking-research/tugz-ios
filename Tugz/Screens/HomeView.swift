@@ -14,8 +14,12 @@ struct HomeView: View {
             scheduler = config.scheduler
         }
     }
+    @ObservedObject var scheduler: TugScheduler
+    @ObservedObject var prefs: UserPrefs
     
     @State var formattedTimeUntilNextTug: String = ""
+    @State var navToTugNowActive = false
+    @State private var logoOpacity = 0.0
     
     var sessionsTodayText: String {
         
@@ -25,20 +29,13 @@ struct HomeView: View {
         return count > 0 ? "\(count) of \(goal) sessions" : "Ready to start"
     }
     
-    @State var navToTugNowActive = false
-    
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
-    
-    @ObservedObject var scheduler: TugScheduler
-    
-    var prefs: UserPrefs { config.prefs }
-    
-    @State private var logoOpacity = 0.0
     
     init(config: Config) {
         
         self.config = config
         self.scheduler = config.scheduler
+        self.prefs = config.prefs
         
         formattedTimeUntilNextTug = scheduler.formattedTimeUntilNextTug()
     }

@@ -45,7 +45,19 @@ struct HistorySection: View {
             ForEach(tugs) {
                 HistoryRow(tug: $0)
             }
+            .onDelete(perform: delete)
         }
+    }
+    
+    /// here we have offsets into the SECTION
+    func delete(at offsets: IndexSet) {
+        
+        guard let index = offsets.first else {
+            return
+        }
+
+        let tug = tugs[index]
+        History.shared.delete(tug)
     }
 }
 
@@ -99,7 +111,7 @@ struct HistoryView: View {
                     }
                     .headerProminence(.increased)
                     
-                    ForEach(history.tugsByDay(includingToday: false).reversed()) {
+                    ForEach(history.tugsByDay(includingToday: false)) {
                         HistorySection(tugs: $0)
                     }
                     

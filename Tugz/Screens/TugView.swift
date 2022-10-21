@@ -36,7 +36,7 @@ struct TugView: View {
         if canStartTug {
             return "TAP TO START"
         } else {
-            return "Tugging for \(tug.duration.minuteSecond)"
+            return "Tugging for \(tug.duration.formatted)"
         }
     }
     
@@ -158,7 +158,7 @@ struct TugView: View {
                     Button {
                         showingActionSheet.toggle()
                     } label: {
-                        Text(tug.percentDone <= 1 ? "Stop" : "All Done")
+                        Text(tug.duration < 15 ? "Cancel" : tug.percentDone <= 1 ? "Stop" : "All Done")
                             .bold()
                             .frame(width: 300, height: 55)
                             .background(.clear)

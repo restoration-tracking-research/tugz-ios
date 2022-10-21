@@ -32,6 +32,7 @@ private let dayFormatter: DateFormatter = {
 final class Tug: Identifiable, Equatable, ObservableObject {
     
     let id: CKRecord.ID
+    let minDurationToSave: TimeInterval = 15 /// tugs less than 15s not saved
     
     static func == (lhs: Tug, rhs: Tug) -> Bool {
         lhs.id == rhs.id
@@ -43,6 +44,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
         case started
         case finished
         case skipped
+        case cancelled
         case unknown
     }
     
@@ -116,7 +118,7 @@ final class Tug: Identifiable, Equatable, ObservableObject {
     
     var percentDone: Double {
         switch state {
-        case .scheduled, .due, .skipped, .unknown:
+        case .scheduled, .due, .skipped, .cancelled, .unknown:
             return 0
         case .started:
             if let start = start {
@@ -194,7 +196,11 @@ final class Tug: Identifiable, Equatable, ObservableObject {
             record[CodingKeys.method.stringValue] = device.rawValue
         }
         
-        try await db.save(record)
+        if duration > minDurationToSave && state != .cancelled {
+            try await db.save(record)
+        } else {
+            try await db.deleteRecord(withID: record.recordID)
+        }
     }
     
     func startTug() {
@@ -217,13 +223,13 @@ final class Tug: Identifiable, Equatable, ObservableObject {
         
         assert(state == .due || state == .started)
         
-        state = .skipped
+        state = .cancelled
     }
 }
 
 extension Tug {
     
-    static func testTug(started: Bool = false, finished: Bool = false) -> Tug {
+    static func testTug(started: Bool = false, finished: Bool = false, manual: Bool = true) -> Tug {
         
         let t = Tug(scheduledFor: Date(timeIntervalSinceNow: -Double.random(in: 0..<806400)), scheduledDuration: 60)
         if started {
@@ -232,6 +238,9 @@ extension Tug {
         if finished {
             t.end = t.start?.advanced(by: t.scheduledDuration)
         }
+        
+        t.method = manual ? .manual(method: .five) : .device(device: .DTR)
+        
         return t
     }
     

@@ -35,7 +35,8 @@ struct TabBarHostingView: View {
             }
             
             NavigationView {
-                SettingsView(config: config)
+                SettingsView()
+                    .environmentObject(config)
                     .navigationBarTitle(Text("Settings"))
             }
             .navigationBarHidden(true)
@@ -45,6 +46,7 @@ struct TabBarHostingView: View {
             
             NavigationView {
                 AboutView()
+                    .navigationBarTitle(Text("About"))
             }
             .navigationBarTitle(Text("About"))
             .navigationBarHidden(true)
