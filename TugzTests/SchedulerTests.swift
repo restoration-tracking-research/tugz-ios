@@ -100,4 +100,24 @@ class SchedulerTests: XCTestCase {
         
         XCTAssertEqual(s.formattedTimeOfNextTug(from: date), "11:00 AM")
     }
+    
+    func testSchedulerInGMT() {
+        
+        
+    }
+    
+    func testSchedulerInCET() {
+        
+        
+    }
+    
+    func testSchedulerInPDT() {
+        
+        
+    }
+    
+    func testSchedulerInHST() {
+        
+        
+    }
 }
