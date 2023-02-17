@@ -103,7 +103,21 @@ class SchedulerTests: XCTestCase {
     
     func testSchedulerInGMT() {
         
+        var components = Calendar.current.dateComponents([.calendar, .year, .month, .day], from: Date())
+        components.hour = 8
+        components.minute = 0
+        components.second = 0
+        let date = components.date!
         
+        var c2 = components
+        c2.hour = 9
+        let expectedDate = c2.date!
+        
+        let u = UserPrefs()
+        let h = History(forTest: true, tugs: [Tug(scheduledFor: Date(), scheduledDuration: 60, start: Date(), end: Date())])
+        let s = TugScheduler(prefs: u, history: h)
+        
+        XCTAssertEqual(s.timeOfNextTug(after: date), expectedDate)
     }
     
     func testSchedulerInCET() {
